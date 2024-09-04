@@ -1,0 +1,247 @@
+﻿namespace ALA_Accounting.UsersForm
+{
+    partial class MDIParent1
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIParent1));
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.administratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.myCompanyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.maintainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addCustomersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vendorSupplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bankAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accountsOpeningBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.addInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventoryOpeningBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventoryBrandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.custoemerRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 537);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(825, 22);
+            this.statusStrip.TabIndex = 2;
+            this.statusStrip.Text = "StatusStrip";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
+            this.toolStripStatusLabel.Text = "Status";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.administratorToolStripMenuItem,
+            this.maintainToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(825, 24);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // administratorToolStripMenuItem
+            // 
+            this.administratorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dashboardToolStripMenuItem,
+            this.myCompanyToolStripMenuItem});
+            this.administratorToolStripMenuItem.Name = "administratorToolStripMenuItem";
+            this.administratorToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            this.administratorToolStripMenuItem.Text = "Administrator";
+            // 
+            // dashboardToolStripMenuItem
+            // 
+            this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.dashboardToolStripMenuItem.Text = "Dashboard";
+            this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
+            // 
+            // myCompanyToolStripMenuItem
+            // 
+            this.myCompanyToolStripMenuItem.Name = "myCompanyToolStripMenuItem";
+            this.myCompanyToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.myCompanyToolStripMenuItem.Text = "My Company";
+            this.myCompanyToolStripMenuItem.Click += new System.EventHandler(this.myCompanyToolStripMenuItem_Click);
+            // 
+            // maintainToolStripMenuItem
+            // 
+            this.maintainToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addAccountsToolStripMenuItem,
+            this.addCustomersToolStripMenuItem,
+            this.vendorSupplierToolStripMenuItem,
+            this.bankAccountsToolStripMenuItem,
+            this.accountsOpeningBalanceToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.addInventoryToolStripMenuItem,
+            this.inventoryOpeningBalanceToolStripMenuItem,
+            this.inventoryBrandsToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.custoemerRegionsToolStripMenuItem,
+            this.employeesToolStripMenuItem});
+            this.maintainToolStripMenuItem.Name = "maintainToolStripMenuItem";
+            this.maintainToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.maintainToolStripMenuItem.Text = "Maintain مینٹین";
+            // 
+            // addAccountsToolStripMenuItem
+            // 
+            this.addAccountsToolStripMenuItem.Name = "addAccountsToolStripMenuItem";
+            this.addAccountsToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
+            this.addAccountsToolStripMenuItem.Text = "Add Accounts  اکاؤنٹ";
+            this.addAccountsToolStripMenuItem.Click += new System.EventHandler(this.addAccountsToolStripMenuItem_Click);
+            // 
+            // addCustomersToolStripMenuItem
+            // 
+            this.addCustomersToolStripMenuItem.Name = "addCustomersToolStripMenuItem";
+            this.addCustomersToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
+            this.addCustomersToolStripMenuItem.Text = "Add Customers  کسٹمر";
+            this.addCustomersToolStripMenuItem.Click += new System.EventHandler(this.addCustomersToolStripMenuItem_Click);
+            // 
+            // vendorSupplierToolStripMenuItem
+            // 
+            this.vendorSupplierToolStripMenuItem.Name = "vendorSupplierToolStripMenuItem";
+            this.vendorSupplierToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
+            this.vendorSupplierToolStripMenuItem.Text = "Vendor/Supplier  وینڈر";
+            // 
+            // bankAccountsToolStripMenuItem
+            // 
+            this.bankAccountsToolStripMenuItem.Name = "bankAccountsToolStripMenuItem";
+            this.bankAccountsToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
+            this.bankAccountsToolStripMenuItem.Text = "Bank Accounts  بینک اکاؤنٹ";
+            // 
+            // accountsOpeningBalanceToolStripMenuItem
+            // 
+            this.accountsOpeningBalanceToolStripMenuItem.Name = "accountsOpeningBalanceToolStripMenuItem";
+            this.accountsOpeningBalanceToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
+            this.accountsOpeningBalanceToolStripMenuItem.Text = "Accounts Opening Balance اکاؤنٹ کا افتتاحی بیلنس ";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(338, 6);
+            // 
+            // addInventoryToolStripMenuItem
+            // 
+            this.addInventoryToolStripMenuItem.Name = "addInventoryToolStripMenuItem";
+            this.addInventoryToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
+            this.addInventoryToolStripMenuItem.Text = "Add Inventory  انویٹری شامل کریں";
+            this.addInventoryToolStripMenuItem.Click += new System.EventHandler(this.addInventoryToolStripMenuItem_Click);
+            // 
+            // inventoryOpeningBalanceToolStripMenuItem
+            // 
+            this.inventoryOpeningBalanceToolStripMenuItem.Name = "inventoryOpeningBalanceToolStripMenuItem";
+            this.inventoryOpeningBalanceToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
+            this.inventoryOpeningBalanceToolStripMenuItem.Text = "Inventory Opening balance  انویٹری افتتاحی بیلنس";
+            // 
+            // inventoryBrandsToolStripMenuItem
+            // 
+            this.inventoryBrandsToolStripMenuItem.Name = "inventoryBrandsToolStripMenuItem";
+            this.inventoryBrandsToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
+            this.inventoryBrandsToolStripMenuItem.Text = "Inventory Brands  انویٹری برانڈز";
+            this.inventoryBrandsToolStripMenuItem.Click += new System.EventHandler(this.inventoryBrandsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(338, 6);
+            // 
+            // custoemerRegionsToolStripMenuItem
+            // 
+            this.custoemerRegionsToolStripMenuItem.Name = "custoemerRegionsToolStripMenuItem";
+            this.custoemerRegionsToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
+            this.custoemerRegionsToolStripMenuItem.Text = "Custoemer Regions  کسٹمر ریجن";
+            // 
+            // employeesToolStripMenuItem
+            // 
+            this.employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
+            this.employeesToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
+            this.employeesToolStripMenuItem.Text = "Employees  ملازمین";
+            // 
+            // MDIParent1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(825, 559);
+            this.Controls.Add(this.statusStrip);
+            this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
+            this.Name = "MDIParent1";
+            this.Text = "ALA Accounting ";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MDIParent1_FormClosing);
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+        #endregion
+
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem administratorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem myCompanyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem maintainToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addAccountsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addCustomersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vendorSupplierToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bankAccountsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem accountsOpeningBalanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem addInventoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inventoryOpeningBalanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inventoryBrandsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem custoemerRegionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem employeesToolStripMenuItem;
+    }
+}
+
+
+
