@@ -750,6 +750,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddAccount";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddAccount";
             this.Load += new System.EventHandler(this.AddAccount_Load);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ALA_Accounting.UsersForm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,13 @@ namespace ALA_Accounting.TransactionForms
 {
     public partial class bankReceipt : Form
     {
-        public bankReceipt()
+        MDIParent1 dIParent1;
+
+        public bankReceipt(MDIParent1 mDI)
         {
             InitializeComponent();
+
+            this.dIParent1 = mDI;
         }
 
         private void bankReceipt_Load(object sender, EventArgs e)

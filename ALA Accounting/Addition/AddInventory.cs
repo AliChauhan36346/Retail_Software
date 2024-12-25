@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
+
 namespace ALA_Accounting.Addition
 {
     public partial class AddInventory : Form
@@ -37,19 +38,10 @@ namespace ALA_Accounting.Addition
 
             txt_inventoryCataName.Clear();
 
+            DisableAllControlsExcept(btn_saveMainCata, btn_cancelMainCata);
+
             // disabling add button
-            btn_addNewMainCata.Enabled = false;
-            btn_deleteMainCata.Enabled = false;
-
-            btn_addNewSubCata.Enabled = false;
-            btn_saveSubCata.Enabled = false;
-            btn_cancelSubCata.Enabled = false;
-            btn_deleteSubCata.Enabled = false;
-
-            btn_addNewItem.Enabled = false;
-            btn_saveItem.Enabled = false;
-            btn_cancelItem.Enabled = false;
-            btn_deleteItem.Enabled = false;
+            
         }
 
         private void btn_saveMainCata_Click(object sender, EventArgs e)
@@ -61,18 +53,7 @@ namespace ALA_Accounting.Addition
                     inventoryCatagory.UpdateInventoryCategory(int.Parse(txt_inventoryCataId.Text), txt_inventoryCataName.Text);
                     loadInventory(true, false, false);
 
-                    btn_addNewMainCata.Enabled=true;
-                    btn_deleteMainCata.Enabled = true;
-
-                    btn_addNewSubCata.Enabled = true;
-                    btn_saveSubCata.Enabled = true;
-                    btn_cancelSubCata.Enabled = true;
-                    btn_deleteSubCata.Enabled = true;
-
-                    btn_addNewItem.Enabled = true;
-                    btn_saveItem.Enabled = true;
-                    btn_cancelItem.Enabled = true;
-                    btn_deleteItem.Enabled = true;
+                    EnableAllControls();
                 }
             }
             else
@@ -83,18 +64,7 @@ namespace ALA_Accounting.Addition
 
                     loadInventory(true, false, false);
 
-                    btn_addNewMainCata.Enabled = true;
-                    btn_deleteMainCata.Enabled = true;
-
-                    btn_addNewSubCata.Enabled = true;
-                    btn_saveSubCata.Enabled = true;
-                    btn_cancelSubCata.Enabled = true;
-                    btn_deleteSubCata.Enabled = true;
-
-                    btn_addNewItem.Enabled = true;
-                    btn_saveItem.Enabled = true;
-                    btn_cancelItem.Enabled = true;
-                    btn_deleteItem.Enabled = true;
+                    EnableAllControls();
 
                     isEditing = true;
                 }
@@ -139,18 +109,9 @@ namespace ALA_Accounting.Addition
 
         private void btn_cancelMainCata_Click(object sender, EventArgs e)
         {
-            btn_addNewMainCata.Enabled = true;
-            btn_deleteMainCata.Enabled = true;
+            EnableAllControls();
 
-            btn_addNewSubCata.Enabled = true;
-            btn_saveSubCata.Enabled = true;
-            btn_cancelSubCata.Enabled = true;
-            btn_deleteSubCata.Enabled = true;
 
-            btn_addNewItem.Enabled = true;
-            btn_saveItem.Enabled = true;
-            btn_cancelItem.Enabled = true;
-            btn_deleteItem.Enabled = true;
 
             isEditing =true;
 
@@ -286,18 +247,7 @@ namespace ALA_Accounting.Addition
             txt_inventorySubCataName.Clear();
             txt_inventorySubCataName.Focus();
 
-            btn_addNewSubCata.Enabled = false;
-            btn_deleteSubCata.Enabled = false;
-
-            btn_addNewItem.Enabled = false;
-            btn_saveItem.Enabled = false;
-            btn_cancelItem.Enabled = false;
-            btn_deleteItem.Enabled = false;
-
-            btn_addNewMainCata.Enabled = false;
-            btn_deleteMainCata.Enabled = false;
-            btn_saveMainCata.Enabled = false;
-            btn_cancelMainCata.Enabled = false;
+            DisableAllControlsExcept(btn_saveSubCata, btn_cancelSubCata);
         }
 
         private void btn_saveSubCata_Click(object sender, EventArgs e)
@@ -309,18 +259,7 @@ namespace ALA_Accounting.Addition
                     subInventoryCatagory.UpdateSubInventoryCategory(int.Parse(txt_inventorySubCataId.Text), txt_inventorySubCataName.Text);
                     loadInventory(false, true, false);
 
-                    btn_addNewSubCata.Enabled = true;
-                    btn_deleteSubCata.Enabled = true;
-
-                    btn_addNewItem.Enabled = true;
-                    btn_saveItem.Enabled = true;
-                    btn_cancelItem.Enabled = true;
-                    btn_deleteItem.Enabled = true;
-
-                    btn_addNewMainCata.Enabled = true;
-                    btn_deleteMainCata.Enabled = true;
-                    btn_saveMainCata.Enabled = true;
-                    btn_cancelMainCata.Enabled = true;
+                    EnableAllControls();
                 }
             }
             else
@@ -330,18 +269,7 @@ namespace ALA_Accounting.Addition
                     subInventoryCatagory.SaveSubInventoryCategory(int.Parse(txt_inventoryCataId.Text), txt_inventorySubCataName.Text);
                     loadInventory(false, true, false);
 
-                    btn_addNewSubCata.Enabled = true;
-                    btn_deleteSubCata.Enabled = true;
-
-                    btn_addNewItem.Enabled = true;
-                    btn_saveItem.Enabled = true;
-                    btn_cancelItem.Enabled = true;
-                    btn_deleteItem.Enabled = true;
-
-                    btn_addNewMainCata.Enabled = true;
-                    btn_deleteMainCata.Enabled = true;
-                    btn_saveMainCata.Enabled = true;
-                    btn_cancelMainCata.Enabled = true;
+                    EnableAllControls();
 
                     isEditing = true;
                 }
@@ -350,18 +278,7 @@ namespace ALA_Accounting.Addition
 
         private void btn_cancelSubCata_Click(object sender, EventArgs e)
         {
-            btn_addNewSubCata.Enabled = true;
-            btn_deleteSubCata.Enabled = true;
-
-            btn_addNewItem.Enabled = true;
-            btn_saveItem.Enabled = true;
-            btn_cancelItem.Enabled = true;
-            btn_deleteItem.Enabled = true;
-
-            btn_addNewMainCata.Enabled = true;
-            btn_deleteMainCata.Enabled = true;
-            btn_saveMainCata.Enabled = true;
-            btn_cancelMainCata.Enabled = true;
+            EnableAllControls();
 
             isEditing = true;
 
@@ -395,6 +312,7 @@ namespace ALA_Accounting.Addition
         {
             if (lstInventorySubCatagory.Items.Count > 0)
             {
+                
                 txt_inventorySubCataName.Text = lstInventorySubCatagory.SelectedItem.ToString();
 
                 txt_inventorySubCataId.Text = subInventoryCatagory.GetSubInventoryCategoryIDByName(txt_inventorySubCataName.Text.Trim()).ToString();
@@ -409,24 +327,14 @@ namespace ALA_Accounting.Addition
         {
             isEditing = false;
 
+
             txt_inventoryItemId.Clear();
-            txt_inventoryItemId.Focus();
             txt_inventoryItemName.Clear();
+            txt_salePrice.Clear();
+            txt_purchasePrice.Clear();
 
-            btn_addNewItem.Enabled = false;
-            btn_deleteItem.Enabled = false;
+            DisableAllControlsExcept(btn_saveItem, btn_cancelItem);
 
-            btn_addNewSubCata.Enabled = false;
-            btn_deleteSubCata.Enabled = false;
-            btn_cancelSubCata.Enabled = false;
-            btn_saveSubCata.Enabled = false;
-
-            btn_addNewMainCata.Enabled = false;
-            btn_deleteMainCata.Enabled = false;
-            btn_saveMainCata.Enabled = false;
-            btn_cancelMainCata.Enabled = false;
-
-            ;
         }
 
         private void btn_saveItem_Click(object sender, EventArgs e)
@@ -447,18 +355,7 @@ namespace ALA_Accounting.Addition
 
                     inventoryItems.UpdateInventoryItem(inventoryItems);
 
-                    btn_addNewItem.Enabled = true;
-                    btn_deleteItem.Enabled = true;
-
-                    btn_addNewSubCata.Enabled = true;
-                    btn_deleteSubCata.Enabled = true;
-                    btn_cancelSubCata.Enabled = true;
-                    btn_saveSubCata.Enabled = true;
-
-                    btn_addNewMainCata.Enabled = true;
-                    btn_deleteMainCata.Enabled = true;
-                    btn_saveMainCata.Enabled = true;
-                    btn_cancelMainCata.Enabled = true;
+                    EnableAllControls();
 
 
                     loadInventory(false, false, true);
@@ -483,18 +380,7 @@ namespace ALA_Accounting.Addition
 
                     inventoryItems.SaveInventoryItem(inventoryItems);
 
-                    btn_addNewItem.Enabled = true;
-                    btn_deleteItem.Enabled = true;
-
-                    btn_addNewSubCata.Enabled = true;
-                    btn_deleteSubCata.Enabled = true;
-                    btn_cancelSubCata.Enabled = true;
-                    btn_saveSubCata.Enabled = true;
-
-                    btn_addNewMainCata.Enabled = true;
-                    btn_deleteMainCata.Enabled = true;
-                    btn_saveMainCata.Enabled = true;
-                    btn_cancelMainCata.Enabled = true;
+                    EnableAllControls();
 
                     loadInventory(false, false, true);
                 }
@@ -505,35 +391,34 @@ namespace ALA_Accounting.Addition
 
         private void lstInventoryItems_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (lstInventoryItems.SelectedItem != null)
             {
-                if (lstInventoryItems.SelectedItem != null)
+                // Cast the selected item to ListBoxItem
+                ListBoxItem selectedItem = (ListBoxItem)lstInventoryItems.SelectedItem;
+
+                // Use the existing inventoryItems object to fetch item details
+                inventoryItems = inventoryItems.GetItemDetailsById(selectedItem.ItemID.Trim());
+
+                // If the item was found, update the UI with its details
+                if (inventoryItems != null)
                 {
-                    // Cast the selected item to ListBoxItem
-                    ListBoxItem selectedItem = (ListBoxItem)lstInventoryItems.SelectedItem;
-
-                    // Use the existing inventoryItems object to fetch item details
-                    inventoryItems = inventoryItems.GetItemDetailsById(selectedItem.ItemID.Trim());
-
-                    // If the item was found, update the UI with its details
-                    if (inventoryItems != null)
-                    {
-                        txt_inventoryItemId.Text = inventoryItems.itemId;
-                        txt_inventoryItemName.Text = inventoryItems.itemName;
-                        txt_itemDiscripton.Text = inventoryItems.itemDiscription;
-                        cmbo_itemBrand.Text = inventoryItems.brandName;
-                        txt_RackNo.Text = inventoryItems.rackNo;
-                        txt_purchasePrice.Text = inventoryItems.purchasePrice;
-                        txt_salePrice.Text = inventoryItems.salePrice;
-                        txt_measurmentUnit.Text = inventoryItems.measurmentUnit;
-                        txt_reOrderQuantity.Text = inventoryItems.reOrderQuantity;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Item details could not be loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    txt_inventoryItemId.Text = inventoryItems.itemId;
+                    txt_inventoryItemName.Text = inventoryItems.itemName;
+                    txt_itemDiscripton.Text = inventoryItems.itemDiscription;
+                    cmbo_itemBrand.Text = inventoryItems.brandName;
+                    txt_RackNo.Text = inventoryItems.rackNo;
+                    txt_purchasePrice.Text = inventoryItems.purchasePrice;
+                    txt_salePrice.Text = inventoryItems.salePrice;
+                    txt_measurmentUnit.Text = inventoryItems.measurmentUnit;
+                    txt_reOrderQuantity.Text = inventoryItems.reOrderQuantity;
+                }
+                else
+                {
+                    MessageBox.Show("Item details could not be loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            
         }
 
         private bool ValidateInventoryItemForm(bool isEditing = false, bool isDeleting = false)
@@ -620,10 +505,64 @@ namespace ALA_Accounting.Addition
             addBrands.ShowDialog();
         }
 
+        public void EnableAllControls()
+        {
+            btn_addNewMainCata.Enabled = true;
+            btn_saveMainCata.Enabled = true;
+            btn_cancelMainCata.Enabled = true;
+            btn_deleteMainCata.Enabled = true;
+
+            btn_addNewSubCata.Enabled = true;
+            btn_saveSubCata.Enabled = true;
+            btn_cancelSubCata.Enabled = true;
+            btn_deleteSubCata.Enabled = true;
+
+            btn_addNewItem.Enabled = true;
+            btn_saveItem.Enabled = true;
+            btn_cancelItem.Enabled = true;
+            btn_deleteItem.Enabled = true;
+
+            lstInventoryCatagory.Enabled = true;
+            lstInventoryItems.Enabled = true;
+            lstInventorySubCatagory.Enabled = true;
+        }
+
+
+        public void DisableAllControlsExcept(Guna.UI2.WinForms.Guna2Button button1, Guna.UI2.WinForms.Guna2Button button2)
+        {
+            btn_addNewMainCata.Enabled = false;
+            btn_saveMainCata.Enabled = false;
+            btn_cancelMainCata.Enabled = false;
+            btn_deleteMainCata.Enabled = false;
+
+            btn_addNewSubCata.Enabled = false;
+            btn_saveSubCata.Enabled = false;
+            btn_cancelSubCata.Enabled = false;
+            btn_deleteSubCata.Enabled = false;
+
+            btn_addNewItem.Enabled = false;
+            btn_saveItem.Enabled = false;
+            btn_cancelItem.Enabled = false;
+            btn_deleteItem.Enabled = false;
+
+            lstInventoryCatagory.Enabled = false;
+            lstInventoryItems.Enabled = false;
+            lstInventorySubCatagory.Enabled = false;
+
+
+
+
+            // Ensure the two provided buttons are enabled
+            button1.Enabled = true;
+            button2.Enabled = true;
+        }
+
+
+
+
         private void btn_cancelItem_Click(object sender, EventArgs e)
         {
-            btn_addNewItem.Enabled = true;
-            btn_deleteItem.Enabled = true;
+            EnableAllControls();
 
             isEditing = true;
 
@@ -632,7 +571,7 @@ namespace ALA_Accounting.Addition
                 txt_inventoryItemId.Clear();
                 txt_inventoryItemName.Clear();
                 txt_itemDiscripton.Clear();
-                cmbo_itemBrand.SelectedIndex= 0;
+                
                 txt_RackNo.Clear();
                 txt_purchasePrice.Clear();
                 txt_salePrice.Clear();
@@ -649,6 +588,16 @@ namespace ALA_Accounting.Addition
         private void AddInventory_Activated(object sender, EventArgs e)
         {
             brand.LoadBrandsIntoComboBox(cmbo_itemBrand);
+        }
+
+        private void btn_deleteItem_Click(object sender, EventArgs e)
+        {
+            if (ValidateInventoryItemForm(false, true))
+            {
+                inventoryItems.DeleteInventoryItem(txt_inventoryItemId.Text.Trim());
+
+                loadInventory(false, false, true);
+            }
         }
     }
 }

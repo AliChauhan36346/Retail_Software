@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BankPayment));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label8 = new System.Windows.Forms.Label();
             this.btn_forward = new Guna.UI2.WinForms.Guna2Button();
-            this.dtm_saleDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.dtm_paymentDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.txt_bankAccountBalance = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txt_cashAccountName = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txt_cashAccount = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txt_bankAccountName = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txt_bankAccount = new Guna.UI2.WinForms.Guna2TextBox();
             this.btn_back = new Guna.UI2.WinForms.Guna2Button();
             this.txt_bankPaymentId = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -44,11 +46,20 @@
             this.btn_cancel = new Guna.UI2.WinForms.Guna2Button();
             this.btn_addNew = new Guna.UI2.WinForms.Guna2Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.bankPaymentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accountId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accountName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bankAccountId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chequeNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chequeDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.lstAccounts = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txt_discription = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txt_description = new Guna.UI2.WinForms.Guna2TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txt_amount = new Guna.UI2.WinForms.Guna2TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txt_accountName = new Guna.UI2.WinForms.Guna2TextBox();
             this.txt_accountBalance = new Guna.UI2.WinForms.Guna2TextBox();
@@ -66,6 +77,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.lstBankAccount = new System.Windows.Forms.ListBox();
+            this.txt_amount = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.guna2GroupBox1.SuspendLayout();
@@ -78,7 +91,7 @@
             this.label8.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label8.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(65, 154);
+            this.label8.Location = new System.Drawing.Point(65, 142);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(48, 24);
             this.label8.TabIndex = 75;
@@ -95,26 +108,27 @@
             this.btn_forward.ForeColor = System.Drawing.Color.White;
             this.btn_forward.Image = ((System.Drawing.Image)(resources.GetObject("btn_forward.Image")));
             this.btn_forward.ImageSize = new System.Drawing.Size(30, 30);
-            this.btn_forward.Location = new System.Drawing.Point(281, 108);
+            this.btn_forward.Location = new System.Drawing.Point(281, 96);
             this.btn_forward.Name = "btn_forward";
             this.btn_forward.Size = new System.Drawing.Size(46, 29);
             this.btn_forward.TabIndex = 77;
+            this.btn_forward.Click += new System.EventHandler(this.btn_forward_Click);
             // 
-            // dtm_saleDate
+            // dtm_paymentDate
             // 
-            this.dtm_saleDate.BorderRadius = 8;
-            this.dtm_saleDate.Checked = true;
-            this.dtm_saleDate.FillColor = System.Drawing.Color.RoyalBlue;
-            this.dtm_saleDate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtm_saleDate.ForeColor = System.Drawing.Color.White;
-            this.dtm_saleDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtm_saleDate.Location = new System.Drawing.Point(117, 149);
-            this.dtm_saleDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtm_saleDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtm_saleDate.Name = "dtm_saleDate";
-            this.dtm_saleDate.Size = new System.Drawing.Size(199, 36);
-            this.dtm_saleDate.TabIndex = 74;
-            this.dtm_saleDate.Value = new System.DateTime(2024, 8, 26, 17, 20, 4, 398);
+            this.dtm_paymentDate.BorderRadius = 8;
+            this.dtm_paymentDate.Checked = true;
+            this.dtm_paymentDate.FillColor = System.Drawing.Color.RoyalBlue;
+            this.dtm_paymentDate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtm_paymentDate.ForeColor = System.Drawing.Color.White;
+            this.dtm_paymentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtm_paymentDate.Location = new System.Drawing.Point(117, 137);
+            this.dtm_paymentDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtm_paymentDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtm_paymentDate.Name = "dtm_paymentDate";
+            this.dtm_paymentDate.Size = new System.Drawing.Size(199, 36);
+            this.dtm_paymentDate.TabIndex = 74;
+            this.dtm_paymentDate.Value = new System.DateTime(2024, 8, 26, 17, 20, 4, 398);
             // 
             // txt_bankAccountBalance
             // 
@@ -131,7 +145,7 @@
             this.txt_bankAccountBalance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_bankAccountBalance.ForeColor = System.Drawing.Color.Red;
             this.txt_bankAccountBalance.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_bankAccountBalance.Location = new System.Drawing.Point(327, 150);
+            this.txt_bankAccountBalance.Location = new System.Drawing.Point(327, 138);
             this.txt_bankAccountBalance.Name = "txt_bankAccountBalance";
             this.txt_bankAccountBalance.PasswordChar = '\0';
             this.txt_bankAccountBalance.PlaceholderText = "";
@@ -141,53 +155,58 @@
             this.txt_bankAccountBalance.Size = new System.Drawing.Size(145, 36);
             this.txt_bankAccountBalance.TabIndex = 83;
             // 
-            // txt_cashAccountName
+            // txt_bankAccountName
             // 
-            this.txt_cashAccountName.BackColor = System.Drawing.Color.Transparent;
-            this.txt_cashAccountName.BorderRadius = 6;
-            this.txt_cashAccountName.BorderThickness = 2;
-            this.txt_cashAccountName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_cashAccountName.DefaultText = "";
-            this.txt_cashAccountName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_cashAccountName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_cashAccountName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_cashAccountName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_cashAccountName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_cashAccountName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txt_cashAccountName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_cashAccountName.Location = new System.Drawing.Point(220, 194);
-            this.txt_cashAccountName.Name = "txt_cashAccountName";
-            this.txt_cashAccountName.PasswordChar = '\0';
-            this.txt_cashAccountName.PlaceholderText = "";
-            this.txt_cashAccountName.ReadOnly = true;
-            this.txt_cashAccountName.SelectedText = "";
-            this.txt_cashAccountName.ShadowDecoration.Color = System.Drawing.Color.Silver;
-            this.txt_cashAccountName.Size = new System.Drawing.Size(252, 34);
-            this.txt_cashAccountName.TabIndex = 81;
+            this.txt_bankAccountName.BackColor = System.Drawing.Color.Transparent;
+            this.txt_bankAccountName.BorderRadius = 6;
+            this.txt_bankAccountName.BorderThickness = 2;
+            this.txt_bankAccountName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_bankAccountName.DefaultText = "";
+            this.txt_bankAccountName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_bankAccountName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_bankAccountName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_bankAccountName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_bankAccountName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_bankAccountName.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txt_bankAccountName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txt_bankAccountName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_bankAccountName.Location = new System.Drawing.Point(220, 182);
+            this.txt_bankAccountName.Name = "txt_bankAccountName";
+            this.txt_bankAccountName.PasswordChar = '\0';
+            this.txt_bankAccountName.PlaceholderText = "";
+            this.txt_bankAccountName.ReadOnly = true;
+            this.txt_bankAccountName.SelectedText = "";
+            this.txt_bankAccountName.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.txt_bankAccountName.Size = new System.Drawing.Size(252, 34);
+            this.txt_bankAccountName.TabIndex = 81;
             // 
-            // txt_cashAccount
+            // txt_bankAccount
             // 
-            this.txt_cashAccount.BackColor = System.Drawing.Color.Transparent;
-            this.txt_cashAccount.BorderRadius = 6;
-            this.txt_cashAccount.BorderThickness = 2;
-            this.txt_cashAccount.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_cashAccount.DefaultText = "";
-            this.txt_cashAccount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_cashAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_cashAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_cashAccount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_cashAccount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_cashAccount.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txt_cashAccount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_cashAccount.Location = new System.Drawing.Point(117, 194);
-            this.txt_cashAccount.Name = "txt_cashAccount";
-            this.txt_cashAccount.PasswordChar = '\0';
-            this.txt_cashAccount.PlaceholderText = "";
-            this.txt_cashAccount.ReadOnly = true;
-            this.txt_cashAccount.SelectedText = "";
-            this.txt_cashAccount.ShadowDecoration.Color = System.Drawing.Color.Silver;
-            this.txt_cashAccount.Size = new System.Drawing.Size(101, 34);
-            this.txt_cashAccount.TabIndex = 79;
+            this.txt_bankAccount.BackColor = System.Drawing.Color.Transparent;
+            this.txt_bankAccount.BorderRadius = 6;
+            this.txt_bankAccount.BorderThickness = 2;
+            this.txt_bankAccount.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_bankAccount.DefaultText = "";
+            this.txt_bankAccount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_bankAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_bankAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_bankAccount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_bankAccount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_bankAccount.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txt_bankAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txt_bankAccount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_bankAccount.Location = new System.Drawing.Point(117, 182);
+            this.txt_bankAccount.Name = "txt_bankAccount";
+            this.txt_bankAccount.PasswordChar = '\0';
+            this.txt_bankAccount.PlaceholderText = "";
+            this.txt_bankAccount.SelectedText = "";
+            this.txt_bankAccount.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.txt_bankAccount.Size = new System.Drawing.Size(101, 34);
+            this.txt_bankAccount.TabIndex = 79;
+            this.txt_bankAccount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txt_bankAccount.TextChanged += new System.EventHandler(this.txt_bankAccount_TextChanged);
+            this.txt_bankAccount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_bankAccount_KeyDown);
+            this.txt_bankAccount.Leave += new System.EventHandler(this.txt_bankAccount_Leave);
             // 
             // btn_back
             // 
@@ -200,10 +219,11 @@
             this.btn_back.ForeColor = System.Drawing.Color.White;
             this.btn_back.Image = ((System.Drawing.Image)(resources.GetObject("btn_back.Image")));
             this.btn_back.ImageSize = new System.Drawing.Size(30, 30);
-            this.btn_back.Location = new System.Drawing.Point(116, 108);
+            this.btn_back.Location = new System.Drawing.Point(116, 96);
             this.btn_back.Name = "btn_back";
             this.btn_back.Size = new System.Drawing.Size(46, 29);
             this.btn_back.TabIndex = 76;
+            this.btn_back.Click += new System.EventHandler(this.btn_back_Click);
             // 
             // txt_bankPaymentId
             // 
@@ -221,7 +241,7 @@
             this.txt_bankPaymentId.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txt_bankPaymentId.ForeColor = System.Drawing.Color.Blue;
             this.txt_bankPaymentId.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_bankPaymentId.Location = new System.Drawing.Point(165, 106);
+            this.txt_bankPaymentId.Location = new System.Drawing.Point(165, 94);
             this.txt_bankPaymentId.Name = "txt_bankPaymentId";
             this.txt_bankPaymentId.PasswordChar = '\0';
             this.txt_bankPaymentId.PlaceholderText = "";
@@ -230,7 +250,7 @@
             this.txt_bankPaymentId.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.txt_bankPaymentId.Size = new System.Drawing.Size(113, 33);
             this.txt_bankPaymentId.TabIndex = 72;
-            this.txt_bankPaymentId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txt_bankPaymentId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // guna2PictureBox1
             // 
@@ -307,6 +327,7 @@
             this.btn_delete.Text = "ڈیلیٹ";
             this.btn_delete.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btn_delete.TextOffset = new System.Drawing.Point(4, 0);
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // btn_cancel
             // 
@@ -351,27 +372,113 @@
             this.btn_addNew.Text = "نیا ریکارڈ";
             this.btn_addNew.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btn_addNew.TextOffset = new System.Drawing.Point(4, 0);
+            this.btn_addNew.Click += new System.EventHandler(this.btn_addNew_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.bankPaymentId,
+            this.date,
+            this.accountId,
+            this.accountName,
+            this.bankAccountId,
+            this.amount,
+            this.chequeNumber,
+            this.chequeDate,
+            this.description});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 395);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 381);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1070, 229);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1070, 243);
             this.dataGridView1.TabIndex = 82;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            // 
+            // bankPaymentId
+            // 
+            this.bankPaymentId.FillWeight = 120F;
+            this.bankPaymentId.HeaderText = "بینک پیمنٹ آئی ڈی";
+            this.bankPaymentId.Name = "bankPaymentId";
+            this.bankPaymentId.ReadOnly = true;
+            this.bankPaymentId.Width = 130;
+            // 
+            // date
+            // 
+            this.date.HeaderText = "تاریخ";
+            this.date.Name = "date";
+            this.date.ReadOnly = true;
+            // 
+            // accountId
+            // 
+            this.accountId.HeaderText = "اکاؤنٹ آئی ڈی";
+            this.accountId.Name = "accountId";
+            this.accountId.ReadOnly = true;
+            // 
+            // accountName
+            // 
+            this.accountName.HeaderText = "اکاؤنٹ نام";
+            this.accountName.Name = "accountName";
+            this.accountName.ReadOnly = true;
+            this.accountName.Width = 260;
+            // 
+            // bankAccountId
+            // 
+            this.bankAccountId.FillWeight = 120F;
+            this.bankAccountId.HeaderText = "بینک اکاؤنٹ آئی ڈی";
+            this.bankAccountId.Name = "bankAccountId";
+            this.bankAccountId.ReadOnly = true;
+            this.bankAccountId.Width = 120;
+            // 
+            // amount
+            // 
+            this.amount.HeaderText = "رقم";
+            this.amount.Name = "amount";
+            this.amount.ReadOnly = true;
+            this.amount.Width = 125;
+            // 
+            // chequeNumber
+            // 
+            this.chequeNumber.HeaderText = "چیک نمبر";
+            this.chequeNumber.Name = "chequeNumber";
+            this.chequeNumber.ReadOnly = true;
+            // 
+            // chequeDate
+            // 
+            this.chequeDate.HeaderText = "تاریخ چیک";
+            this.chequeDate.Name = "chequeDate";
+            this.chequeDate.ReadOnly = true;
+            // 
+            // description
+            // 
+            this.description.HeaderText = "تفصیل";
+            this.description.Name = "description";
+            this.description.ReadOnly = true;
+            this.description.Width = 250;
             // 
             // guna2GroupBox1
             // 
             this.guna2GroupBox1.BorderThickness = 2;
-            this.guna2GroupBox1.Controls.Add(this.label6);
-            this.guna2GroupBox1.Controls.Add(this.txt_discription);
-            this.guna2GroupBox1.Controls.Add(this.label5);
+            this.guna2GroupBox1.Controls.Add(this.lstAccounts);
             this.guna2GroupBox1.Controls.Add(this.txt_amount);
+            this.guna2GroupBox1.Controls.Add(this.label6);
+            this.guna2GroupBox1.Controls.Add(this.txt_description);
+            this.guna2GroupBox1.Controls.Add(this.label5);
             this.guna2GroupBox1.Controls.Add(this.label4);
             this.guna2GroupBox1.Controls.Add(this.txt_accountName);
             this.guna2GroupBox1.Controls.Add(this.txt_accountBalance);
@@ -380,7 +487,7 @@
             this.guna2GroupBox1.Controls.Add(this.label2);
             this.guna2GroupBox1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox1.ForeColor = System.Drawing.Color.Gray;
-            this.guna2GroupBox1.Location = new System.Drawing.Point(581, 106);
+            this.guna2GroupBox1.Location = new System.Drawing.Point(581, 94);
             this.guna2GroupBox1.Name = "guna2GroupBox1";
             this.guna2GroupBox1.ShadowDecoration.BorderRadius = 10;
             this.guna2GroupBox1.ShadowDecoration.Color = System.Drawing.Color.DimGray;
@@ -390,6 +497,16 @@
             this.guna2GroupBox1.TabIndex = 78;
             this.guna2GroupBox1.Text = "اکاؤنٹ";
             this.guna2GroupBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lstAccounts
+            // 
+            this.lstAccounts.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstAccounts.FormattingEnabled = true;
+            this.lstAccounts.ItemHeight = 17;
+            this.lstAccounts.Location = new System.Drawing.Point(14, 75);
+            this.lstAccounts.Name = "lstAccounts";
+            this.lstAccounts.Size = new System.Drawing.Size(345, 174);
+            this.lstAccounts.TabIndex = 89;
             // 
             // label6
             // 
@@ -401,30 +518,31 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "وضاحت";
             // 
-            // txt_discription
+            // txt_description
             // 
-            this.txt_discription.BackColor = System.Drawing.Color.Transparent;
-            this.txt_discription.BorderRadius = 6;
-            this.txt_discription.BorderThickness = 2;
-            this.txt_discription.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_discription.DefaultText = "";
-            this.txt_discription.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_discription.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_discription.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_discription.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_discription.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_discription.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_discription.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_discription.Location = new System.Drawing.Point(14, 165);
-            this.txt_discription.Multiline = true;
-            this.txt_discription.Name = "txt_discription";
-            this.txt_discription.PasswordChar = '\0';
-            this.txt_discription.PlaceholderText = "";
-            this.txt_discription.SelectedText = "";
-            this.txt_discription.ShadowDecoration.Color = System.Drawing.Color.Silver;
-            this.txt_discription.Size = new System.Drawing.Size(345, 87);
-            this.txt_discription.TabIndex = 9;
-            this.txt_discription.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txt_description.BackColor = System.Drawing.Color.Transparent;
+            this.txt_description.BorderRadius = 6;
+            this.txt_description.BorderThickness = 2;
+            this.txt_description.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_description.DefaultText = "";
+            this.txt_description.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_description.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_description.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_description.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_description.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_description.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_description.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txt_description.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_description.Location = new System.Drawing.Point(14, 165);
+            this.txt_description.Multiline = true;
+            this.txt_description.Name = "txt_description";
+            this.txt_description.PasswordChar = '\0';
+            this.txt_description.PlaceholderText = "Description";
+            this.txt_description.SelectedText = "";
+            this.txt_description.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.txt_description.Size = new System.Drawing.Size(345, 87);
+            this.txt_description.TabIndex = 9;
+            this.txt_description.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label5
             // 
@@ -436,32 +554,6 @@
             this.label5.Size = new System.Drawing.Size(33, 24);
             this.label5.TabIndex = 8;
             this.label5.Text = "رقم";
-            // 
-            // txt_amount
-            // 
-            this.txt_amount.BackColor = System.Drawing.Color.Transparent;
-            this.txt_amount.BorderRadius = 6;
-            this.txt_amount.BorderThickness = 2;
-            this.txt_amount.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_amount.DefaultText = "";
-            this.txt_amount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_amount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_amount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_amount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_amount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_amount.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_amount.ForeColor = System.Drawing.Color.Blue;
-            this.txt_amount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_amount.Location = new System.Drawing.Point(14, 122);
-            this.txt_amount.Multiline = true;
-            this.txt_amount.Name = "txt_amount";
-            this.txt_amount.PasswordChar = '\0';
-            this.txt_amount.PlaceholderText = "";
-            this.txt_amount.SelectedText = "";
-            this.txt_amount.ShadowDecoration.Color = System.Drawing.Color.Silver;
-            this.txt_amount.Size = new System.Drawing.Size(345, 34);
-            this.txt_amount.TabIndex = 6;
-            this.txt_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
             // 
@@ -486,11 +578,12 @@
             this.txt_accountName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txt_accountName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txt_accountName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_accountName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txt_accountName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txt_accountName.Location = new System.Drawing.Point(14, 83);
             this.txt_accountName.Name = "txt_accountName";
             this.txt_accountName.PasswordChar = '\0';
-            this.txt_accountName.PlaceholderText = "";
+            this.txt_accountName.PlaceholderText = "Account Name";
             this.txt_accountName.SelectedText = "";
             this.txt_accountName.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.txt_accountName.Size = new System.Drawing.Size(345, 31);
@@ -546,16 +639,20 @@
             this.txt_accountId.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txt_accountId.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txt_accountId.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_accountId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txt_accountId.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txt_accountId.Location = new System.Drawing.Point(224, 44);
             this.txt_accountId.Name = "txt_accountId";
             this.txt_accountId.PasswordChar = '\0';
-            this.txt_accountId.PlaceholderText = "";
+            this.txt_accountId.PlaceholderText = "Account ID";
             this.txt_accountId.SelectedText = "";
             this.txt_accountId.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.txt_accountId.Size = new System.Drawing.Size(135, 31);
             this.txt_accountId.TabIndex = 1;
             this.txt_accountId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txt_accountId.TextChanged += new System.EventHandler(this.txt_accountId_TextChanged);
+            this.txt_accountId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_accountId_KeyDown);
+            this.txt_accountId.Leave += new System.EventHandler(this.txt_accountId_Leave);
             // 
             // label2
             // 
@@ -588,6 +685,7 @@
             this.btn_save.Text = "سیو";
             this.btn_save.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btn_save.TextOffset = new System.Drawing.Point(4, 0);
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // btn_print
             // 
@@ -617,7 +715,7 @@
             this.label7.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label7.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label7.Location = new System.Drawing.Point(6, 110);
+            this.label7.Location = new System.Drawing.Point(6, 98);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(107, 24);
             this.label7.TabIndex = 73;
@@ -629,7 +727,7 @@
             this.label9.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label9.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label9.Location = new System.Drawing.Point(15, 199);
+            this.label9.Location = new System.Drawing.Point(15, 187);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(99, 24);
             this.label9.TabIndex = 80;
@@ -682,7 +780,7 @@
             this.txt_chequeNo.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_chequeNo.ForeColor = System.Drawing.Color.Red;
             this.txt_chequeNo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_chequeNo.Location = new System.Drawing.Point(116, 236);
+            this.txt_chequeNo.Location = new System.Drawing.Point(116, 224);
             this.txt_chequeNo.Name = "txt_chequeNo";
             this.txt_chequeNo.PasswordChar = '\0';
             this.txt_chequeNo.PlaceholderText = "";
@@ -707,7 +805,7 @@
             this.txt_chequeDate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_chequeDate.ForeColor = System.Drawing.Color.Red;
             this.txt_chequeDate.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_chequeDate.Location = new System.Drawing.Point(327, 236);
+            this.txt_chequeDate.Location = new System.Drawing.Point(327, 224);
             this.txt_chequeDate.Name = "txt_chequeDate";
             this.txt_chequeDate.PasswordChar = '\0';
             this.txt_chequeDate.PlaceholderText = "";
@@ -723,7 +821,7 @@
             this.label10.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label10.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label10.Location = new System.Drawing.Point(29, 243);
+            this.label10.Location = new System.Drawing.Point(29, 231);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(81, 24);
             this.label10.TabIndex = 86;
@@ -735,7 +833,7 @@
             this.label11.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label11.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label11.Location = new System.Drawing.Point(276, 243);
+            this.label11.Location = new System.Drawing.Point(276, 231);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 24);
             this.label11.TabIndex = 87;
@@ -747,17 +845,53 @@
             this.label12.BackColor = System.Drawing.SystemColors.Control;
             this.label12.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
             this.label12.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label12.Location = new System.Drawing.Point(419, 125);
+            this.label12.Location = new System.Drawing.Point(419, 113);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(52, 24);
             this.label12.TabIndex = 88;
             this.label12.Text = "بیلنس";
+            // 
+            // lstBankAccount
+            // 
+            this.lstBankAccount.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstBankAccount.FormattingEnabled = true;
+            this.lstBankAccount.ItemHeight = 17;
+            this.lstBankAccount.Location = new System.Drawing.Point(117, 216);
+            this.lstBankAccount.Name = "lstBankAccount";
+            this.lstBankAccount.Size = new System.Drawing.Size(355, 140);
+            this.lstBankAccount.TabIndex = 90;
+            // 
+            // txt_amount
+            // 
+            this.txt_amount.BackColor = System.Drawing.Color.Transparent;
+            this.txt_amount.BorderRadius = 6;
+            this.txt_amount.BorderThickness = 2;
+            this.txt_amount.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_amount.DefaultText = "";
+            this.txt_amount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_amount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_amount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_amount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_amount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_amount.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_amount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txt_amount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_amount.Location = new System.Drawing.Point(14, 123);
+            this.txt_amount.Name = "txt_amount";
+            this.txt_amount.PasswordChar = '\0';
+            this.txt_amount.PlaceholderText = "amount";
+            this.txt_amount.SelectedText = "";
+            this.txt_amount.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.txt_amount.Size = new System.Drawing.Size(345, 31);
+            this.txt_amount.TabIndex = 91;
+            this.txt_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // BankPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 624);
+            this.Controls.Add(this.lstBankAccount);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -765,10 +899,10 @@
             this.Controls.Add(this.txt_chequeNo);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btn_forward);
-            this.Controls.Add(this.dtm_saleDate);
+            this.Controls.Add(this.dtm_paymentDate);
             this.Controls.Add(this.txt_bankAccountBalance);
-            this.Controls.Add(this.txt_cashAccountName);
-            this.Controls.Add(this.txt_cashAccount);
+            this.Controls.Add(this.txt_bankAccountName);
+            this.Controls.Add(this.txt_bankAccount);
             this.Controls.Add(this.btn_back);
             this.Controls.Add(this.txt_bankPaymentId);
             this.Controls.Add(this.dataGridView1);
@@ -781,6 +915,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "BankPayment";
+            this.Load += new System.EventHandler(this.BankPayment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.guna2GroupBox1.ResumeLayout(false);
@@ -796,10 +931,10 @@
 
         private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2Button btn_forward;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtm_saleDate;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtm_paymentDate;
         private Guna.UI2.WinForms.Guna2TextBox txt_bankAccountBalance;
-        private Guna.UI2.WinForms.Guna2TextBox txt_cashAccountName;
-        private Guna.UI2.WinForms.Guna2TextBox txt_cashAccount;
+        private Guna.UI2.WinForms.Guna2TextBox txt_bankAccountName;
+        private Guna.UI2.WinForms.Guna2TextBox txt_bankAccount;
         private Guna.UI2.WinForms.Guna2Button btn_back;
         private Guna.UI2.WinForms.Guna2TextBox txt_bankPaymentId;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
@@ -811,9 +946,8 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
         private System.Windows.Forms.Label label6;
-        private Guna.UI2.WinForms.Guna2TextBox txt_discription;
+        private Guna.UI2.WinForms.Guna2TextBox txt_description;
         private System.Windows.Forms.Label label5;
-        private Guna.UI2.WinForms.Guna2TextBox txt_amount;
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2TextBox txt_accountName;
         private Guna.UI2.WinForms.Guna2TextBox txt_accountBalance;
@@ -831,5 +965,17 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bankPaymentId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn accountId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn accountName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bankAccountId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn chequeNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn chequeDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn description;
+        private System.Windows.Forms.ListBox lstAccounts;
+        private System.Windows.Forms.ListBox lstBankAccount;
+        private Guna.UI2.WinForms.Guna2TextBox txt_amount;
     }
 }

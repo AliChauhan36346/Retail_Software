@@ -1,4 +1,5 @@
 ﻿using ALA_Accounting.Addition;
+using ALA_Accounting.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,8 @@ namespace ALA_Accounting.UsersForm
     {
         private int childFormNumber = 0;
 
+        public int financialYearId {  get; set; }
+
         
 
         public MDIParent1()
@@ -22,24 +25,7 @@ namespace ALA_Accounting.UsersForm
             InitializeComponent();
         }
 
-        private void ShowNewForm(object sender, EventArgs e)
-        {
-            Form childForm = new Form();
-            childForm.MdiParent = this;
-            childForm.Text = "Window " + childFormNumber++;
-            childForm.Show();
-        }
-
-        private void OpenFile(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                string FileName = openFileDialog.FileName;
-            }
-        }
+        
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -78,13 +64,15 @@ namespace ALA_Accounting.UsersForm
         public void ShowDashboard()
         {
             // Create a new instance of the dashboard form
-            Dashboard dashboard = new Dashboard();
+            Dashboard dashboard = new Dashboard(this);
 
             // Set the MDI parent form
             dashboard.MdiParent = this;
 
             // Show the dashboard form
             dashboard.Show();
+
+            
         }
 
         private void MDIParent1_FormClosing(object sender, FormClosingEventArgs e)
@@ -114,6 +102,41 @@ namespace ALA_Accounting.UsersForm
         {
             AddBrands addBrands= new AddBrands();
             addBrands.ShowDialog();
+        }
+
+        private void inventoryOpeningBalanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InventoryOpeningBalances inventory = new InventoryOpeningBalances(this);
+
+            inventory.MdiParent=this;
+            inventory.Show();
+        }
+
+        private void financialYearsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FinancialYear financialYear = new FinancialYear();
+            financialYear.ShowDialog();
+        }
+
+        private void accountsOpeningBalanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AccountsOpeningBalances accounts = new AccountsOpeningBalances(this);
+
+            accounts.MdiParent=this;
+            accounts.Show();
+        }
+
+        private void reportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saleReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaleReport saleReport = new SaleReport(this);
+
+            saleReport.MdiParent = this;
+            saleReport.Show();
         }
     }
 }

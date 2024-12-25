@@ -59,7 +59,7 @@ namespace ALA_Accounting.Addition_Classes
                 dbConnection.openConnection();
 
                 string query = "UPDATE Accounts SET AccountName = @AccountName, SubAccountTypeID = @SubAccountTypeID, " +
-                               "IsSystemAccount = @IsSystemAccount WHERE AccountID = @AccountID";
+                               "IsSystemAccount = @IsSystemAccount WHERE AccountID = @AccountID AND IsSystemAccount='0'";
 
                 using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
                 {
@@ -87,7 +87,7 @@ namespace ALA_Accounting.Addition_Classes
             {
                 dbConnection.openConnection();
 
-                string query = "DELETE FROM Accounts WHERE AccountID = @AccountID";
+                string query = "DELETE FROM Accounts WHERE AccountID = @AccountID AND IsSystemAccount='0'";
 
                 using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
                 {

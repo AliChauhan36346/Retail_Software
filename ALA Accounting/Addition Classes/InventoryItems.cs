@@ -52,8 +52,8 @@ namespace ALA_Accounting.Addition_Classes
                     command.Parameters.AddWithValue("@ItemName", item.itemName);
                     command.Parameters.AddWithValue("@ItemDescription", item.itemDiscription);
                     command.Parameters.AddWithValue("@BrandName", item.brandName);
-                    command.Parameters.AddWithValue("@PurchasePrice", item.purchasePrice ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@SellingPrice", item.salePrice ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@PurchasePrice", Convert.ToDecimal(item.purchasePrice));
+                    command.Parameters.AddWithValue("@SellingPrice", Convert.ToDecimal(item.salePrice));
                     command.Parameters.AddWithValue("@MeasurementUnit", item.measurmentUnit);
                     command.Parameters.AddWithValue("@ReOrderQuantity", item.reOrderQuantity ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@RackNo", item.rackNo);
@@ -180,6 +180,93 @@ namespace ALA_Accounting.Addition_Classes
             }
         }
 
+        public List<string> GetItemPriceAndUnit(string itemId)
+        {
+            List<string> itemDetails = new List<string>();
+
+            try
+            {
+                // Open the database connection
+                dbConnection.openConnection();
+
+                // SQL query to retrieve the SellingPrice and MeasurementUnit from the InventoryItem table based on ItemID
+                string query = "SELECT SellingPrice, MeasurementUnit FROM InventoryItem WHERE ItemID = @ItemID";
+
+                // Using the SqlCommand object to execute the query
+                using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
+                {
+                    // Add the parameter for ItemID
+                    command.Parameters.AddWithValue("@ItemID", itemId);
+
+                    // Execute the command and read the results
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // If a result is found, add the price and unit to the list
+                        if (reader.Read())
+                        {
+                            itemDetails.Add(reader["SellingPrice"].ToString());
+                            itemDetails.Add(reader["MeasurementUnit"].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors that occur during the query execution
+                MessageBox.Show("Error retrieving item details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Ensure the database connection is closed
+                dbConnection.closeConnection();
+            }
+
+            return itemDetails;
+        }
+
+        public List<string> GetItemPriceAndUnitPurchase(string itemId)
+        {
+            List<string> itemDetails = new List<string>();
+
+            try
+            {
+                // Open the database connection
+                dbConnection.openConnection();
+
+                // SQL query to retrieve the SellingPrice and MeasurementUnit from the InventoryItem table based on ItemID
+                string query = "SELECT PurchasePrice, MeasurementUnit FROM InventoryItem WHERE ItemID = @ItemID";
+
+                // Using the SqlCommand object to execute the query
+                using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
+                {
+                    // Add the parameter for ItemID
+                    command.Parameters.AddWithValue("@ItemID", itemId);
+
+                    // Execute the command and read the results
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // If a result is found, add the price and unit to the list
+                        if (reader.Read())
+                        {
+                            itemDetails.Add(reader["PurchasePrice"].ToString());
+                            itemDetails.Add(reader["MeasurementUnit"].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors that occur during the query execution
+                MessageBox.Show("Error retrieving item details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Ensure the database connection is closed
+                dbConnection.closeConnection();
+            }
+
+            return itemDetails;
+        }
 
 
         public InventoryItems GetItemDetailsById(string itemId)

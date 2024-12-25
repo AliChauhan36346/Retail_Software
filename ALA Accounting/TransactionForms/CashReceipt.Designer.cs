@@ -29,13 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CashReceipt));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_discription = new Guna.UI2.WinForms.Guna2TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.txt_amount = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.txt_accountName = new Guna.UI2.WinForms.Guna2TextBox();
             this.txt_accountBalance = new Guna.UI2.WinForms.Guna2TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,14 +46,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btn_forward = new Guna.UI2.WinForms.Guna2Button();
-            this.dtm_saleDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.dtm_receiptDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_cashAccountBalance = new Guna.UI2.WinForms.Guna2TextBox();
             this.txt_cashAccountName = new Guna.UI2.WinForms.Guna2TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txt_cashAccount = new Guna.UI2.WinForms.Guna2TextBox();
             this.btn_back = new Guna.UI2.WinForms.Guna2Button();
-            this.txt_cashPaymentId = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txt_cashReceiptId = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.btn_newCustomer = new Guna.UI2.WinForms.Guna2Button();
             this.btn_printSetting = new Guna.UI2.WinForms.Guna2Button();
@@ -61,10 +64,19 @@
             this.btn_print = new Guna.UI2.WinForms.Guna2Button();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.lstAccounts = new System.Windows.Forms.ListBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.receiptId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccountID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccountName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cashAccountID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.guna2ShadowPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -95,7 +107,7 @@
             this.txt_discription.Multiline = true;
             this.txt_discription.Name = "txt_discription";
             this.txt_discription.PasswordChar = '\0';
-            this.txt_discription.PlaceholderText = "";
+            this.txt_discription.PlaceholderText = "Description";
             this.txt_discription.SelectedText = "";
             this.txt_discription.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.txt_discription.Size = new System.Drawing.Size(345, 87);
@@ -112,26 +124,13 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "نام";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 395);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1070, 229);
-            this.dataGridView1.TabIndex = 69;
-            // 
             // guna2GroupBox1
             // 
             this.guna2GroupBox1.BorderThickness = 2;
+            this.guna2GroupBox1.Controls.Add(this.txt_amount);
             this.guna2GroupBox1.Controls.Add(this.label6);
             this.guna2GroupBox1.Controls.Add(this.txt_discription);
             this.guna2GroupBox1.Controls.Add(this.label5);
-            this.guna2GroupBox1.Controls.Add(this.txt_amount);
             this.guna2GroupBox1.Controls.Add(this.label4);
             this.guna2GroupBox1.Controls.Add(this.txt_accountName);
             this.guna2GroupBox1.Controls.Add(this.txt_accountBalance);
@@ -151,17 +150,6 @@
             this.guna2GroupBox1.Text = "اکاؤنٹ";
             this.guna2GroupBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.ForeColor = System.Drawing.Color.Blue;
-            this.label5.Location = new System.Drawing.Point(370, 126);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 24);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "رقم";
-            // 
             // txt_amount
             // 
             this.txt_amount.BackColor = System.Drawing.Color.Transparent;
@@ -174,19 +162,29 @@
             this.txt_amount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txt_amount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txt_amount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_amount.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_amount.ForeColor = System.Drawing.Color.Blue;
+            this.txt_amount.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_amount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txt_amount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_amount.Location = new System.Drawing.Point(14, 122);
-            this.txt_amount.Multiline = true;
+            this.txt_amount.Location = new System.Drawing.Point(14, 124);
             this.txt_amount.Name = "txt_amount";
             this.txt_amount.PasswordChar = '\0';
-            this.txt_amount.PlaceholderText = "";
+            this.txt_amount.PlaceholderText = "Amount";
             this.txt_amount.SelectedText = "";
             this.txt_amount.ShadowDecoration.Color = System.Drawing.Color.Silver;
-            this.txt_amount.Size = new System.Drawing.Size(345, 34);
-            this.txt_amount.TabIndex = 6;
+            this.txt_amount.Size = new System.Drawing.Size(345, 31);
+            this.txt_amount.TabIndex = 12;
             this.txt_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label5.ForeColor = System.Drawing.Color.Blue;
+            this.label5.Location = new System.Drawing.Point(370, 126);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 24);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "رقم";
             // 
             // txt_accountName
             // 
@@ -205,7 +203,7 @@
             this.txt_accountName.Location = new System.Drawing.Point(14, 83);
             this.txt_accountName.Name = "txt_accountName";
             this.txt_accountName.PasswordChar = '\0';
-            this.txt_accountName.PlaceholderText = "";
+            this.txt_accountName.PlaceholderText = "Account Name";
             this.txt_accountName.SelectedText = "";
             this.txt_accountName.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.txt_accountName.Size = new System.Drawing.Size(345, 31);
@@ -230,13 +228,12 @@
             this.txt_accountBalance.Location = new System.Drawing.Point(14, 44);
             this.txt_accountBalance.Name = "txt_accountBalance";
             this.txt_accountBalance.PasswordChar = '\0';
-            this.txt_accountBalance.PlaceholderText = "";
+            this.txt_accountBalance.PlaceholderText = "Balance";
             this.txt_accountBalance.ReadOnly = true;
             this.txt_accountBalance.SelectedText = "";
             this.txt_accountBalance.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.txt_accountBalance.Size = new System.Drawing.Size(133, 31);
             this.txt_accountBalance.TabIndex = 3;
-            this.txt_accountBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label3
             // 
@@ -261,16 +258,19 @@
             this.txt_accountId.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txt_accountId.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txt_accountId.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_accountId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txt_accountId.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txt_accountId.Location = new System.Drawing.Point(224, 44);
             this.txt_accountId.Name = "txt_accountId";
             this.txt_accountId.PasswordChar = '\0';
-            this.txt_accountId.PlaceholderText = "";
+            this.txt_accountId.PlaceholderText = "Account ID";
             this.txt_accountId.SelectedText = "";
             this.txt_accountId.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.txt_accountId.Size = new System.Drawing.Size(135, 31);
             this.txt_accountId.TabIndex = 1;
-            this.txt_accountId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txt_accountId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_accountId.TextChanged += new System.EventHandler(this.txt_accountId_TextChanged);
+            this.txt_accountId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_accountId_KeyDown);
             // 
             // label2
             // 
@@ -288,7 +288,7 @@
             this.label8.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label8.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(65, 154);
+            this.label8.Location = new System.Drawing.Point(75, 154);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(48, 24);
             this.label8.TabIndex = 62;
@@ -305,26 +305,27 @@
             this.btn_forward.ForeColor = System.Drawing.Color.White;
             this.btn_forward.Image = ((System.Drawing.Image)(resources.GetObject("btn_forward.Image")));
             this.btn_forward.ImageSize = new System.Drawing.Size(30, 30);
-            this.btn_forward.Location = new System.Drawing.Point(281, 108);
+            this.btn_forward.Location = new System.Drawing.Point(288, 108);
             this.btn_forward.Name = "btn_forward";
             this.btn_forward.Size = new System.Drawing.Size(46, 29);
             this.btn_forward.TabIndex = 64;
+            this.btn_forward.Click += new System.EventHandler(this.btn_forward_Click);
             // 
-            // dtm_saleDate
+            // dtm_receiptDate
             // 
-            this.dtm_saleDate.BorderRadius = 8;
-            this.dtm_saleDate.Checked = true;
-            this.dtm_saleDate.FillColor = System.Drawing.Color.RoyalBlue;
-            this.dtm_saleDate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtm_saleDate.ForeColor = System.Drawing.Color.White;
-            this.dtm_saleDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtm_saleDate.Location = new System.Drawing.Point(117, 149);
-            this.dtm_saleDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtm_saleDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtm_saleDate.Name = "dtm_saleDate";
-            this.dtm_saleDate.Size = new System.Drawing.Size(199, 36);
-            this.dtm_saleDate.TabIndex = 61;
-            this.dtm_saleDate.Value = new System.DateTime(2024, 8, 26, 17, 20, 4, 398);
+            this.dtm_receiptDate.BorderRadius = 8;
+            this.dtm_receiptDate.Checked = true;
+            this.dtm_receiptDate.FillColor = System.Drawing.Color.RoyalBlue;
+            this.dtm_receiptDate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtm_receiptDate.ForeColor = System.Drawing.Color.White;
+            this.dtm_receiptDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtm_receiptDate.Location = new System.Drawing.Point(124, 149);
+            this.dtm_receiptDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtm_receiptDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtm_receiptDate.Name = "dtm_receiptDate";
+            this.dtm_receiptDate.Size = new System.Drawing.Size(199, 36);
+            this.dtm_receiptDate.TabIndex = 61;
+            this.dtm_receiptDate.Value = new System.DateTime(2024, 8, 26, 17, 20, 4, 398);
             // 
             // label7
             // 
@@ -332,11 +333,11 @@
             this.label7.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label7.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label7.Location = new System.Drawing.Point(6, 110);
+            this.label7.Location = new System.Drawing.Point(-4, 110);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(107, 24);
+            this.label7.Size = new System.Drawing.Size(127, 24);
             this.label7.TabIndex = 60;
-            this.label7.Text = "پیمنٹ آئی ڈی";
+            this.label7.Text = "نقد رسید آئی ڈی";
             // 
             // txt_cashAccountBalance
             // 
@@ -353,7 +354,7 @@
             this.txt_cashAccountBalance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_cashAccountBalance.ForeColor = System.Drawing.Color.Red;
             this.txt_cashAccountBalance.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_cashAccountBalance.Location = new System.Drawing.Point(322, 150);
+            this.txt_cashAccountBalance.Location = new System.Drawing.Point(329, 150);
             this.txt_cashAccountBalance.Name = "txt_cashAccountBalance";
             this.txt_cashAccountBalance.PasswordChar = '\0';
             this.txt_cashAccountBalance.PlaceholderText = "";
@@ -377,7 +378,7 @@
             this.txt_cashAccountName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txt_cashAccountName.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txt_cashAccountName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_cashAccountName.Location = new System.Drawing.Point(220, 194);
+            this.txt_cashAccountName.Location = new System.Drawing.Point(227, 194);
             this.txt_cashAccountName.Name = "txt_cashAccountName";
             this.txt_cashAccountName.PasswordChar = '\0';
             this.txt_cashAccountName.PlaceholderText = "";
@@ -393,7 +394,7 @@
             this.label9.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label9.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label9.Location = new System.Drawing.Point(15, 199);
+            this.label9.Location = new System.Drawing.Point(27, 199);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(96, 24);
             this.label9.TabIndex = 67;
@@ -413,11 +414,10 @@
             this.txt_cashAccount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txt_cashAccount.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txt_cashAccount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_cashAccount.Location = new System.Drawing.Point(117, 194);
+            this.txt_cashAccount.Location = new System.Drawing.Point(124, 194);
             this.txt_cashAccount.Name = "txt_cashAccount";
             this.txt_cashAccount.PasswordChar = '\0';
             this.txt_cashAccount.PlaceholderText = "";
-            this.txt_cashAccount.ReadOnly = true;
             this.txt_cashAccount.SelectedText = "";
             this.txt_cashAccount.ShadowDecoration.Color = System.Drawing.Color.Silver;
             this.txt_cashAccount.Size = new System.Drawing.Size(101, 34);
@@ -434,37 +434,38 @@
             this.btn_back.ForeColor = System.Drawing.Color.White;
             this.btn_back.Image = ((System.Drawing.Image)(resources.GetObject("btn_back.Image")));
             this.btn_back.ImageSize = new System.Drawing.Size(30, 30);
-            this.btn_back.Location = new System.Drawing.Point(116, 108);
+            this.btn_back.Location = new System.Drawing.Point(123, 108);
             this.btn_back.Name = "btn_back";
             this.btn_back.Size = new System.Drawing.Size(46, 29);
             this.btn_back.TabIndex = 63;
+            this.btn_back.Click += new System.EventHandler(this.btn_back_Click);
             // 
-            // txt_cashPaymentId
+            // txt_cashReceiptId
             // 
-            this.txt_cashPaymentId.BackColor = System.Drawing.Color.Transparent;
-            this.txt_cashPaymentId.BorderRadius = 6;
-            this.txt_cashPaymentId.BorderThickness = 2;
-            this.txt_cashPaymentId.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_cashPaymentId.DefaultText = "";
-            this.txt_cashPaymentId.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_cashPaymentId.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_cashPaymentId.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_cashPaymentId.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_cashPaymentId.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.txt_cashPaymentId.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_cashPaymentId.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txt_cashPaymentId.ForeColor = System.Drawing.Color.Blue;
-            this.txt_cashPaymentId.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_cashPaymentId.Location = new System.Drawing.Point(165, 106);
-            this.txt_cashPaymentId.Name = "txt_cashPaymentId";
-            this.txt_cashPaymentId.PasswordChar = '\0';
-            this.txt_cashPaymentId.PlaceholderText = "";
-            this.txt_cashPaymentId.ReadOnly = true;
-            this.txt_cashPaymentId.SelectedText = "";
-            this.txt_cashPaymentId.ShadowDecoration.Color = System.Drawing.Color.Silver;
-            this.txt_cashPaymentId.Size = new System.Drawing.Size(113, 33);
-            this.txt_cashPaymentId.TabIndex = 59;
-            this.txt_cashPaymentId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txt_cashReceiptId.BackColor = System.Drawing.Color.Transparent;
+            this.txt_cashReceiptId.BorderRadius = 6;
+            this.txt_cashReceiptId.BorderThickness = 2;
+            this.txt_cashReceiptId.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_cashReceiptId.DefaultText = "";
+            this.txt_cashReceiptId.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_cashReceiptId.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_cashReceiptId.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_cashReceiptId.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_cashReceiptId.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.txt_cashReceiptId.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_cashReceiptId.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txt_cashReceiptId.ForeColor = System.Drawing.Color.Blue;
+            this.txt_cashReceiptId.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_cashReceiptId.Location = new System.Drawing.Point(172, 106);
+            this.txt_cashReceiptId.Name = "txt_cashReceiptId";
+            this.txt_cashReceiptId.PasswordChar = '\0';
+            this.txt_cashReceiptId.PlaceholderText = "";
+            this.txt_cashReceiptId.ReadOnly = true;
+            this.txt_cashReceiptId.SelectedText = "";
+            this.txt_cashReceiptId.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.txt_cashReceiptId.Size = new System.Drawing.Size(113, 33);
+            this.txt_cashReceiptId.TabIndex = 59;
+            this.txt_cashReceiptId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // guna2PictureBox1
             // 
@@ -541,6 +542,7 @@
             this.btn_delete.Text = "ڈیلیٹ";
             this.btn_delete.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btn_delete.TextOffset = new System.Drawing.Point(4, 0);
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // btn_cancel
             // 
@@ -585,6 +587,7 @@
             this.btn_addNew.Text = "نیا ریکارڈ";
             this.btn_addNew.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btn_addNew.TextOffset = new System.Drawing.Point(4, 0);
+            this.btn_addNew.Click += new System.EventHandler(this.btn_addNew_Click);
             // 
             // btn_save
             // 
@@ -607,6 +610,7 @@
             this.btn_save.Text = "سیو";
             this.btn_save.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btn_save.TextOffset = new System.Drawing.Point(4, 0);
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // btn_print
             // 
@@ -662,34 +666,146 @@
             this.guna2ShadowPanel1.Size = new System.Drawing.Size(1070, 73);
             this.guna2ShadowPanel1.TabIndex = 58;
             // 
+            // lstAccounts
+            // 
+            this.lstAccounts.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstAccounts.FormattingEnabled = true;
+            this.lstAccounts.ItemHeight = 18;
+            this.lstAccounts.Location = new System.Drawing.Point(597, 180);
+            this.lstAccounts.Name = "lstAccounts";
+            this.lstAccounts.Size = new System.Drawing.Size(345, 274);
+            this.lstAccounts.TabIndex = 104;
+            // 
+            // dataGridView1
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.MintCream;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.receiptId,
+            this.date,
+            this.AccountID,
+            this.AccountName,
+            this.description,
+            this.cashAccountID,
+            this.amount});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 377);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1070, 247);
+            this.dataGridView1.TabIndex = 105;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            // 
+            // receiptId
+            // 
+            this.receiptId.HeaderText = "ادائیگی آئی ڈی";
+            this.receiptId.Name = "receiptId";
+            this.receiptId.ReadOnly = true;
+            // 
+            // date
+            // 
+            this.date.HeaderText = "تاریخ";
+            this.date.Name = "date";
+            this.date.ReadOnly = true;
+            this.date.Width = 85;
+            // 
+            // AccountID
+            // 
+            this.AccountID.HeaderText = "اکاؤنٹ آئی ڈی";
+            this.AccountID.Name = "AccountID";
+            this.AccountID.ReadOnly = true;
+            this.AccountID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // AccountName
+            // 
+            this.AccountName.HeaderText = "اکاؤنٹ نام";
+            this.AccountName.Name = "AccountName";
+            this.AccountName.ReadOnly = true;
+            this.AccountName.Width = 265;
+            // 
+            // description
+            // 
+            this.description.HeaderText = "تفصیل";
+            this.description.Name = "description";
+            this.description.ReadOnly = true;
+            this.description.Width = 245;
+            // 
+            // cashAccountID
+            // 
+            this.cashAccountID.HeaderText = "نقد اکاؤنٹ";
+            this.cashAccountID.Name = "cashAccountID";
+            this.cashAccountID.ReadOnly = true;
+            // 
+            // amount
+            // 
+            this.amount.HeaderText = "رقم";
+            this.amount.Name = "amount";
+            this.amount.ReadOnly = true;
+            this.amount.Width = 120;
+            // 
             // CashReceipt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 624);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.lstAccounts);
             this.Controls.Add(this.guna2GroupBox1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btn_forward);
-            this.Controls.Add(this.dtm_saleDate);
+            this.Controls.Add(this.dtm_receiptDate);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txt_cashAccountBalance);
             this.Controls.Add(this.txt_cashAccountName);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txt_cashAccount);
             this.Controls.Add(this.btn_back);
-            this.Controls.Add(this.txt_cashPaymentId);
+            this.Controls.Add(this.txt_cashReceiptId);
             this.Controls.Add(this.guna2ShadowPanel1);
+            this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CashReceipt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "CashReceipt";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.CashReceipt_Load);
             this.guna2GroupBox1.ResumeLayout(false);
             this.guna2GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.guna2ShadowPanel1.ResumeLayout(false);
             this.guna2ShadowPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -700,10 +816,8 @@
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2TextBox txt_discription;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
         private System.Windows.Forms.Label label5;
-        private Guna.UI2.WinForms.Guna2TextBox txt_amount;
         private Guna.UI2.WinForms.Guna2TextBox txt_accountName;
         private Guna.UI2.WinForms.Guna2TextBox txt_accountBalance;
         private System.Windows.Forms.Label label3;
@@ -711,14 +825,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2Button btn_forward;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtm_saleDate;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtm_receiptDate;
         private System.Windows.Forms.Label label7;
         private Guna.UI2.WinForms.Guna2TextBox txt_cashAccountBalance;
         private Guna.UI2.WinForms.Guna2TextBox txt_cashAccountName;
         private System.Windows.Forms.Label label9;
         private Guna.UI2.WinForms.Guna2TextBox txt_cashAccount;
         private Guna.UI2.WinForms.Guna2Button btn_back;
-        private Guna.UI2.WinForms.Guna2TextBox txt_cashPaymentId;
+        private Guna.UI2.WinForms.Guna2TextBox txt_cashReceiptId;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2Button btn_newCustomer;
         private Guna.UI2.WinForms.Guna2Button btn_printSetting;
@@ -729,5 +843,15 @@
         private Guna.UI2.WinForms.Guna2Button btn_print;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel1;
+        private System.Windows.Forms.ListBox lstAccounts;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn receiptId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cashAccountID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
+        private Guna.UI2.WinForms.Guna2TextBox txt_amount;
     }
 }

@@ -64,7 +64,7 @@ namespace ALA_Accounting.Addition_Classes
 
                 string query = "UPDATE MainAccounts SET MainAccountName = @MainAccountName, " +
                                "FinancialStatementComponent = @FinancialStatementComponent, IsSystemAccount = @IsSystemAccount " +
-                               "WHERE MainAccountID = @MainAccountID";
+                               "WHERE MainAccountID = @MainAccountID AND IsSystemAccount='0'";
 
                 using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
                 {
@@ -94,7 +94,7 @@ namespace ALA_Accounting.Addition_Classes
             {
                 dbConnection.openConnection();
 
-                string query = "DELETE FROM MainAccounts WHERE MainAccountID = @MainAccountID";
+                string query = "DELETE FROM MainAccounts WHERE MainAccountID = @MainAccountID AND IsSystemAccount='0'";
 
                 using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
                 {
@@ -183,7 +183,6 @@ namespace ALA_Accounting.Addition_Classes
 
             return (mainAccountId, financialStatementComponent);
         }
-
 
         public int GetNextMainAccountId()
         {

@@ -63,7 +63,7 @@ namespace ALA_Accounting.Addition_Classes
                 dbConnection.openConnection();
 
                 string query = "UPDATE SubAccounts SET SubAccountTypeName = @SubAccountTypeName, MainAccountID = @MainAccountID, " +
-                               "IsSystemAccount = @IsSystemAccount WHERE SubAccountTypeID = @SubAccountTypeID";
+                               "IsSystemAccount = @IsSystemAccount WHERE SubAccountTypeID = @SubAccountTypeID AND IsSystemAccount='0'";
 
                 using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
                 {
@@ -92,7 +92,7 @@ namespace ALA_Accounting.Addition_Classes
             {
                 dbConnection.openConnection();
 
-                string query = "DELETE FROM SubAccounts WHERE SubAccountTypeID = @SubAccountTypeID";
+                string query = "DELETE FROM SubAccounts WHERE SubAccountTypeID = @SubAccountTypeID AND IsSystemAccount='0'";
 
                 using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
                 {

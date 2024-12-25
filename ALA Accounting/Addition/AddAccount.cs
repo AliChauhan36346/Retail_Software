@@ -33,6 +33,57 @@ namespace ALA_Accounting.Addition
 
         }
 
+        public void EnableAllControls()
+        {
+            btn_addNewMainAcc.Enabled = true;
+            btn_saveMainAcc.Enabled = true;
+            btn_cancelMainAcc.Enabled = true;
+            btn_deleteMainAcc.Enabled = true;
+
+            btn_addNewSubAcc.Enabled = true;
+            btn_saveSubAcc.Enabled = true;
+            btn_cancelSubAcc.Enabled = true;
+            btn_deleteSubAcc.Enabled = true;
+
+            btn_addAccount.Enabled = true;
+            btn_saveAcc.Enabled = true;
+            btn_cancelAcc.Enabled = true;
+            btn_DeleteAcc.Enabled = true;
+
+            lstMainAccounts.Enabled = true;
+            lstSubAccounts.Enabled = true;
+            lstAccounts.Enabled = true;
+        }
+
+
+        public void DisableAllControlsExcept(Guna.UI2.WinForms.Guna2Button button1, Guna.UI2.WinForms.Guna2Button button2)
+        {
+            btn_addNewMainAcc.Enabled = false;
+            btn_saveMainAcc.Enabled = false;
+            btn_cancelMainAcc.Enabled = false;
+            btn_deleteMainAcc.Enabled = false;
+
+            btn_addNewSubAcc.Enabled = false;
+            btn_saveSubAcc.Enabled = false;
+            btn_cancelSubAcc.Enabled = false;
+            btn_deleteSubAcc.Enabled = false;
+
+            btn_addAccount.Enabled = false;
+            btn_saveAcc.Enabled = false;
+            btn_cancelAcc.Enabled = false;
+            btn_DeleteAcc.Enabled = false;
+
+            lstMainAccounts.Enabled = false;
+            lstSubAccounts.Enabled = false;
+            lstAccounts.Enabled = false;
+
+
+            // Ensure the two provided buttons are enabled
+            button1.Enabled = true;
+            button2.Enabled = true;
+        }
+
+
         private void AddAccount_Load(object sender, EventArgs e)
         {
             // Load all accounts into the list boxes
@@ -92,6 +143,9 @@ namespace ALA_Accounting.Addition
                     mainAccount.FinancialStatementComponent=cmbo_financialStatComponent.SelectedItem.ToString().Trim();
 
                     mainAccount.UpdateMainAccount(mainAccount);
+
+                    EnableAllControls();
+
                     loadAccounts(true, false, false);
                 }
                 else
@@ -102,7 +156,7 @@ namespace ALA_Accounting.Addition
 
                     // Call save function here
                     mainAccount.SaveMainAccount(mainAccount);
-
+                    EnableAllControls();
                     loadAccounts(true, false, false);
 
                     isEditing = true;
@@ -118,6 +172,8 @@ namespace ALA_Accounting.Addition
 
             // Set the text box with the new ID
             txt_mainAccId.Text = nextMainAccountId.ToString();
+
+            DisableAllControlsExcept(btn_saveMainAcc, btn_cancelMainAcc);
 
             // Clear other fields to allow new data entry
             txt_mainAccName.Clear();
@@ -228,6 +284,8 @@ namespace ALA_Accounting.Addition
                 return;
             }
 
+            EnableAllControls();
+
             // Select the first item in the list
             lstMainAccounts.SelectedIndex = 0;
 
@@ -287,6 +345,8 @@ namespace ALA_Accounting.Addition
             txt_subAccId.Text = subAccount.GetNextSubAccountId().ToString();
             txt_subAccName.Clear();
             isEditing = false;
+
+            DisableAllControlsExcept(btn_saveSubAcc, btn_cancelSubAcc);
         }
 
         private void btn_saveSubAcc_Click(object sender, EventArgs e)
@@ -303,6 +363,8 @@ namespace ALA_Accounting.Addition
                     
 
                     subAccount.UpdateSubAccount(subAccount);
+
+                    EnableAllControls();
                     loadAccounts(false, true, false);
                 }
                 else
@@ -315,6 +377,8 @@ namespace ALA_Accounting.Addition
                     subAccount.SaveSubAccount(subAccount);
 
                     loadAccounts(false, true, false);
+
+                    EnableAllControls();
 
                     isEditing = true;
                 }
@@ -329,6 +393,8 @@ namespace ALA_Accounting.Addition
                 txt_subAccName.Clear();
                 return;
             }
+
+            EnableAllControls();
 
             lstSubAccounts.SelectedIndex = 0;
 
@@ -405,6 +471,8 @@ namespace ALA_Accounting.Addition
 
             txt_accId.Text = account.GetNextAccountId().ToString();
             txt_accName.Clear();
+
+            DisableAllControlsExcept(btn_saveAcc, btn_cancelAcc);
         }
 
         private void btn_saveAcc_Click(object sender, EventArgs e)
@@ -422,6 +490,8 @@ namespace ALA_Accounting.Addition
 
                     account.UpdateAccount(account);
 
+                    EnableAllControls();
+
                     // Reload accounts in the list after update
                     loadAccounts(false, false, true);
                 }
@@ -432,6 +502,8 @@ namespace ALA_Accounting.Addition
                     account.subAccountTypeId = txt_subAccId.Text.Trim();
 
                     account.SaveAccount(account);
+
+                    EnableAllControls();
 
                     // Reload accounts in the list after saving
                     loadAccounts(false, false, true);
@@ -450,6 +522,8 @@ namespace ALA_Accounting.Addition
                 txt_accName.Clear();
                 return;
             }
+
+            EnableAllControls();
 
             lstAccounts.SelectedIndex = 0;
 

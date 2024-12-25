@@ -37,6 +37,12 @@
             this.administratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.myCompanyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.userLoginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userRightsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.passwordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.financialYearsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maintainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addCustomersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +56,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.custoemerRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saleReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +82,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.administratorToolStripMenuItem,
-            this.maintainToolStripMenuItem});
+            this.maintainToolStripMenuItem,
+            this.reportsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(825, 24);
@@ -85,7 +94,13 @@
             // 
             this.administratorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dashboardToolStripMenuItem,
-            this.myCompanyToolStripMenuItem});
+            this.myCompanyToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.userLoginsToolStripMenuItem,
+            this.userRightsToolStripMenuItem,
+            this.passwordsToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.financialYearsToolStripMenuItem});
             this.administratorToolStripMenuItem.Name = "administratorToolStripMenuItem";
             this.administratorToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
             this.administratorToolStripMenuItem.Text = "Administrator";
@@ -93,16 +108,51 @@
             // dashboardToolStripMenuItem
             // 
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
             // myCompanyToolStripMenuItem
             // 
             this.myCompanyToolStripMenuItem.Name = "myCompanyToolStripMenuItem";
-            this.myCompanyToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.myCompanyToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.myCompanyToolStripMenuItem.Text = "My Company";
             this.myCompanyToolStripMenuItem.Click += new System.EventHandler(this.myCompanyToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(148, 6);
+            // 
+            // userLoginsToolStripMenuItem
+            // 
+            this.userLoginsToolStripMenuItem.Name = "userLoginsToolStripMenuItem";
+            this.userLoginsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.userLoginsToolStripMenuItem.Text = "User Logins";
+            // 
+            // userRightsToolStripMenuItem
+            // 
+            this.userRightsToolStripMenuItem.Name = "userRightsToolStripMenuItem";
+            this.userRightsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.userRightsToolStripMenuItem.Text = "User Rights";
+            // 
+            // passwordsToolStripMenuItem
+            // 
+            this.passwordsToolStripMenuItem.Name = "passwordsToolStripMenuItem";
+            this.passwordsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.passwordsToolStripMenuItem.Text = "Passwords";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(148, 6);
+            // 
+            // financialYearsToolStripMenuItem
+            // 
+            this.financialYearsToolStripMenuItem.Name = "financialYearsToolStripMenuItem";
+            this.financialYearsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.financialYearsToolStripMenuItem.Text = "Financial Years";
+            this.financialYearsToolStripMenuItem.Click += new System.EventHandler(this.financialYearsToolStripMenuItem_Click);
             // 
             // maintainToolStripMenuItem
             // 
@@ -120,8 +170,8 @@
             this.custoemerRegionsToolStripMenuItem,
             this.employeesToolStripMenuItem});
             this.maintainToolStripMenuItem.Name = "maintainToolStripMenuItem";
-            this.maintainToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
-            this.maintainToolStripMenuItem.Text = "Maintain مینٹین";
+            this.maintainToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.maintainToolStripMenuItem.Text = "Maintain";
             // 
             // addAccountsToolStripMenuItem
             // 
@@ -154,6 +204,7 @@
             this.accountsOpeningBalanceToolStripMenuItem.Name = "accountsOpeningBalanceToolStripMenuItem";
             this.accountsOpeningBalanceToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
             this.accountsOpeningBalanceToolStripMenuItem.Text = "Accounts Opening Balance اکاؤنٹ کا افتتاحی بیلنس ";
+            this.accountsOpeningBalanceToolStripMenuItem.Click += new System.EventHandler(this.accountsOpeningBalanceToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -172,6 +223,7 @@
             this.inventoryOpeningBalanceToolStripMenuItem.Name = "inventoryOpeningBalanceToolStripMenuItem";
             this.inventoryOpeningBalanceToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
             this.inventoryOpeningBalanceToolStripMenuItem.Text = "Inventory Opening balance  انویٹری افتتاحی بیلنس";
+            this.inventoryOpeningBalanceToolStripMenuItem.Click += new System.EventHandler(this.inventoryOpeningBalanceToolStripMenuItem_Click);
             // 
             // inventoryBrandsToolStripMenuItem
             // 
@@ -196,6 +248,22 @@
             this.employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
             this.employeesToolStripMenuItem.Size = new System.Drawing.Size(341, 22);
             this.employeesToolStripMenuItem.Text = "Employees  ملازمین";
+            // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saleReportToolStripMenuItem});
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.reportsToolStripMenuItem.Text = "Reports";
+            this.reportsToolStripMenuItem.Click += new System.EventHandler(this.reportsToolStripMenuItem_Click);
+            // 
+            // saleReportToolStripMenuItem
+            // 
+            this.saleReportToolStripMenuItem.Name = "saleReportToolStripMenuItem";
+            this.saleReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saleReportToolStripMenuItem.Text = "Sale Report";
+            this.saleReportToolStripMenuItem.Click += new System.EventHandler(this.saleReportToolStripMenuItem_Click);
             // 
             // MDIParent1
             // 
@@ -240,6 +308,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem custoemerRegionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem employeesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem userLoginsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userRightsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem passwordsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem financialYearsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saleReportToolStripMenuItem;
     }
 }
 

@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addition Classes\Accounts.cs" />
+    <Compile Include="Addition Classes\AccountsOpeningBalancesClass.cs" />
     <Compile Include="Addition Classes\AddInventoryOpeningBalances.cs" />
     <Compile Include="Addition Classes\Brand.cs" />
     <Compile Include="Addition Classes\InventoryItems.cs" />
@@ -97,6 +98,12 @@
     <Compile Include="Addition Classes\MainInventoryCatagory.cs" />
     <Compile Include="Addition Classes\SubAccounts.cs" />
     <Compile Include="Addition Classes\subInventoryCatagory.cs" />
+    <Compile Include="Addition\AccountsOpeningBalances.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Addition\AccountsOpeningBalances.Designer.cs">
+      <DependentUpon>AccountsOpeningBalances.cs</DependentUpon>
+    </Compile>
     <Compile Include="Addition\AddAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,11 +122,23 @@
     <Compile Include="Addition\AddCustomers.Designer.cs">
       <DependentUpon>AddCustomers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Addition\AddEmployees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Addition\AddEmployees.Designer.cs">
+      <DependentUpon>AddEmployees.cs</DependentUpon>
+    </Compile>
     <Compile Include="Addition\AddInventory.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Addition\AddInventory.Designer.cs">
       <DependentUpon>AddInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Addition\FinancialYear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Addition\FinancialYear.Designer.cs">
+      <DependentUpon>FinancialYear.cs</DependentUpon>
     </Compile>
     <Compile Include="Addition\InventoryOpeningBalances.cs">
       <SubType>Form</SubType>
@@ -128,8 +147,28 @@
       <DependentUpon>InventoryOpeningBalances.cs</DependentUpon>
     </Compile>
     <Compile Include="Addition\ListBoxItem.cs" />
+    <Compile Include="Reports\SaleReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\SaleReport.Designer.cs">
+      <DependentUpon>SaleReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RetailStoreDbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetailStoreDbDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="transaction classes\BankPaymentClass.cs" />
+    <Compile Include="transaction classes\CashPaymentClass.cs" />
+    <Compile Include="transaction classes\CashReceiptClass.cs" />
     <Compile Include="transaction classes\CommonFunctions.cs" />
     <Compile Include="transaction classes\Connection.cs" />
+    <Compile Include="transaction classes\InventoryTransaction.cs" />
+    <Compile Include="transaction classes\PurchaseInvoice.cs" />
+    <Compile Include="transaction classes\PurchaseInvoiceItems.cs" />
+    <Compile Include="transaction classes\SalesInvoice.cs" />
+    <Compile Include="transaction classes\SalesInvoiceItem.cs" />
+    <Compile Include="transaction classes\Transaction.cs" />
     <Compile Include="TransactionForms\BankPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +225,9 @@
     <Compile Include="UsersForm\MDIParent1.Designer.cs">
       <DependentUpon>MDIParent1.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Addition\AccountsOpeningBalances.resx">
+      <DependentUpon>AccountsOpeningBalances.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Addition\AddAccount.resx">
       <DependentUpon>AddAccount.cs</DependentUpon>
     </EmbeddedResource>
@@ -198,9 +240,16 @@
     <EmbeddedResource Include="Addition\AddInventory.resx">
       <DependentUpon>AddInventory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Addition\FinancialYear.resx">
+      <DependentUpon>FinancialYear.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Addition\InventoryOpeningBalances.resx">
       <DependentUpon>InventoryOpeningBalances.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SaleReport.resx">
+      <DependentUpon>SaleReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="transaction classes\saleInvoiceReceipt.rdlc" />
     <EmbeddedResource Include="TransactionForms\BankPayment.resx">
       <DependentUpon>BankPayment.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,12 +296,21 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="RetailStoreDbDataSet.xsc">
+      <DependentUpon>RetailStoreDbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="RetailStoreDbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RetailStoreDbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RetailStoreDbDataSet.xss">
+      <DependentUpon>RetailStoreDbDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

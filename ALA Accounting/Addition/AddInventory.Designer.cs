@@ -105,6 +105,7 @@
             this.btn_deleteItem.Text = "ڈیلیٹ";
             this.btn_deleteItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btn_deleteItem.TextOffset = new System.Drawing.Point(4, 0);
+            this.btn_deleteItem.Click += new System.EventHandler(this.btn_deleteItem_Click);
             // 
             // btn_cancelItem
             // 
@@ -990,6 +991,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddInventory";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddInventory";
             this.Activated += new System.EventHandler(this.AddInventory_Activated);
