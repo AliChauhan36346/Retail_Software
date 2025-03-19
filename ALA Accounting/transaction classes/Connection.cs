@@ -15,7 +15,8 @@ namespace ALA_Accounting.transaction_classes
     {
         // Connection string for SQL Server database connection
         //retailStoreLocalD
-        //private readonly string connectionString = (@"Data Source=(LocalDB)\local;AttachDbFilename= |DataDirectory|\RetailSystemDB2017.mdf; Integrated Security = true; Connect Timeout=30");
+        //private readonly string connectionString = @"Data Source=(Localdb)\local;AttachDbFilename=|DataDirectory|\RetailSystemDB2017.mdf;Integrated Security=True;Connect Timeout=30";
+
         private readonly string connectionString = (@"Data Source=DESKTOP-STAKJL9;Initial Catalog=RetailStoreDb;Integrated Security=True");
 
         // SqlConnection object

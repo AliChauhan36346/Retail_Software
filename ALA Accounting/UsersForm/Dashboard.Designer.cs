@@ -260,6 +260,7 @@
             this.guna2Button4.TabIndex = 9;
             this.guna2Button4.Text = "اکاؤنٹس لیجرز / کھاتہ";
             this.guna2Button4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.guna2Button4.Click += new System.EventHandler(this.guna2Button4_Click);
             // 
             // guna2Button5
             // 

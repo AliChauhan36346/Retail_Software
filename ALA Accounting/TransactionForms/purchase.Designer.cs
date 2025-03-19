@@ -522,11 +522,11 @@
             this.label15.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label15.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label15.Location = new System.Drawing.Point(10, 9);
+            this.label15.Location = new System.Drawing.Point(17, 9);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(124, 24);
+            this.label15.Size = new System.Drawing.Size(114, 24);
             this.label15.TabIndex = 20;
-            this.label15.Text = "موصول شدہ رقم";
+            this.label15.Text = "ادا کی گئی رقم";
             // 
             // txt_balance
             // 
@@ -765,7 +765,7 @@
             this.btn_newCustomer.Name = "btn_newCustomer";
             this.btn_newCustomer.Size = new System.Drawing.Size(89, 52);
             this.btn_newCustomer.TabIndex = 8;
-            this.btn_newCustomer.Text = "نیو کسٹمر";
+            this.btn_newCustomer.Text = "نیا فروش";
             this.btn_newCustomer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btn_newCustomer.TextOffset = new System.Drawing.Point(4, 0);
             // 
@@ -876,7 +876,7 @@
             this.btn_addNew.Name = "btn_addNew";
             this.btn_addNew.Size = new System.Drawing.Size(89, 52);
             this.btn_addNew.TabIndex = 3;
-            this.btn_addNew.Text = "نیو سیل";
+            this.btn_addNew.Text = "نئی خریداری";
             this.btn_addNew.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btn_addNew.TextOffset = new System.Drawing.Point(4, 0);
             this.btn_addNew.Click += new System.EventHandler(this.btn_addNew_Click);

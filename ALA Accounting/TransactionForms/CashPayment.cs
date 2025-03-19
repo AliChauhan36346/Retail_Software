@@ -1,4 +1,5 @@
-﻿using ALA_Accounting.transaction_classes;
+﻿using ALA_Accounting.Addition;
+using ALA_Accounting.transaction_classes;
 using ALA_Accounting.UsersForm;
 using System;
 using System.Collections.Generic;
@@ -15,15 +16,15 @@ namespace ALA_Accounting.TransactionForms
 {
     public partial class CashPayment : Form
     {
-        MDIParent1 dIParent1;
         CommonFunctions commonFunctions=new CommonFunctions();
         CashPaymentClass cashPaymentClass=new CashPaymentClass();
+        FinancialYear financialYear = new FinancialYear();
+        int financialYearId;
 
-        public CashPayment(MDIParent1 dI)
+        public CashPayment(int financialYearId)
         {
+            this.financialYearId = financialYearId;
             InitializeComponent();
-
-            this.dIParent1 = dI;
         }
 
         private void txt_cashAccountBalance_TextChanged(object sender, EventArgs e)
@@ -34,7 +35,7 @@ namespace ALA_Accounting.TransactionForms
         private void CashPayment_Load(object sender, EventArgs e)
         {
             txt_cashPaymentId.Text=cashPaymentClass.GetNextAvailableCashPaymentID().ToString();
-            cashPaymentClass.LoadCashPayments(dataGridView2, dIParent1.financialYearId, dtm_paymentDate.Value.Date);
+            cashPaymentClass.LoadCashPayments(dataGridView2, financialYearId, dtm_paymentDate.Value.Date);
             lstAccounts.Visible = false;
             txt_cashAccount.Text = "3";
             txt_cashAccountName.Text = "Cash in hand";
@@ -42,6 +43,19 @@ namespace ALA_Accounting.TransactionForms
 
         private bool ValidateCashPaymentForm()
         {
+            DateTime invoiceDate = dtm_paymentDate.Value.Date;
+            var dates = financialYear.GetFinancialYearDatesById(financialYearId); // Replace 1 with the actual ID
+            DateTime startDate = dates.StartDate.Date;
+            DateTime endDate = dates.EndDate.Date;
+
+            // Assuming financialYearStartDate and financialYearEndDate are DateTime variables set based on your financial year.
+            if (invoiceDate < dates.StartDate.Date || invoiceDate > dates.EndDate.Date)
+            {
+                MessageBox.Show("Payment date must be within the financial year.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtm_paymentDate.Focus();
+                return false;
+            }
+
             // Check if AccountID is provided and numeric
             if (string.IsNullOrWhiteSpace(txt_accountId.Text) || !int.TryParse(txt_accountId.Text, out _))
             {
@@ -114,7 +128,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_discription.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId // Assuming dIParent1 is your parent class containing financial year
+                FinancialYearID = financialYearId // Assuming dIParent1 is your parent class containing financial year
             };
 
             // Prepare Transaction list
@@ -129,7 +143,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_discription.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             transactions.Add(accountTransaction);
@@ -143,7 +157,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_discription.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             transactions.Add(cashTransaction);
@@ -155,7 +169,7 @@ namespace ALA_Accounting.TransactionForms
                 MessageBox.Show("Cash payment saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                  // Assuming this method clears your form
                 commonFunctions.ClearAllTextBoxes(this);
-                cashPaymentClass.LoadCashPayments(dataGridView2, dIParent1.financialYearId, dtm_paymentDate.Value.Date);
+                cashPaymentClass.LoadCashPayments(dataGridView2, financialYearId, dtm_paymentDate.Value.Date);
                 txt_cashPaymentId.Text = cashPaymentClass.GetNextAvailableCashPaymentID().ToString();
                 txt_cashAccount.Text = "3";
                 txt_cashAccountName.Text = "Cash in hand";
@@ -186,7 +200,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_discription.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             // Prepare Transaction list
@@ -201,7 +215,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_discription.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             updatedTransactions.Add(accountTransaction);
@@ -215,7 +229,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_discription.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             updatedTransactions.Add(cashTransaction);
@@ -226,7 +240,7 @@ namespace ALA_Accounting.TransactionForms
             {
                 MessageBox.Show("Cash payment updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 commonFunctions.ClearAllTextBoxes(this); // Clear form after successful update
-                cashPaymentClass.LoadCashPayments(dataGridView2, dIParent1.financialYearId, dtm_paymentDate.Value.Date);
+                cashPaymentClass.LoadCashPayments(dataGridView2, financialYearId, dtm_paymentDate.Value.Date);
                 txt_cashPaymentId.Text = cashPaymentClass.GetNextAvailableCashPaymentID().ToString();
                 txt_cashAccount.Text = "3";
                 txt_cashAccountName.Text = "Cash in hand";
@@ -414,7 +428,7 @@ namespace ALA_Accounting.TransactionForms
             if (cashPaymentClass.CashPaymentExists(cashPaymentID))
             {
                 cashPaymentClass.DeleteCashPaymentById(cashPaymentID);
-                cashPaymentClass.LoadCashPayments(dataGridView2, dIParent1.financialYearId, dtm_paymentDate.Value.Date);
+                cashPaymentClass.LoadCashPayments(dataGridView2, financialYearId, dtm_paymentDate.Value.Date);
                 commonFunctions.ClearAllTextBoxes(this);
                 txt_cashAccount.Text = "3";
                 txt_cashAccountName.Text = "Cash in hand";

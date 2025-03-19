@@ -97,15 +97,14 @@ namespace ALA_Accounting.transaction_classes
                 // Start a transaction
                 sqlTransaction = dbConnection.connection.BeginTransaction();
 
-                // Insert SalesInvoice and get the SalesInvoiceID
+                // Insert PurchaseInvoice and get the generated ID
                 string insertInvoiceQuery = @"
-                    INSERT INTO PurchaseInvoice (PurchaseInvoiceID ,AccountID, AccountName, InvoiceDate, ExpenseAccountID, GrossTotal, AdditionalDiscount, CarriageAndFreight, NetTotal, AmountPaid, Balance, IsCancelled, FinancialYearID, employeeReference, Address, remarks)
-                    VALUES (@PurchaseInvoiceID ,@AccountID, @AccountName, @InvoiceDate, @ExpenseAccountID, @GrossTotal, @AdditionalDiscount, @CarriageAndFreight, @NetTotal, @AmountPaid, @Balance, @IsCancelled, @FinancialYearID, @employeeReference, @Address, @remarks);
-                    SELECT SCOPE_IDENTITY();";
+            INSERT INTO PurchaseInvoice (AccountID, AccountName, InvoiceDate, ExpenseAccountID, GrossTotal, AdditionalDiscount, CarriageAndFreight, NetTotal, AmountPaid, Balance, IsCancelled, FinancialYearID, employeeReference, Address, remarks)
+            VALUES (@AccountID, @AccountName, @InvoiceDate, @ExpenseAccountID, @GrossTotal, @AdditionalDiscount, @CarriageAndFreight, @NetTotal, @AmountPaid, @Balance, @IsCancelled, @FinancialYearID, @employeeReference, @Address, @remarks);
+            SELECT SCOPE_IDENTITY();";
 
                 using (SqlCommand invoiceCommand = new SqlCommand(insertInvoiceQuery, dbConnection.connection, sqlTransaction))
                 {
-                    invoiceCommand.Parameters.AddWithValue("@PurchaseInvoiceID", invoice.PurchaseInvoiceID);
                     invoiceCommand.Parameters.AddWithValue("@AccountID", invoice.AccountID);
                     invoiceCommand.Parameters.AddWithValue("@AccountName", invoice.AccountName);
                     invoiceCommand.Parameters.AddWithValue("@InvoiceDate", invoice.InvoiceDate);
@@ -122,79 +121,79 @@ namespace ALA_Accounting.transaction_classes
                     invoiceCommand.Parameters.AddWithValue("@Address", invoice.Address);
                     invoiceCommand.Parameters.AddWithValue("@remarks", invoice.Remarks);
 
-                    invoiceCommand.ExecuteNonQuery();
-
-
-                    // Insert SalesInvoiceItems
-                    string insertItemsQuery = @"
-                        INSERT INTO PurchaseInvoiceItems (PurchaseInvoiceID, ItemID, ItemDescription, Quantity, Unit, Rate, GrossAmount, Discount, NetAmount)
-                        VALUES (@PurchaseInvoiceID, @ItemID, @ItemDescription, @Quantity, @Unit, @Rate, @GrossAmount, @Discount, @NetAmount);";
-
-                    foreach (var item in items)
-                    {
-                        using (SqlCommand itemCommand = new SqlCommand(insertItemsQuery, dbConnection.connection, sqlTransaction))
-                        {
-                            itemCommand.Parameters.AddWithValue("@PurchaseInvoiceID", invoice.PurchaseInvoiceID);
-                            itemCommand.Parameters.AddWithValue("@ItemID", item.ItemID);
-                            itemCommand.Parameters.AddWithValue("@ItemDescription", item.ItemDiscription);
-                            itemCommand.Parameters.AddWithValue("@Quantity", item.Quantity);
-                            itemCommand.Parameters.AddWithValue("@Unit", item.Unit);
-                            itemCommand.Parameters.AddWithValue("@Rate", item.Rate);
-                            itemCommand.Parameters.AddWithValue("@GrossAmount", item.GrossAmount);
-                            itemCommand.Parameters.AddWithValue("@Discount", item.Discount);
-                            itemCommand.Parameters.AddWithValue("@NetAmount", item.NetAmount);
-                            itemCommand.ExecuteNonQuery();
-                        }
-                    }
-
-                    // Insert Transactions
-                    string insertTransactionQuery = @"
-                INSERT INTO Transactions (AccountID, TransactionDate, TransactionType, Amount, Description, FinancialYearID, SourceID, SourceTable, IsCancelled)
-                VALUES (@AccountID, @TransactionDate, @TransactionType, @Amount, @Description, @FinancialYearID, @SourceID, @SourceTable, @IsCancelled);";
-
-                    foreach (var transaction in transactions)
-                    {
-                        using (SqlCommand transactionCommand = new SqlCommand(insertTransactionQuery, dbConnection.connection, sqlTransaction))
-                        {
-                            transactionCommand.Parameters.AddWithValue("@AccountID", transaction.AccountID);
-                            transactionCommand.Parameters.AddWithValue("@TransactionDate", transaction.TransactionDate);
-                            transactionCommand.Parameters.AddWithValue("@TransactionType", transaction.TransactionType);
-                            transactionCommand.Parameters.AddWithValue("@Amount", transaction.Amount);
-                            transactionCommand.Parameters.AddWithValue("@Description", transaction.Description);
-                            transactionCommand.Parameters.AddWithValue("@FinancialYearID", transaction.FinancialYearID);
-                            transactionCommand.Parameters.AddWithValue("@SourceID", invoice.PurchaseInvoiceID); // Link to the sales invoice
-                            transactionCommand.Parameters.AddWithValue("@SourceTable", "PurchaseInvoice");
-                            transactionCommand.Parameters.AddWithValue("@IsCancelled", transaction.IsCancelled);
-                            transactionCommand.ExecuteNonQuery();
-                        }
-                    }
-
-                    // Insert InventoryTransactions
-                    string insertInventoryTransactionQuery = @"
-                INSERT INTO InventoryTransaction (ItemID, TransactionType, Quantity, Unit, Rate, PartyName, SourceTable, SourceId, TransactionDate)
-                VALUES (@ItemID, @TransactionType, @Quantity, @Unit, @Rate, @PartyName, @SourceTable, @SourceId, @TransactionDate);";
-
-                    foreach (var inventoryTransaction in inventoryTransactions)
-                    {
-                        using (SqlCommand inventoryCommand = new SqlCommand(insertInventoryTransactionQuery, dbConnection.connection, sqlTransaction))
-                        {
-                            inventoryCommand.Parameters.AddWithValue("@ItemID", inventoryTransaction.ItemID);
-                            inventoryCommand.Parameters.AddWithValue("@TransactionType", "Purchase");
-                            inventoryCommand.Parameters.AddWithValue("@Quantity", inventoryTransaction.Quantity);
-                            inventoryCommand.Parameters.AddWithValue("@Unit", inventoryTransaction.Unit);
-                            inventoryCommand.Parameters.AddWithValue("@Rate", inventoryTransaction.Rate);
-                            inventoryCommand.Parameters.AddWithValue("@PartyName", inventoryTransaction.partyName);
-                            inventoryCommand.Parameters.AddWithValue("@SourceTable", "PurchaseInvoice");
-                            inventoryCommand.Parameters.AddWithValue("@SourceId", invoice.PurchaseInvoiceID);
-                            inventoryCommand.Parameters.AddWithValue("@TransactionDate", inventoryTransaction.TransactionDate);
-                            inventoryCommand.ExecuteNonQuery();
-                        }
-                    }
-
-                    // Commit the transaction
-                    sqlTransaction.Commit();
-                    return true;
+                    // Retrieve the generated ID
+                    invoice.PurchaseInvoiceID = Convert.ToInt32(invoiceCommand.ExecuteScalar());
                 }
+
+                // Insert PurchaseInvoiceItems
+                string insertItemsQuery = @"
+            INSERT INTO PurchaseInvoiceItems (PurchaseInvoiceID, ItemID, ItemDescription, Quantity, Unit, Rate, GrossAmount, Discount, NetAmount)
+            VALUES (@PurchaseInvoiceID, @ItemID, @ItemDescription, @Quantity, @Unit, @Rate, @GrossAmount, @Discount, @NetAmount);";
+
+                foreach (var item in items)
+                {
+                    using (SqlCommand itemCommand = new SqlCommand(insertItemsQuery, dbConnection.connection, sqlTransaction))
+                    {
+                        itemCommand.Parameters.AddWithValue("@PurchaseInvoiceID", invoice.PurchaseInvoiceID);
+                        itemCommand.Parameters.AddWithValue("@ItemID", item.ItemID);
+                        itemCommand.Parameters.AddWithValue("@ItemDescription", item.ItemDiscription);
+                        itemCommand.Parameters.AddWithValue("@Quantity", item.Quantity);
+                        itemCommand.Parameters.AddWithValue("@Unit", item.Unit);
+                        itemCommand.Parameters.AddWithValue("@Rate", item.Rate);
+                        itemCommand.Parameters.AddWithValue("@GrossAmount", item.GrossAmount);
+                        itemCommand.Parameters.AddWithValue("@Discount", item.Discount);
+                        itemCommand.Parameters.AddWithValue("@NetAmount", item.NetAmount);
+                        itemCommand.ExecuteNonQuery();
+                    }
+                }
+
+                // Insert Transactions
+                string insertTransactionQuery = @"
+            INSERT INTO Transactions (AccountID, TransactionDate, TransactionType, Amount, Description, FinancialYearID, SourceID, SourceTable, IsCancelled)
+            VALUES (@AccountID, @TransactionDate, @TransactionType, @Amount, @Description, @FinancialYearID, @SourceID, @SourceTable, @IsCancelled);";
+
+                foreach (var transaction in transactions)
+                {
+                    using (SqlCommand transactionCommand = new SqlCommand(insertTransactionQuery, dbConnection.connection, sqlTransaction))
+                    {
+                        transactionCommand.Parameters.AddWithValue("@AccountID", transaction.AccountID);
+                        transactionCommand.Parameters.AddWithValue("@TransactionDate", transaction.TransactionDate);
+                        transactionCommand.Parameters.AddWithValue("@TransactionType", transaction.TransactionType);
+                        transactionCommand.Parameters.AddWithValue("@Amount", transaction.Amount);
+                        transactionCommand.Parameters.AddWithValue("@Description", transaction.Description);
+                        transactionCommand.Parameters.AddWithValue("@FinancialYearID", transaction.FinancialYearID);
+                        transactionCommand.Parameters.AddWithValue("@SourceID", invoice.PurchaseInvoiceID);
+                        transactionCommand.Parameters.AddWithValue("@SourceTable", "PurchaseInvoice");
+                        transactionCommand.Parameters.AddWithValue("@IsCancelled", transaction.IsCancelled);
+                        transactionCommand.ExecuteNonQuery();
+                    }
+                }
+
+                // Insert InventoryTransactions
+                string insertInventoryTransactionQuery = @"
+            INSERT INTO InventoryTransaction (ItemID, TransactionType, Quantity, Unit, Rate, PartyName, SourceTable, SourceId, TransactionDate)
+            VALUES (@ItemID, @TransactionType, @Quantity, @Unit, @Rate, @PartyName, @SourceTable, @SourceId, @TransactionDate);";
+
+                foreach (var inventoryTransaction in inventoryTransactions)
+                {
+                    using (SqlCommand inventoryCommand = new SqlCommand(insertInventoryTransactionQuery, dbConnection.connection, sqlTransaction))
+                    {
+                        inventoryCommand.Parameters.AddWithValue("@ItemID", inventoryTransaction.ItemID);
+                        inventoryCommand.Parameters.AddWithValue("@TransactionType", "Purchase");
+                        inventoryCommand.Parameters.AddWithValue("@Quantity", inventoryTransaction.Quantity);
+                        inventoryCommand.Parameters.AddWithValue("@Unit", inventoryTransaction.Unit);
+                        inventoryCommand.Parameters.AddWithValue("@Rate", inventoryTransaction.Rate);
+                        inventoryCommand.Parameters.AddWithValue("@PartyName", inventoryTransaction.partyName);
+                        inventoryCommand.Parameters.AddWithValue("@SourceTable", "PurchaseInvoice");
+                        inventoryCommand.Parameters.AddWithValue("@SourceId", invoice.PurchaseInvoiceID);
+                        inventoryCommand.Parameters.AddWithValue("@TransactionDate", inventoryTransaction.TransactionDate);
+                        inventoryCommand.ExecuteNonQuery();
+                    }
+                }
+
+                // Commit the transaction
+                sqlTransaction.Commit();
+                return true;
             }
             catch (Exception ex)
             {
@@ -219,6 +218,7 @@ namespace ALA_Accounting.transaction_classes
                 dbConnection.closeConnection();
             }
         }
+
 
         public bool UpdatePurchaseInvoice(PurchaseInvoice invoice, List<PurchaseInvoiceItems> items, List<Transaction> transactions, List<InventoryTransaction> inventoryTransactions)
         {

@@ -17,6 +17,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data.Odbc;
 
+
 namespace ALA_Accounting.TransactionForms
 {
 
@@ -26,22 +27,21 @@ namespace ALA_Accounting.TransactionForms
         FinancialYear financialYear=new FinancialYear();
 
         CommonFunctions functions = new CommonFunctions();
-        MDIParent1 dIParent1; //= new MDIParent1();
 
         InventoryItems inventoryItems=new InventoryItems();
 
-        //string itemIdId = "";
+        int financialYearId;
 
 
         SalesInvoice salesInvoice= new SalesInvoice();
 
 
 
-        public Sales(MDIParent1 dI)
+        public Sales(int financialYearId)
         {
             InitializeComponent();
 
-            this.dIParent1 = dI;
+            this.financialYearId = financialYearId;
         }
 
         
@@ -107,7 +107,7 @@ namespace ALA_Accounting.TransactionForms
                 AmountReceived = Convert.ToDecimal(txt_amountReceived.Text),
                 Balance = Convert.ToDecimal(txt_balance.Text),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId,
+                FinancialYearID = financialYearId,
                 EmployeeReference = cmbo_employeeRefference.Text,
                 Address = txt_address.Text,
                 Remarks = txt_salesRemarks.Text
@@ -156,7 +156,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_netTotal.Text),
                 Description = description,
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             transactions.Add(saleTransaction);
@@ -171,7 +171,7 @@ namespace ALA_Accounting.TransactionForms
                     Amount = Convert.ToDecimal(txt_amountReceived.Text),
                     Description = description,
                     IsCancelled = false,
-                    FinancialYearID = dIParent1.financialYearId
+                    FinancialYearID = financialYearId
                 };
 
                 transactions.Add(cashReceiptTransaction);
@@ -184,7 +184,7 @@ namespace ALA_Accounting.TransactionForms
                     Amount = Convert.ToDecimal(txt_amountReceived.Text),
                     Description = description,
                     IsCancelled = false,
-                    FinancialYearID = dIParent1.financialYearId
+                    FinancialYearID = financialYearId
                 };
 
                 transactions.Add(cashAccount);
@@ -200,7 +200,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_netTotal.Text),
                 Description = description,
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             transactions.Add(incomeTransaction);
@@ -265,7 +265,7 @@ namespace ALA_Accounting.TransactionForms
                 AmountReceived = Convert.ToDecimal(txt_amountReceived.Text),
                 Balance = Convert.ToDecimal(txt_balance.Text),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId,
+                FinancialYearID = financialYearId,
                 EmployeeReference = cmbo_employeeRefference.Text,
                 Address = txt_address.Text,
                 Remarks = txt_salesRemarks.Text
@@ -313,7 +313,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_netTotal.Text),
                 Description = description,
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             transactions.Add(saleTransaction);
@@ -328,7 +328,7 @@ namespace ALA_Accounting.TransactionForms
                     Amount = Convert.ToDecimal(txt_amountReceived.Text),
                     Description = description,
                     IsCancelled = false,
-                    FinancialYearID = dIParent1.financialYearId
+                    FinancialYearID = financialYearId
                 };
 
                 transactions.Add(cashReceiptTransaction);
@@ -342,7 +342,7 @@ namespace ALA_Accounting.TransactionForms
                     Amount = Convert.ToDecimal(txt_amountReceived.Text),
                     Description = description,
                     IsCancelled = false,
-                    FinancialYearID = dIParent1.financialYearId
+                    FinancialYearID = financialYearId
                 };
 
                 transactions.Add(cashAccount);
@@ -356,7 +356,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_netTotal.Text),
                 Description = description,
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             transactions.Add(incomeTransaction);
@@ -434,7 +434,7 @@ namespace ALA_Accounting.TransactionForms
             }
 
             DateTime invoiceDate = dtm_saleDate.Value.Date;
-            var dates = financialYear.GetFinancialYearDatesById(1); // Replace 1 with the actual ID
+            var dates = financialYear.GetFinancialYearDatesById(financialYearId); // Replace 1 with the actual ID
             DateTime startDate = dates.StartDate.Date;
             DateTime endDate = dates.EndDate.Date;
 
@@ -1289,8 +1289,9 @@ namespace ALA_Accounting.TransactionForms
 
         private void btn_newCustomer_Click(object sender, EventArgs e)
         {
-            AddAccount addAccount = new AddAccount();
-            addAccount.ShowDialog();
+            //AddAccount addAccount = new AddAccount();
+            //addAccount.ShowDialog();
+            
         }
     }
 }

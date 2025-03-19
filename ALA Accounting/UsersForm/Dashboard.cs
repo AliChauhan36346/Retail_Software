@@ -1,4 +1,5 @@
 ﻿using ALA_Accounting.Addition;
+using ALA_Accounting.Reports;
 using ALA_Accounting.TransactionForms;
 using System;
 using System.Collections.Generic;
@@ -14,18 +15,18 @@ namespace ALA_Accounting.UsersForm
 {
     public partial class Dashboard : Form
     {
-        private MDIParent1 dIParent1;
+        //private MDIParent1 dIParent1=MDIParent1.GetInstance();
+        public int financialYearId;
 
-        public Dashboard(MDIParent1 parent)
+        public Dashboard(int financialYearId)
         {
             InitializeComponent();
-
-            this.dIParent1 = parent;
+            this.financialYearId = financialYearId;
         }
 
         private void btn_sales_Click(object sender, EventArgs e)
         {
-            Sales sales = new Sales(this.dIParent1);
+            Sales sales = new Sales(financialYearId);
 
             sales.MdiParent = this.MdiParent;
 
@@ -36,35 +37,35 @@ namespace ALA_Accounting.UsersForm
 
         private void btn_purchase_Click(object sender, EventArgs e)
         {
-            purchase purchase = new purchase(this.dIParent1);
+            purchase purchase = new purchase(financialYearId);
             purchase.MdiParent= this.MdiParent;
             purchase.Show();
         }
 
         private void btn_cashPayment_Click(object sender, EventArgs e)
         {
-            CashPayment cashPayment = new CashPayment(this.dIParent1);
+            CashPayment cashPayment = new CashPayment(financialYearId);
             cashPayment.MdiParent = this.MdiParent;
             cashPayment.Show();
         }
 
         private void btn_bankPayment_Click(object sender, EventArgs e)
         {
-            BankPayment bankPayment= new BankPayment(this.dIParent1);
+            BankPayment bankPayment= new BankPayment(financialYearId);
             bankPayment.MdiParent = this.MdiParent;
             bankPayment.Show();
         }
 
         private void cashReceipt_Click(object sender, EventArgs e)
         {
-            CashReceipt cashReceipt = new CashReceipt(this.dIParent1);
+            CashReceipt cashReceipt = new CashReceipt(financialYearId);
             cashReceipt.MdiParent = this.MdiParent;
             cashReceipt.Show();
         }
 
         private void btn_bankReceipt_Click(object sender, EventArgs e)
         {
-            bankReceipt bankReceipt=new bankReceipt(this.dIParent1);
+            bankReceipt bankReceipt=new bankReceipt();
             bankReceipt.MdiParent=this.MdiParent;
             bankReceipt.Show();
         }
@@ -72,6 +73,13 @@ namespace ALA_Accounting.UsersForm
         private void Dashboard_Load(object sender, EventArgs e)
         {
             //
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            AccountsLegerForm accountsLegerForm = new AccountsLegerForm(financialYearId);
+            accountsLegerForm.MdiParent =(this.MdiParent);
+            accountsLegerForm.Show();
         }
     }
 }

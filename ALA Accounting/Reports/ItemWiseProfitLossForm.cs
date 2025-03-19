@@ -1,5 +1,4 @@
-﻿using ALA_Accounting.UsersForm;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,19 +10,11 @@ using System.Windows.Forms;
 
 namespace ALA_Accounting.Reports
 {
-    public partial class SaleReport : Form
+    public partial class ItemWiseProfitLossForm : Form
     {
-        MDIParent1 parent1;
-        public SaleReport(MDIParent1 mDI)
+        public ItemWiseProfitLossForm()
         {
             InitializeComponent();
-
-            this.parent1 = mDI;
-        }
-
-        private void SaleReport_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

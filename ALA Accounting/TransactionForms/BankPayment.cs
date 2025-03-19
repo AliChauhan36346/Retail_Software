@@ -1,4 +1,5 @@
-﻿using ALA_Accounting.transaction_classes;
+﻿using ALA_Accounting.Addition;
+using ALA_Accounting.transaction_classes;
 using ALA_Accounting.UsersForm;
 using System;
 using System.Collections.Generic;
@@ -15,20 +16,21 @@ namespace ALA_Accounting.TransactionForms
 {
     public partial class BankPayment : Form
     {
-        MDIParent1 dIParent1;
 
         BankPaymentClass bankPaymentClass=new BankPaymentClass();
 
         CommonFunctions commonFunctions = new CommonFunctions();
 
-        
+        FinancialYear financialYear = new FinancialYear();
+
+        int financialYearId;
 
 
-        public BankPayment(MDIParent1 mDI)
+        public BankPayment(int financialYearId)
         {
+            this.financialYearId = financialYearId;
             InitializeComponent();
-
-            this.dIParent1 = mDI;
+            
         }
 
         private void BankPayment_Load(object sender, EventArgs e)
@@ -38,13 +40,26 @@ namespace ALA_Accounting.TransactionForms
             lstAccounts.Visible = false;
             lstBankAccount.Visible = false;
 
-            bankPaymentClass.LoadBankPayments(dataGridView1, dIParent1.financialYearId,dtm_paymentDate.Value.Date);
+            bankPaymentClass.LoadBankPayments(dataGridView1, financialYearId,dtm_paymentDate.Value.Date);
 
             txt_accountId.Focus();
         }
 
         private bool ValidateBankPaymentForm()
         {
+            DateTime invoiceDate = dtm_paymentDate.Value.Date;
+            var dates = financialYear.GetFinancialYearDatesById(financialYearId); // Replace 1 with the actual ID
+            DateTime startDate = dates.StartDate.Date;
+            DateTime endDate = dates.EndDate.Date;
+
+            // Assuming financialYearStartDate and financialYearEndDate are DateTime variables set based on your financial year.
+            if (invoiceDate < dates.StartDate.Date || invoiceDate > dates.EndDate.Date)
+            {
+                MessageBox.Show("Payment date must be within the financial year.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtm_paymentDate.Focus();
+                return false;
+            }
+
             // Check if AccountID is provided and numeric
             if (string.IsNullOrWhiteSpace(txt_accountId.Text) || !int.TryParse(txt_accountId.Text, out _))
             {
@@ -118,7 +133,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_description.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             List<Transaction> transactions = new List<Transaction>();
@@ -131,7 +146,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_description.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             transactions.Add(accountTransaction);
@@ -144,7 +159,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_description.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             transactions.Add(bankTransaction);
@@ -157,7 +172,7 @@ namespace ALA_Accounting.TransactionForms
 
                 MessageBox.Show("Bank payment saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 commonFunctions.ClearAllTextBoxes(this);
-                bankPaymentClass.LoadBankPayments(dataGridView1, dIParent1.financialYearId, dtm_paymentDate.Value.Date);
+                bankPaymentClass.LoadBankPayments(dataGridView1, financialYearId, dtm_paymentDate.Value.Date);
                 txt_bankPaymentId.Text = bankPaymentClass.GetNextAvailableBankPaymentID().ToString();
                 txt_bankAccount.Text = bankAccountID;
                 txt_bankAccountName.Text = bankName;
@@ -188,7 +203,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_description.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             List<Transaction> updatedTransactions = new List<Transaction>();
@@ -201,7 +216,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_description.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             updatedTransactions.Add(accountTransaction);
@@ -214,7 +229,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_description.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             updatedTransactions.Add(bankTransaction);
@@ -227,7 +242,7 @@ namespace ALA_Accounting.TransactionForms
 
                 MessageBox.Show("Bank payment updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 commonFunctions.ClearAllTextBoxes(this);
-                bankPaymentClass.LoadBankPayments(dataGridView1, dIParent1.financialYearId, dtm_paymentDate.Value.Date);
+                bankPaymentClass.LoadBankPayments(dataGridView1, financialYearId, dtm_paymentDate.Value.Date);
                 txt_bankPaymentId.Text = bankPaymentClass.GetNextAvailableBankPaymentID().ToString();
                 txt_bankAccount.Text = bankAccountID; // Example ID
                 txt_bankAccountName.Text = bankName;
@@ -268,13 +283,13 @@ namespace ALA_Accounting.TransactionForms
             if (bankPaymentClass.BankPaymentExists(bankPaymentID))
             {
                 bankPaymentClass.DeleteBankPaymentById(bankPaymentID);
-                bankPaymentClass.LoadBankPayments(dataGridView1, dIParent1.financialYearId, dtm_paymentDate.Value.Date);
+                bankPaymentClass.LoadBankPayments(dataGridView1, financialYearId, dtm_paymentDate.Value.Date);
                 commonFunctions.ClearAllTextBoxes(this);
                 //txtba.Text = "3";
                 //txt_cashAccountName.Text = "Cash in hand";
                 txt_bankPaymentId.Text = bankPaymentClass.GetNextAvailableBankPaymentID().ToString();
 
-                bankPaymentClass.LoadBankPayments(dataGridView1,dIParent1.financialYearId,dtm_paymentDate.Value.Date);
+                bankPaymentClass.LoadBankPayments(dataGridView1,financialYearId,dtm_paymentDate.Value.Date);
             }
         }
 

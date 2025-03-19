@@ -775,7 +775,7 @@
             this.lstAccounts.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstAccounts.FormattingEnabled = true;
             this.lstAccounts.ItemHeight = 18;
-            this.lstAccounts.Location = new System.Drawing.Point(595, 167);
+            this.lstAccounts.Location = new System.Drawing.Point(595, 208);
             this.lstAccounts.Name = "lstAccounts";
             this.lstAccounts.Size = new System.Drawing.Size(345, 274);
             this.lstAccounts.TabIndex = 103;

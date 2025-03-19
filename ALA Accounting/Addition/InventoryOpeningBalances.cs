@@ -21,25 +21,23 @@ namespace ALA_Accounting.Addition
 
         CommonFunctions functions = new CommonFunctions();
 
+        int financialYearId;
 
-
-        private MDIParent1 dIParent1;
-
-        public InventoryOpeningBalances(MDIParent1 parent)
+        public InventoryOpeningBalances(int financialYearId)
         {
             InitializeComponent();
-            this.dIParent1 = parent;
+            this.financialYearId = financialYearId;
         }
 
 
 
         private void InventoryOpeningBalances_Load(object sender, EventArgs e)
         {
-            openingBalances.LoadInventoryOpeningBalances(dataGridView2, dIParent1.financialYearId,out decimal totalOpeningAmount);
+            openingBalances.LoadInventoryOpeningBalances(dataGridView2, financialYearId,out decimal totalOpeningAmount);
 
             btn_addNew_Click(sender, e);
             txt_openingamount.Text= totalOpeningAmount.ToString();
-            label9.Text = dIParent1.financialYearId.ToString();
+            label9.Text = financialYearId.ToString();
 
             lstInventory.Visible = false;
         }
@@ -92,11 +90,11 @@ namespace ALA_Accounting.Addition
                 openingBalances.openingId = txt_openingId.Text;
 
 
-                openingBalances.UpdateInventoryOpeningBalance(openingBalances, dIParent1.financialYearId);
+                openingBalances.UpdateInventoryOpeningBalance(openingBalances, financialYearId);
 
                 btn_addNew_Click(sender, e);
 
-                openingBalances.LoadInventoryOpeningBalances(dataGridView2, dIParent1.financialYearId, out decimal totalOpeningAmount);
+                openingBalances.LoadInventoryOpeningBalances(dataGridView2, financialYearId, out decimal totalOpeningAmount);
 
                 txt_openingamount.Text = totalOpeningAmount.ToString();
             }
@@ -109,11 +107,11 @@ namespace ALA_Accounting.Addition
                 openingBalances.openingId = txt_openingId.Text;
 
 
-                openingBalances.SaveInventoryOpeningBalance(openingBalances, dIParent1.financialYearId);
+                openingBalances.SaveInventoryOpeningBalance(openingBalances, financialYearId);
 
                 btn_addNew_Click(sender, e);
 
-                openingBalances.LoadInventoryOpeningBalances(dataGridView2, dIParent1.financialYearId, out decimal totalOpeningAmount);
+                openingBalances.LoadInventoryOpeningBalances(dataGridView2, financialYearId, out decimal totalOpeningAmount);
 
                 txt_openingamount.Text= totalOpeningAmount.ToString();
             }
@@ -189,7 +187,7 @@ namespace ALA_Accounting.Addition
             //{
                 openingBalances.DeleteInventoryOpeningBalance(int.Parse(txt_openingId.Text.Trim()));
 
-                openingBalances.LoadInventoryOpeningBalances(dataGridView2, dIParent1.financialYearId, out decimal totalOpeningAmount);
+                openingBalances.LoadInventoryOpeningBalances(dataGridView2, financialYearId, out decimal totalOpeningAmount);
 
                 btn_addNew_Click(sender, e);
                 txt_openingamount.Text= totalOpeningAmount.ToString();

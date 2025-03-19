@@ -13,13 +13,11 @@ namespace ALA_Accounting.TransactionForms
 {
     public partial class bankReceipt : Form
     {
-        MDIParent1 dIParent1;
+        
 
-        public bankReceipt(MDIParent1 mDI)
+        public bankReceipt()
         {
             InitializeComponent();
-
-            this.dIParent1 = mDI;
         }
 
         private void bankReceipt_Load(object sender, EventArgs e)

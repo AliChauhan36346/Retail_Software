@@ -16,13 +16,27 @@ namespace ALA_Accounting.UsersForm
     {
         private int childFormNumber = 0;
 
-        public int financialYearId {  get; set; }
+        private int financialYearId {  get; set; }
+
+        // for storing instance
+        private static MDIParent1 instance;
+
 
         
 
-        public MDIParent1()
+        private MDIParent1(int financialYearId)
         {
+            this.financialYearId = financialYearId;
             InitializeComponent();
+        }
+
+        public static MDIParent1 GetInstance(int financialYearId)
+        {
+            if (instance == null)
+            {
+                instance=new MDIParent1(financialYearId);
+            }
+            return instance;
         }
 
         
@@ -64,7 +78,7 @@ namespace ALA_Accounting.UsersForm
         public void ShowDashboard()
         {
             // Create a new instance of the dashboard form
-            Dashboard dashboard = new Dashboard(this);
+            Dashboard dashboard = new Dashboard(financialYearId);
 
             // Set the MDI parent form
             dashboard.MdiParent = this;
@@ -106,7 +120,7 @@ namespace ALA_Accounting.UsersForm
 
         private void inventoryOpeningBalanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            InventoryOpeningBalances inventory = new InventoryOpeningBalances(this);
+            InventoryOpeningBalances inventory = new InventoryOpeningBalances(financialYearId);
 
             inventory.MdiParent=this;
             inventory.Show();
@@ -120,7 +134,7 @@ namespace ALA_Accounting.UsersForm
 
         private void accountsOpeningBalanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AccountsOpeningBalances accounts = new AccountsOpeningBalances(this);
+            AccountsOpeningBalances accounts = new AccountsOpeningBalances(financialYearId);
 
             accounts.MdiParent=this;
             accounts.Show();
@@ -133,10 +147,24 @@ namespace ALA_Accounting.UsersForm
 
         private void saleReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaleReport saleReport = new SaleReport(this);
+            saleSummaryReportForm saleSummaryReportForm = saleSummaryReportForm.getInstance(financialYearId);
 
-            saleReport.MdiParent = this;
-            saleReport.Show();
+
+            saleSummaryReportForm.MdiParent = this;
+            saleSummaryReportForm.Show();
+            saleSummaryReportForm.BringToFront();
+        }
+
+        private void purchaseSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PurchaseSummaryReport purchaseSummaryReport = new PurchaseSummaryReport(financialYearId);
+            purchaseSummaryReport.MdiParent = this;
+            purchaseSummaryReport.Show();
+        }
+
+        private void purchaseReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -16,14 +16,16 @@ namespace ALA_Accounting.Addition
     public partial class AccountsOpeningBalances : Form
     {
         AccountsOpeningBalancessClass openingBalance=new AccountsOpeningBalancessClass();
-        private MDIParent1 dIParent1;
+        
         CommonFunctions commonFunctions=new CommonFunctions();
 
+        int financialYearId;
 
-        public AccountsOpeningBalances(MDIParent1 parent)
+
+        public AccountsOpeningBalances(int financialYearId)
         {
             InitializeComponent();
-            this.dIParent1 = parent;
+            this.financialYearId = financialYearId;
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -50,7 +52,7 @@ namespace ALA_Accounting.Addition
 
                 txt_accountId.Focus();
 
-                openingBalance.LoadAccountsOpeningBalances(dataGridView2, dIParent1.financialYearId);
+                openingBalance.LoadAccountsOpeningBalances(dataGridView2, financialYearId);
 
 
             }
@@ -61,7 +63,7 @@ namespace ALA_Accounting.Addition
                 openingBalance.debit = txt_debit.Text;
                 openingBalance.credit = txt_credit.Text;
 
-                openingBalance.SaveAccountOpeningBalances(openingBalance,dIParent1.financialYearId);
+                openingBalance.SaveAccountOpeningBalances(openingBalance,financialYearId);
 
                 commonFunctions.ClearAllTextBoxes(this);
 
@@ -69,7 +71,7 @@ namespace ALA_Accounting.Addition
 
                 txt_accountId.Focus();
 
-                openingBalance.LoadAccountsOpeningBalances(dataGridView2, dIParent1.financialYearId);
+                openingBalance.LoadAccountsOpeningBalances(dataGridView2, financialYearId);
 
             }
         }
@@ -166,7 +168,7 @@ namespace ALA_Accounting.Addition
             //{
                 openingBalance.DeleteAccountsOpeningBalances(int.Parse(txt_openingId.Text.Trim()));
 
-                openingBalance.LoadAccountsOpeningBalances(dataGridView2, dIParent1.financialYearId);
+                openingBalance.LoadAccountsOpeningBalances(dataGridView2, financialYearId);
 
                 btn_addNew_Click(sender, e);
             //}
@@ -176,7 +178,7 @@ namespace ALA_Accounting.Addition
         {
             openingBalance.GetNextAvailableAccountsOpeningBalancesID();
 
-            openingBalance.LoadAccountsOpeningBalances(dataGridView2, dIParent1.financialYearId);
+            openingBalance.LoadAccountsOpeningBalances(dataGridView2, financialYearId);
 
             btn_addNew_Click(sender , e);
 

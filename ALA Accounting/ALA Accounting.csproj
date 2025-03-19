@@ -39,6 +39,24 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -147,17 +165,34 @@
       <DependentUpon>InventoryOpeningBalances.cs</DependentUpon>
     </Compile>
     <Compile Include="Addition\ListBoxItem.cs" />
-    <Compile Include="Reports\SaleReport.cs">
+    <Compile Include="Reports Classes\AccountsLegerClass.cs" />
+    <Compile Include="Reports Classes\PurchaseReportClass.cs" />
+    <Compile Include="Reports Classes\SalesReportClass.cs" />
+    <Compile Include="Reports\AccountsLegerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\SaleReport.Designer.cs">
-      <DependentUpon>SaleReport.cs</DependentUpon>
+    <Compile Include="Reports\AccountsLegerForm.Designer.cs">
+      <DependentUpon>AccountsLegerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RetailStoreDbDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RetailStoreDbDataSet.xsd</DependentUpon>
+    <Compile Include="Reports\ItemWiseProfitLossForm.cs">
+      <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\ItemWiseProfitLossForm.Designer.cs">
+      <DependentUpon>ItemWiseProfitLossForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PurchaseSummaryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\PurchaseSummaryReport.Designer.cs">
+      <DependentUpon>PurchaseSummaryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\saleSummaryReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\saleSummaryReportForm.Designer.cs">
+      <DependentUpon>saleSummaryReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="transaction classes\BankPaymentClass.cs" />
     <Compile Include="transaction classes\CashPaymentClass.cs" />
     <Compile Include="transaction classes\CashReceiptClass.cs" />
@@ -246,10 +281,18 @@
     <EmbeddedResource Include="Addition\InventoryOpeningBalances.resx">
       <DependentUpon>InventoryOpeningBalances.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\SaleReport.resx">
-      <DependentUpon>SaleReport.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\AccountsLegerForm.resx">
+      <DependentUpon>AccountsLegerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="transaction classes\saleInvoiceReceipt.rdlc" />
+    <EmbeddedResource Include="Reports\ItemWiseProfitLossForm.resx">
+      <DependentUpon>ItemWiseProfitLossForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PurchaseSummaryReport.resx">
+      <DependentUpon>PurchaseSummaryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\saleSummaryReportForm.resx">
+      <DependentUpon>saleSummaryReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TransactionForms\BankPayment.resx">
       <DependentUpon>BankPayment.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,20 +339,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="RetailStoreDbDataSet.xsc">
-      <DependentUpon>RetailStoreDbDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="RetailStoreDbDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>RetailStoreDbDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="RetailStoreDbDataSet.xss">
-      <DependentUpon>RetailStoreDbDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -18,7 +18,7 @@ namespace ALA_Accounting.UsersForm
         Connection Connection=new Connection();
         CommonFunctions commonFunctions = new CommonFunctions();
 
-        MDIParent1 mDIParent1 = new MDIParent1();
+        MDIParent1 mDIParent1;
 
         public UserLogin()
         {
@@ -34,6 +34,15 @@ namespace ALA_Accounting.UsersForm
 
         private void btn_login_Click(object sender, EventArgs e)
         {
+            // Validate if a financial year is selected
+            ListBoxItem selectedFinancialYear = (ListBoxItem)cmbo_financialYear.SelectedItem;
+            int financialYearID = int.Parse(selectedFinancialYear.ItemID);
+
+            label15.Text = financialYearID.ToString();
+
+            mDIParent1 = MDIParent1.GetInstance(financialYearID);
+
+            // for testing purpose so not to enter password each time
             if (cmbo_userName.Items.Count <= 0)
             {
                 mDIParent1.Show();
@@ -57,10 +66,6 @@ namespace ALA_Accounting.UsersForm
                 MessageBox.Show("Please select a financial year.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Get the selected financial year (ListBoxItem) and its ID
-            ListBoxItem selectedFinancialYear = (ListBoxItem)cmbo_financialYear.SelectedItem;
-            int financialYearID = int.Parse(selectedFinancialYear.ItemID);  // Get the FinancialYearID
 
             // Query to check if the username and password match
             string query = "SELECT COUNT(1) FROM Users WHERE Username = @Username AND PasswordHash = @PasswordHash AND IsActive = 1";
@@ -107,8 +112,6 @@ namespace ALA_Accounting.UsersForm
         {
             
             List<string> username= new List<string>();
-
-            
             username = commonFunctions.GetUserNames();
 
             foreach(string userName in  username)
@@ -182,14 +185,8 @@ namespace ALA_Accounting.UsersForm
 
         private void cmbo_financialYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListBoxItem selectedFinancialYear = (ListBoxItem)cmbo_financialYear.SelectedItem;
-            int financialYearID = int.Parse(selectedFinancialYear.ItemID);
+            
 
-            label15.Text= financialYearID.ToString();
-
-            mDIParent1.financialYearId = financialYearID;
-
-            label16.Text=mDIParent1.financialYearId.ToString();
         }
     }
 }

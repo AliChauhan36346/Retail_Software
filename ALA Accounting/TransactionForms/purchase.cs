@@ -20,18 +20,18 @@ namespace ALA_Accounting.TransactionForms
         FinancialYear financialYear = new FinancialYear();
 
         CommonFunctions functions = new CommonFunctions();
-        MDIParent1 dIParent1; //= new MDIParent1();
 
         InventoryItems inventoryItems = new InventoryItems();
 
         PurchaseInvoice purchaseInvoice = new PurchaseInvoice();
 
+        int financialYearId;
 
-        public purchase(MDIParent1 dI)
+
+        public purchase(int financialYearId)
         {
             InitializeComponent();
-
-            this.dIParent1 = dI;
+            this.financialYearId = financialYearId;
         }
 
         private void purchase_Load(object sender, EventArgs e)
@@ -790,7 +790,7 @@ namespace ALA_Accounting.TransactionForms
                 AmountPaid = Convert.ToDecimal(txt_amountPaid.Text),
                 Balance = Convert.ToDecimal(txt_balance.Text),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId,
+                FinancialYearID = financialYearId,
                 EmployeeReference = cmbo_employeeRefference.Text,
                 Address = txt_address.Text,
                 Remarks = txt_purchaseRemarks.Text
@@ -838,7 +838,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_netTotal.Text),
                 Description = description,
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             transactions.Add(purchaseTransaction);
@@ -853,7 +853,7 @@ namespace ALA_Accounting.TransactionForms
                     Amount = Convert.ToDecimal(txt_amountPaid.Text),
                     Description = description,
                     IsCancelled = false,
-                    FinancialYearID = dIParent1.financialYearId
+                    FinancialYearID = financialYearId
                 };
 
                 transactions.Add(cashPaymentTransaction);
@@ -866,7 +866,7 @@ namespace ALA_Accounting.TransactionForms
                     Amount = Convert.ToDecimal(txt_amountPaid.Text),
                     Description = description,
                     IsCancelled = false,
-                    FinancialYearID = dIParent1.financialYearId
+                    FinancialYearID = financialYearId
                 };
 
                 transactions.Add(cashAccount);
@@ -880,7 +880,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_netTotal.Text),
                 Description = description,
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             transactions.Add(expenseTransaction);
@@ -942,7 +942,7 @@ namespace ALA_Accounting.TransactionForms
                 AmountPaid = Convert.ToDecimal(txt_amountPaid.Text),
                 Balance = Convert.ToDecimal(txt_balance.Text),
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId,
+                FinancialYearID = financialYearId,
                 EmployeeReference = cmbo_employeeRefference.Text,
                 Address = txt_address.Text,
                 Remarks = txt_purchaseRemarks.Text
@@ -991,7 +991,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_netTotal.Text),
                 Description = description,
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             transactions.Add(purchaseTransaction);
@@ -1006,7 +1006,7 @@ namespace ALA_Accounting.TransactionForms
                     Amount = Convert.ToDecimal(txt_amountPaid.Text),
                     Description = description,
                     IsCancelled = false,
-                    FinancialYearID = dIParent1.financialYearId
+                    FinancialYearID = financialYearId
                 };
 
                 transactions.Add(cashPaymentTransaction);
@@ -1019,7 +1019,7 @@ namespace ALA_Accounting.TransactionForms
                     Amount = Convert.ToDecimal(txt_amountPaid.Text),
                     Description = description,
                     IsCancelled = false,
-                    FinancialYearID = dIParent1.financialYearId
+                    FinancialYearID = financialYearId
                 };
 
                 transactions.Add(cashAccount);
@@ -1035,7 +1035,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_netTotal.Text),
                 Description = description,
                 IsCancelled = false,
-                FinancialYearID = dIParent1.financialYearId
+                FinancialYearID = financialYearId
             };
 
             transactions.Add(costTransaction);
@@ -1116,7 +1116,7 @@ namespace ALA_Accounting.TransactionForms
             }
 
             DateTime invoiceDate = dtm_saleDate.Value.Date;
-            var dates = financialYear.GetFinancialYearDatesById(1); // Replace 1 with the actual ID
+            var dates = financialYear.GetFinancialYearDatesById(financialYearId); // Replace 1 with the actual ID
             DateTime startDate = dates.StartDate.Date;
             DateTime endDate = dates.EndDate.Date;
 
