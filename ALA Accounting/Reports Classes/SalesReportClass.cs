@@ -91,40 +91,40 @@ namespace ALA_Accounting.Reports_Classes
             return dtSales;
         }
 
-        public List<int> GetAccountIdsBySubAccountId(int subAccountId)
-        {
-            List<int> accountIds = new List<int>();
-
-            try
+            public List<int> GetAccountIdsBySubAccountId(int subAccountId)
             {
-                dbConnection.openConnection();
+                List<int> accountIds = new List<int>();
 
-                string query = "SELECT AccountID FROM Accounts WHERE SubAccountTypeID = @SubAccountID";
-
-                using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
+                try
                 {
-                    command.Parameters.AddWithValue("@SubAccountID", subAccountId);
+                    dbConnection.openConnection();
 
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    string query = "SELECT AccountID FROM Accounts WHERE SubAccountTypeID = @SubAccountID";
+
+                    using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
                     {
-                        while (reader.Read())
+                        command.Parameters.AddWithValue("@SubAccountID", subAccountId);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            accountIds.Add(Convert.ToInt32(reader["AccountID"]));
+                            while (reader.Read())
+                            {
+                                accountIds.Add(Convert.ToInt32(reader["AccountID"]));
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading Account IDs: " + ex.Message);
-            }
-            finally
-            {
-                dbConnection.closeConnection();
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading Account IDs: " + ex.Message);
+                }
+                finally
+                {
+                    dbConnection.closeConnection();
+                }
 
-            return accountIds;
-        }
+                return accountIds;
+            }
 
     }
 }

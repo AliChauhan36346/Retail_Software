@@ -81,5 +81,12 @@ namespace ALA_Accounting.UsersForm
             accountsLegerForm.MdiParent =(this.MdiParent);
             accountsLegerForm.Show();
         }
+
+        private void btn_inventoryLeger_Click(object sender, EventArgs e)
+        {
+            InventoryLegerForm inventoryLegerForm = new InventoryLegerForm(financialYearId);
+            inventoryLegerForm.MdiParent = this.MdiParent;
+            inventoryLegerForm.Show();
+        }
     }
 }

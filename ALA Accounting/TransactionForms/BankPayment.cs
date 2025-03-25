@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Security.AccessControl;
@@ -24,13 +26,23 @@ namespace ALA_Accounting.TransactionForms
         FinancialYear financialYear = new FinancialYear();
 
         int financialYearId;
+        int bankPaymentID = -1;
 
 
         public BankPayment(int financialYearId)
         {
             this.financialYearId = financialYearId;
+
             InitializeComponent();
             
+        }
+
+        public BankPayment(int financialYearId, int bankPaymentId)
+        {
+            this.financialYearId = financialYearId;
+            this.bankPaymentID= bankPaymentId;
+            InitializeComponent();
+
         }
 
         private void BankPayment_Load(object sender, EventArgs e)
@@ -43,6 +55,11 @@ namespace ALA_Accounting.TransactionForms
             bankPaymentClass.LoadBankPayments(dataGridView1, financialYearId,dtm_paymentDate.Value.Date);
 
             txt_accountId.Focus();
+
+            if (bankPaymentID != -1)
+            {
+                LoadBankPaymentById(bankPaymentID, financialYearId);
+            }
         }
 
         private bool ValidateBankPaymentForm()
@@ -368,5 +385,61 @@ namespace ALA_Accounting.TransactionForms
         {
 
         }
+
+        public void LoadBankPaymentById(int bankPaymentId, int financialYearId)
+        {
+            Connection dbConnection = new Connection();
+
+            try
+            {
+                dbConnection.openConnection();
+
+                string query = @"
+        SELECT BankPaymentID, AccountID, AccountName, BankAccountID, PaymentDate, 
+               ChequeNumber, ChequeDate, Description, Amount
+        FROM BankPayment
+        WHERE BankPaymentID = @BankPaymentID AND FinancialYearID = @FinancialYearID"
+                ;
+
+                using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
+                {
+                    command.Parameters.AddWithValue("@BankPaymentID", bankPaymentId);
+                    command.Parameters.AddWithValue("@FinancialYearID", financialYearId);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Populate textboxes on the form
+                            txt_bankPaymentId.Text = reader["BankPaymentID"].ToString();
+                            txt_accountId.Text = reader["AccountID"].ToString();
+                            txt_accountName.Text = reader["AccountName"].ToString();
+                            txt_bankAccount.Text = reader["BankAccountID"].ToString();
+
+                            dtm_paymentDate.Value = Convert.ToDateTime(reader["PaymentDate"]);
+
+                            txt_chequeNo.Text = reader["ChequeNumber"].ToString();
+                            txt_chequeDate.Text = reader["ChequeDate"].ToString(); // Default if NULL
+
+                            txt_description.Text = reader["Description"].ToString();
+                            txt_amount.Text = reader["Amount"].ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No record found for the given Bank Payment ID.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading bank payment details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dbConnection.closeConnection();
+            }
+        }
+
     }
 }

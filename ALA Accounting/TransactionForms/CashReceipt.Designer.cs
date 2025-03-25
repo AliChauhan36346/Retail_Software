@@ -325,7 +325,7 @@
             this.dtm_receiptDate.Name = "dtm_receiptDate";
             this.dtm_receiptDate.Size = new System.Drawing.Size(199, 36);
             this.dtm_receiptDate.TabIndex = 61;
-            this.dtm_receiptDate.Value = new System.DateTime(2024, 8, 26, 17, 20, 4, 398);
+            this.dtm_receiptDate.Value = new System.DateTime(2025, 3, 26, 0, 0, 0, 0);
             // 
             // label7
             // 

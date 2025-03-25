@@ -391,7 +391,7 @@ namespace ALA_Accounting.transaction_classes
             }
         }
 
-        public bool DeletePurchaseInvoice(int salesInvoiceID)
+        public bool DeletePurchaseInvoice(int purchaseInvoiceID)
         {
             // Ask for confirmation before deletion
             DialogResult confirmationResult = MessageBox.Show("Are you sure you want to delete this sales invoice?",
@@ -415,14 +415,14 @@ namespace ALA_Accounting.transaction_classes
 
                 
 
-                // Delete SalesInvoiceItems
+                // Delete PurchaseInvoiceItems
                 string deleteItemsQuery = @"
                     DELETE FROM PurchaseInvoiceItems
                     WHERE PurchaseInvoiceID = @PurchaseInvoiceID;";
 
                 using (SqlCommand itemCommand = new SqlCommand(deleteItemsQuery, dbConnection.connection, sqlTransaction))
                 {
-                    itemCommand.Parameters.AddWithValue("@PurchaseInvoiceID", salesInvoiceID);
+                    itemCommand.Parameters.AddWithValue("@PurchaseInvoiceID", purchaseInvoiceID);
                     itemCommand.ExecuteNonQuery();
                 }
 
@@ -440,23 +440,23 @@ namespace ALA_Accounting.transaction_classes
                 // Delete InventoryTransactions
                 string deleteInventoryTransactionQuery = @"
                     DELETE FROM InventoryTransaction
-                    WHERE SourceId = @SalesInvoiceID AND SourceTable = 'SalesInvoice';";
+                    WHERE SourceId = @PurchaseInvoiceID AND SourceTable = 'PurchaseInvoice';";
 
                 using (SqlCommand inventoryCommand = new SqlCommand(deleteInventoryTransactionQuery, dbConnection.connection, sqlTransaction))
                 {
-                    inventoryCommand.Parameters.AddWithValue("@SalesInvoiceID", salesInvoiceID);
+                    inventoryCommand.Parameters.AddWithValue("@SalesInvoiceID", purchaseInvoiceID);
                     inventoryCommand.ExecuteNonQuery();
                 }
 
 
-                // Delete SalesInvoice
+                // Delete PurchaseInvoice
                 string deleteInvoiceQuery = @"
                     DELETE FROM PurchaseInvoice
                     WHERE PurchaseInvoiceID = @PurchaseInvoiceID;";
 
                 using (SqlCommand invoiceCommand = new SqlCommand(deleteInvoiceQuery, dbConnection.connection, sqlTransaction))
                 {
-                    invoiceCommand.Parameters.AddWithValue("@PurchaseInvoiceID", salesInvoiceID);
+                    invoiceCommand.Parameters.AddWithValue("@PurchaseInvoiceID", purchaseInvoiceID);
                     int rowsAffected = invoiceCommand.ExecuteNonQuery();
                     if (rowsAffected == 0)
                     {

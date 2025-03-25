@@ -166,5 +166,12 @@ namespace ALA_Accounting.UsersForm
         {
 
         }
+
+        private void itemWiseProfitLossToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ItemWiseProfitLossForm itemWiseProfitLossForm = new ItemWiseProfitLossForm(financialYearId);
+            itemWiseProfitLossForm.MdiParent = this;
+            itemWiseProfitLossForm.Show();
+        }
     }
 }

@@ -20,10 +20,18 @@ namespace ALA_Accounting.TransactionForms
         CashPaymentClass cashPaymentClass=new CashPaymentClass();
         FinancialYear financialYear = new FinancialYear();
         int financialYearId;
+        int cashPaymentId=-1;
 
         public CashPayment(int financialYearId)
         {
             this.financialYearId = financialYearId;
+            InitializeComponent();
+        }
+
+        public CashPayment(int financialYearId, int cashPaymentId)
+        {
+            this.financialYearId = financialYearId;
+            this.cashPaymentId = cashPaymentId;
             InitializeComponent();
         }
 
@@ -39,6 +47,11 @@ namespace ALA_Accounting.TransactionForms
             lstAccounts.Visible = false;
             txt_cashAccount.Text = "3";
             txt_cashAccountName.Text = "Cash in hand";
+
+            if (cashPaymentId != -1)
+            {
+                RetrieveCashPaymentById(cashPaymentId);
+            }
         }
 
         private bool ValidateCashPaymentForm()
@@ -277,11 +290,12 @@ namespace ALA_Accounting.TransactionForms
                 // Retrieve CashPayment details
                 string query = @"
         SELECT * FROM CashPayment
-        WHERE CashPaymentID = @CashPaymentID";
+        WHERE CashPaymentID = @CashPaymentID AND financialYearId=@financialYearId";
 
                 using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
                 {
                     command.Parameters.AddWithValue("@CashPaymentID", cashPaymentId);
+                    command.Parameters.AddWithValue("@financialYearId", financialYearId);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -290,6 +304,7 @@ namespace ALA_Accounting.TransactionForms
                             // Populate cash payment fields
                             txt_cashPaymentId.Text = reader["CashPaymentID"].ToString();
                             txt_accountId.Text = reader["AccountID"].ToString();
+                            txt_accountName.Text = reader["AccountName"].ToString();
                             txt_cashAccount.Text = reader["CashAccountID"].ToString();
                             dtm_paymentDate.Value = Convert.ToDateTime(reader["PaymentDate"]);
                             txt_amount.Text = reader["Amount"].ToString();

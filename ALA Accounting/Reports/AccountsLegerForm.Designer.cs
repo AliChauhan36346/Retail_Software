@@ -28,11 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountsLegerForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.btn_search = new Guna.UI2.WinForms.Guna2Button();
             this.to = new System.Windows.Forms.Label();
@@ -46,6 +54,12 @@
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.txt_debit = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txt_credit = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txt_balance = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lstAccounts = new System.Windows.Forms.ListBox();
+            this.AccountLegerBS = new System.Windows.Forms.BindingSource(this.components);
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,15 +67,11 @@
             this.Credit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.txt_debit = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txt_credit = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txt_balance = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lstAccounts = new System.Windows.Forms.ListBox();
             this.guna2ShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.guna2GradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AccountLegerBS)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2ShadowPanel1
@@ -138,7 +148,7 @@
             this.dtmEnd.Name = "dtmEnd";
             this.dtmEnd.Size = new System.Drawing.Size(102, 20);
             this.dtmEnd.TabIndex = 17;
-            this.dtmEnd.Value = new System.DateTime(2025, 3, 15, 15, 2, 50, 0);
+            this.dtmEnd.Value = new System.DateTime(2025, 3, 24, 0, 0, 0, 0);
             // 
             // dtmStart
             // 
@@ -147,7 +157,7 @@
             this.dtmStart.Name = "dtmStart";
             this.dtmStart.Size = new System.Drawing.Size(102, 20);
             this.dtmStart.TabIndex = 16;
-            this.dtmStart.Value = new System.DateTime(2025, 3, 15, 15, 2, 50, 0);
+            this.dtmStart.Value = new System.DateTime(2025, 3, 24, 0, 0, 0, 0);
             // 
             // chk_date
             // 
@@ -253,10 +263,9 @@
             // 
             // dataGridView2
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.MintCream;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
@@ -280,77 +289,30 @@
             this.Credit,
             this.balance,
             this.status});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView2.Location = new System.Drawing.Point(0, 128);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(1080, 443);
             this.dataGridView2.TabIndex = 103;
-            // 
-            // date
-            // 
-            this.date.HeaderText = "تاریخ";
-            this.date.Name = "date";
-            this.date.ReadOnly = true;
-            // 
-            // TransactionID
-            // 
-            this.TransactionID.HeaderText = "ٹرانزیکشن آئی ڈی";
-            this.TransactionID.Name = "TransactionID";
-            this.TransactionID.ReadOnly = true;
-            this.TransactionID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // description
-            // 
-            this.description.HeaderText = "تفصیل";
-            this.description.Name = "description";
-            this.description.ReadOnly = true;
-            this.description.Width = 380;
-            // 
-            // Debit
-            // 
-            this.Debit.HeaderText = "ڈیبٹ / بنام";
-            this.Debit.Name = "Debit";
-            this.Debit.ReadOnly = true;
-            this.Debit.Width = 120;
-            // 
-            // Credit
-            // 
-            this.Credit.HeaderText = "کریڈٹ / جمع";
-            this.Credit.Name = "Credit";
-            this.Credit.ReadOnly = true;
-            this.Credit.Width = 120;
-            // 
-            // balance
-            // 
-            this.balance.HeaderText = "بیلنس";
-            this.balance.Name = "balance";
-            this.balance.ReadOnly = true;
-            this.balance.Width = 120;
-            // 
-            // status
-            // 
-            this.status.HeaderText = "اسٹیٹس";
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
-            this.status.Width = 80;
+            this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellDoubleClick);
             // 
             // guna2GradientPanel1
             // 
@@ -458,10 +420,79 @@
             this.lstAccounts.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstAccounts.FormattingEnabled = true;
             this.lstAccounts.ItemHeight = 18;
-            this.lstAccounts.Location = new System.Drawing.Point(322, 76);
+            this.lstAccounts.Location = new System.Drawing.Point(322, 75);
             this.lstAccounts.Name = "lstAccounts";
             this.lstAccounts.Size = new System.Drawing.Size(445, 274);
             this.lstAccounts.TabIndex = 104;
+            // 
+            // date
+            // 
+            this.date.DataPropertyName = "Date";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.date.DefaultCellStyle = dataGridViewCellStyle3;
+            this.date.HeaderText = "تاریخ";
+            this.date.Name = "date";
+            this.date.ReadOnly = true;
+            // 
+            // TransactionID
+            // 
+            this.TransactionID.DataPropertyName = "TransactionId";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.TransactionID.DefaultCellStyle = dataGridViewCellStyle4;
+            this.TransactionID.HeaderText = "ٹرانزیکشن آئی ڈی";
+            this.TransactionID.Name = "TransactionID";
+            this.TransactionID.ReadOnly = true;
+            this.TransactionID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // description
+            // 
+            this.description.DataPropertyName = "Description";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.description.DefaultCellStyle = dataGridViewCellStyle5;
+            this.description.HeaderText = "تفصیل";
+            this.description.Name = "description";
+            this.description.ReadOnly = true;
+            this.description.Width = 380;
+            // 
+            // Debit
+            // 
+            this.Debit.DataPropertyName = "Debit";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Debit.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Debit.HeaderText = "ڈیبٹ / بنام";
+            this.Debit.Name = "Debit";
+            this.Debit.ReadOnly = true;
+            this.Debit.Width = 120;
+            // 
+            // Credit
+            // 
+            this.Credit.DataPropertyName = "Credit";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Credit.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Credit.HeaderText = "کریڈٹ / جمع";
+            this.Credit.Name = "Credit";
+            this.Credit.ReadOnly = true;
+            this.Credit.Width = 120;
+            // 
+            // balance
+            // 
+            this.balance.DataPropertyName = "Balance";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.balance.DefaultCellStyle = dataGridViewCellStyle8;
+            this.balance.HeaderText = "بیلنس";
+            this.balance.Name = "balance";
+            this.balance.ReadOnly = true;
+            this.balance.Width = 120;
+            // 
+            // status
+            // 
+            this.status.DataPropertyName = "Status";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.status.DefaultCellStyle = dataGridViewCellStyle9;
+            this.status.HeaderText = "اسٹیٹس";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            this.status.Width = 80;
             // 
             // AccountsLegerForm
             // 
@@ -483,6 +514,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.guna2GradientPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AccountLegerBS)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -502,6 +534,12 @@
         private System.Windows.Forms.Label to;
         private Guna.UI2.WinForms.Guna2Button btn_search;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
+        private Guna.UI2.WinForms.Guna2TextBox txt_debit;
+        private Guna.UI2.WinForms.Guna2TextBox txt_credit;
+        private Guna.UI2.WinForms.Guna2TextBox txt_balance;
+        private System.Windows.Forms.ListBox lstAccounts;
+        private System.Windows.Forms.BindingSource AccountLegerBS;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.DataGridViewTextBoxColumn TransactionID;
         private System.Windows.Forms.DataGridViewTextBoxColumn description;
@@ -509,10 +547,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Credit;
         private System.Windows.Forms.DataGridViewTextBoxColumn balance;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
-        private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
-        private Guna.UI2.WinForms.Guna2TextBox txt_debit;
-        private Guna.UI2.WinForms.Guna2TextBox txt_credit;
-        private Guna.UI2.WinForms.Guna2TextBox txt_balance;
-        private System.Windows.Forms.ListBox lstAccounts;
     }
 }

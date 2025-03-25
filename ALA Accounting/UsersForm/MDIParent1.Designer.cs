@@ -60,6 +60,7 @@
             this.saleReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemWiseProfitLossToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -255,7 +256,8 @@
             // 
             this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saleReportToolStripMenuItem,
-            this.purchaseReportToolStripMenuItem});
+            this.purchaseReportToolStripMenuItem,
+            this.itemWiseProfitLossToolStripMenuItem});
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
@@ -264,7 +266,7 @@
             // saleReportToolStripMenuItem
             // 
             this.saleReportToolStripMenuItem.Name = "saleReportToolStripMenuItem";
-            this.saleReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saleReportToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.saleReportToolStripMenuItem.Text = "Sale Report";
             this.saleReportToolStripMenuItem.Click += new System.EventHandler(this.saleReportToolStripMenuItem_Click);
             // 
@@ -273,16 +275,23 @@
             this.purchaseReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.purchaseSummaryToolStripMenuItem});
             this.purchaseReportToolStripMenuItem.Name = "purchaseReportToolStripMenuItem";
-            this.purchaseReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.purchaseReportToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.purchaseReportToolStripMenuItem.Text = "Purchase Report";
             this.purchaseReportToolStripMenuItem.Click += new System.EventHandler(this.purchaseReportToolStripMenuItem_Click);
             // 
             // purchaseSummaryToolStripMenuItem
             // 
             this.purchaseSummaryToolStripMenuItem.Name = "purchaseSummaryToolStripMenuItem";
-            this.purchaseSummaryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.purchaseSummaryToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.purchaseSummaryToolStripMenuItem.Text = "Purchase Summary";
             this.purchaseSummaryToolStripMenuItem.Click += new System.EventHandler(this.purchaseSummaryToolStripMenuItem_Click);
+            // 
+            // itemWiseProfitLossToolStripMenuItem
+            // 
+            this.itemWiseProfitLossToolStripMenuItem.Name = "itemWiseProfitLossToolStripMenuItem";
+            this.itemWiseProfitLossToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.itemWiseProfitLossToolStripMenuItem.Text = "Item Wise Profit/Loss";
+            this.itemWiseProfitLossToolStripMenuItem.Click += new System.EventHandler(this.itemWiseProfitLossToolStripMenuItem_Click);
             // 
             // MDIParent1
             // 
@@ -337,6 +346,7 @@
         private System.Windows.Forms.ToolStripMenuItem saleReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem itemWiseProfitLossToolStripMenuItem;
     }
 }
 

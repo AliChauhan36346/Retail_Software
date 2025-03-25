@@ -67,6 +67,48 @@ namespace ALA_Accounting.Addition_Classes
         }
 
 
+        public AccountsOpeningBalancessClass GetOpeningBalanceDetails(int openingId)
+        {
+            AccountsOpeningBalancessClass openingBalance = null; // Initialize object as null
+
+            try
+            {
+                dbConnection.openConnection();
+
+                string query = "SELECT AccountId, AccountName, Debit, Credit, FinancialYearID " +
+                               "FROM AccountsOpeningBalance WHERE OpeningId = @OpeningId";
+
+                using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
+                {
+                    command.Parameters.AddWithValue("@OpeningId", openingId);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read()) // If data exists
+                        {
+                            openingBalance = new AccountsOpeningBalancessClass
+                            {
+                                accountID = reader["AccountId"].ToString(),
+                                accountName = reader["AccountName"].ToString(),
+                                debit = reader["Debit"] != DBNull.Value ? reader["Debit"].ToString() : "0",
+                                credit = reader["Credit"] != DBNull.Value ? reader["Credit"].ToString() : "0",
+                                //financialYearID = Convert.ToInt32(reader["FinancialYearID"])
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving account opening balance: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dbConnection.closeConnection();
+            }
+
+            return openingBalance; // Return the object
+        }
 
 
 

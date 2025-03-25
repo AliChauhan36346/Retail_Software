@@ -72,6 +72,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_inventoryLeger = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Separator7 = new Guna.UI2.WinForms.Guna2Separator();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -176,6 +178,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.panel2.Controls.Add(this.guna2Separator7);
+            this.panel2.Controls.Add(this.btn_inventoryLeger);
             this.panel2.Controls.Add(this.guna2Separator6);
             this.panel2.Controls.Add(this.guna2Separator5);
             this.panel2.Controls.Add(this.guna2Separator4);
@@ -708,6 +712,36 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "سیلز";
             // 
+            // btn_inventoryLeger
+            // 
+            this.btn_inventoryLeger.BorderRadius = 20;
+            this.btn_inventoryLeger.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_inventoryLeger.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_inventoryLeger.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_inventoryLeger.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_inventoryLeger.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.btn_inventoryLeger.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btn_inventoryLeger.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.btn_inventoryLeger.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(170)))), ((int)(((byte)(231)))));
+            this.btn_inventoryLeger.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(170)))), ((int)(((byte)(231)))));
+            this.btn_inventoryLeger.Image = ((System.Drawing.Image)(resources.GetObject("btn_inventoryLeger.Image")));
+            this.btn_inventoryLeger.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btn_inventoryLeger.ImageSize = new System.Drawing.Size(40, 40);
+            this.btn_inventoryLeger.Location = new System.Drawing.Point(1, 485);
+            this.btn_inventoryLeger.Name = "btn_inventoryLeger";
+            this.btn_inventoryLeger.Size = new System.Drawing.Size(219, 45);
+            this.btn_inventoryLeger.TabIndex = 16;
+            this.btn_inventoryLeger.Text = "انوینٹری کھاتہ";
+            this.btn_inventoryLeger.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btn_inventoryLeger.Click += new System.EventHandler(this.btn_inventoryLeger_Click);
+            // 
+            // guna2Separator7
+            // 
+            this.guna2Separator7.Location = new System.Drawing.Point(19, 469);
+            this.guna2Separator7.Name = "guna2Separator7";
+            this.guna2Separator7.Size = new System.Drawing.Size(187, 10);
+            this.guna2Separator7.TabIndex = 17;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -793,5 +827,7 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker dtm_dashboard;
         private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton1;
         private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton2;
+        private Guna.UI2.WinForms.Guna2Separator guna2Separator7;
+        private Guna.UI2.WinForms.Guna2Button btn_inventoryLeger;
     }
 }

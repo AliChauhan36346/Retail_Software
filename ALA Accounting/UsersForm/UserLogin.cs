@@ -129,7 +129,7 @@ namespace ALA_Accounting.UsersForm
 
             if (cmbo_financialYear.Items.Count > 0)  // Ensure there are items in the combo box
             {
-                cmbo_financialYear.SelectedIndex = cmbo_financialYear.Items.Count - 1;  // Select the last financial year
+                cmbo_financialYear.SelectedIndex = 0;  // Select the last financial year
             }
 
             txt_password.Focus();
@@ -186,6 +186,11 @@ namespace ALA_Accounting.UsersForm
         private void cmbo_financialYear_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

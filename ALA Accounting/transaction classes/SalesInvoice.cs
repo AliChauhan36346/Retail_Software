@@ -495,37 +495,41 @@ namespace ALA_Accounting.transaction_classes
             }
         }
 
-        public decimal GetCostPriceFromDatabase(string itemId)
+        public decimal GetAverageCost(string itemId, int financialYearId)
         {
-            decimal costPrice = 0;
+            decimal totalCost = 0;
+            decimal totalQuantity = 0;
 
-            try
+            string query = @"
+        SELECT SUM(Quantity * Rate) AS TotalCost, SUM(Quantity) AS TotalQuantity 
+        FROM (
+            SELECT Quantity, Rate FROM PurchaseInvoiceItems WHERE ItemID = @ItemID
+            UNION ALL
+            SELECT Quantity, Rate FROM InventoryOpeningBalance WHERE ItemID = @ItemID AND FinancialYearID = @FinancialYearID
+        ) AS CombinedData";
+
+            dbConnection.openConnection();
+
+            using (SqlCommand cmd = new SqlCommand(query, dbConnection.connection))
             {
-                dbConnection.openConnection();
+                cmd.Parameters.AddWithValue("@ItemID", itemId);
+                cmd.Parameters.AddWithValue("@FinancialYearID", financialYearId);
 
-                string query = "SELECT PurchasePrice FROM InventoryItem WHERE ItemID = @ItemID";
-                using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    command.Parameters.AddWithValue("@ItemID", itemId);
-
-                    object result = command.ExecuteScalar();
-                    if (result != null)
+                    if (reader.Read())
                     {
-                        costPrice = Convert.ToDecimal(result);
+                        totalCost = reader.IsDBNull(0) ? 0 : reader.GetDecimal(0);
+                        totalQuantity = reader.IsDBNull(1) ? 0 : reader.GetDecimal(1);
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error retrieving cost price: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                dbConnection.closeConnection();
-            }
 
-            return costPrice;
+            dbConnection.closeConnection();
+
+            return totalQuantity > 0 ? totalCost / totalQuantity : 0; // Avoid division by zero
         }
+
 
 
     }

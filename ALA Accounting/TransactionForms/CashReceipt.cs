@@ -21,11 +21,19 @@ namespace ALA_Accounting.TransactionForms
         FinancialYear financialYear = new FinancialYear();
 
         int financialYearId;
+        int cashReceiptId = -1;
 
         public CashReceipt(int financialYearId)
         {
             InitializeComponent();
             this.financialYearId = financialYearId;
+        }
+
+        public CashReceipt(int financialYearId, int cashReceiptId)
+        {
+            InitializeComponent();
+            this.financialYearId = financialYearId;
+            this.cashReceiptId = cashReceiptId;
         }
 
         private void CashReceipt_Load(object sender, EventArgs e)
@@ -35,6 +43,11 @@ namespace ALA_Accounting.TransactionForms
             lstAccounts.Visible = false;
             txt_cashAccount.Text = "3";
             txt_cashAccountName.Text = "Cash in hand";
+
+            if (cashReceiptId != -1)
+            {
+                RetrieveCashReceiptById(cashReceiptId);
+            }
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -272,11 +285,12 @@ namespace ALA_Accounting.TransactionForms
                 // Retrieve CashReceipt details
                 string query = @"
         SELECT * FROM CashReceipt
-        WHERE CashReceiptID = @CashReceiptID";
+        WHERE CashReceiptID = @CashReceiptID AND financialYearId=@financialYearId";
 
                 using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
                 {
                     command.Parameters.AddWithValue("@CashReceiptID", cashReceiptId);
+                    command.Parameters.AddWithValue("@financialYearId", financialYearId);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

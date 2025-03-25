@@ -31,11 +31,20 @@ namespace ALA_Accounting.TransactionForms
         InventoryItems inventoryItems=new InventoryItems();
 
         int financialYearId;
+        int salesInvoiceId=-1;
 
 
         SalesInvoice salesInvoice= new SalesInvoice();
 
 
+
+        public Sales(int financialYearId, int salesInvoiceId)
+        {
+            InitializeComponent();
+
+            this.financialYearId = financialYearId;
+            this.salesInvoiceId = salesInvoiceId;
+        }
 
         public Sales(int financialYearId)
         {
@@ -44,9 +53,9 @@ namespace ALA_Accounting.TransactionForms
             this.financialYearId = financialYearId;
         }
 
-        
 
-        
+
+
 
         private void btn_save_Click(object sender, EventArgs e)
         {
@@ -726,6 +735,11 @@ namespace ALA_Accounting.TransactionForms
             txt_incomeAccountId.Text = "4";
 
             txt_incomeAccountName.Text = "Sales";
+
+            if (salesInvoiceId != -1)
+            {
+                RetrieveSalesInvoiceById(salesInvoiceId, financialYearId);
+            }
         }
 
         private int editingRowIndex = -1;
@@ -927,7 +941,7 @@ namespace ALA_Accounting.TransactionForms
         }
 
         // get the sale invoice detail on id basis
-        private void RetrieveSalesInvoiceById(int salesInvoiceId)
+        private void RetrieveSalesInvoiceById(int salesInvoiceId, int financialYearId)
         {
             Connection dbConnection=new Connection();
 
@@ -939,11 +953,12 @@ namespace ALA_Accounting.TransactionForms
                 // Retrieve SalesInvoice details
                 string query = @"
                 SELECT * FROM SalesInvoice
-                WHERE SalesInvoiceID = @SalesInvoiceID";
+                WHERE SalesInvoiceID = @SalesInvoiceID AND financialYearId = @financialYearId";
 
                 using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
                 {
                     command.Parameters.AddWithValue("@SalesInvoiceID", salesInvoiceId);
+                    command.Parameters.AddWithValue("@financialYearId", financialYearId);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -1033,7 +1048,7 @@ namespace ALA_Accounting.TransactionForms
         }
 
         // to retrive next available id
-        private void GoToNextSalesInvoice(int currentInvoiceId)
+        private void GoToNextSalesInvoice(int currentInvoiceId, int financialYearID)
         {
             Connection dbConnection = new Connection();
 
@@ -1059,7 +1074,7 @@ namespace ALA_Accounting.TransactionForms
                     if (result != null)
                     {
                         int nextInvoiceId = Convert.ToInt32(result);
-                        RetrieveSalesInvoiceById(nextInvoiceId);  // Call the function to retrieve and populate the next invoice
+                        RetrieveSalesInvoiceById(nextInvoiceId, financialYearID);  // Call the function to retrieve and populate the next invoice
                         RecalculateTotals();
                     }
                     else
@@ -1079,7 +1094,7 @@ namespace ALA_Accounting.TransactionForms
             }
         }
 
-        private void GoToPreviousSalesInvoice(int currentInvoiceId)
+        private void GoToPreviousSalesInvoice(int currentInvoiceId, int financialYearID)
         {
             Connection dbConnection = new Connection();
 
@@ -1104,7 +1119,7 @@ namespace ALA_Accounting.TransactionForms
                     if (result != null)
                     {
                         int previousInvoiceId = Convert.ToInt32(result);
-                        RetrieveSalesInvoiceById(previousInvoiceId);  // Call the function to retrieve and populate the previous invoice
+                        RetrieveSalesInvoiceById(previousInvoiceId, financialYearID);  // Call the function to retrieve and populate the previous invoice
                         RecalculateTotals();
                     }
                     else
@@ -1127,7 +1142,7 @@ namespace ALA_Accounting.TransactionForms
         private void btn_forward_Click(object sender, EventArgs e)
         {
             int currentInvoiceId = Convert.ToInt32(txt_salesId.Text);  // Get the current SalesInvoiceID from the form
-            GoToNextSalesInvoice(currentInvoiceId);
+            GoToNextSalesInvoice(currentInvoiceId, financialYearId);
 
             CalculateProfitOrLoss();
         }
@@ -1135,7 +1150,7 @@ namespace ALA_Accounting.TransactionForms
         private void btn_back_Click(object sender, EventArgs e)
         {
             int currentInvoiceId = Convert.ToInt32(txt_salesId.Text);  // Get the current SalesInvoiceID from the form
-            GoToPreviousSalesInvoice(currentInvoiceId);
+            GoToPreviousSalesInvoice(currentInvoiceId, financialYearId);
 
             CalculateProfitOrLoss();
         }
@@ -1161,7 +1176,7 @@ namespace ALA_Accounting.TransactionForms
             try
             {
                 decimal totalProfitLoss = 0;
-                decimal itemsTotal = 0;
+                int itemsTotal = 0;
 
                 // Loop through each row in the DataGridView
                 foreach (DataGridViewRow row in dataGridView2.Rows)
@@ -1172,22 +1187,33 @@ namespace ALA_Accounting.TransactionForms
                         decimal quantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
                         decimal sellingPrice = Convert.ToDecimal(row.Cells["Rate"].Value);
                         decimal discount = row.Cells["Discount"].Value != null ? Convert.ToDecimal(row.Cells["Discount"].Value) : 0;
+                        decimal additionalDiscount = txt_additionDiscount.Text != "" ? Convert.ToDecimal(txt_additionDiscount.Text) : 0;
 
                         // Get the cost price of the item from the database
-                        decimal costPrice = salesInvoice.GetCostPriceFromDatabase(itemId);
+                        decimal costPrice = salesInvoice.GetAverageCost(itemId,financialYearId);
 
                         // Calculate profit/loss for this item
-                        decimal itemProfitLoss = (sellingPrice - costPrice) * quantity - discount;
+                        decimal itemProfitLoss = (sellingPrice - costPrice) * quantity - (discount+additionalDiscount);
 
                         // Add it to the total profit/loss
                         totalProfitLoss += itemProfitLoss;
-                        itemsTotal += quantity;
+
+                        if (quantity < 1)
+                        {
+                            itemsTotal += 1;
+                        }
+                        else
+                        {
+                            itemsTotal += (int)quantity;
+                        }
+
+                        
                     }
                 }
 
                 // Display the total profit/loss in the TextBox or Label
                 txt_profitLoss.Text = totalProfitLoss.ToString("0.00");
-                txt_itemTotal.Text = itemsTotal.ToString("0.00");
+                txt_itemTotal.Text = itemsTotal.ToString("0");
 
 
                 if (totalProfitLoss >= 0)
@@ -1292,6 +1318,11 @@ namespace ALA_Accounting.TransactionForms
             //AddAccount addAccount = new AddAccount();
             //addAccount.ShowDialog();
             
+        }
+
+        private void txt_itemTotal_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

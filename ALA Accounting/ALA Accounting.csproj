@@ -158,6 +158,12 @@
     <Compile Include="Addition\FinancialYear.Designer.cs">
       <DependentUpon>FinancialYear.cs</DependentUpon>
     </Compile>
+    <Compile Include="Addition\ImportOpeningBalances.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Addition\ImportOpeningBalances.Designer.cs">
+      <DependentUpon>ImportOpeningBalances.cs</DependentUpon>
+    </Compile>
     <Compile Include="Addition\InventoryOpeningBalances.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,8 @@
     </Compile>
     <Compile Include="Addition\ListBoxItem.cs" />
     <Compile Include="Reports Classes\AccountsLegerClass.cs" />
+    <Compile Include="Reports Classes\InventoryLegerClass.cs" />
+    <Compile Include="Reports Classes\ItemWiseProfitLossClass.cs" />
     <Compile Include="Reports Classes\PurchaseReportClass.cs" />
     <Compile Include="Reports Classes\SalesReportClass.cs" />
     <Compile Include="Reports\AccountsLegerForm.cs">
@@ -173,6 +181,12 @@
     </Compile>
     <Compile Include="Reports\AccountsLegerForm.Designer.cs">
       <DependentUpon>AccountsLegerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\InventoryLegerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\InventoryLegerForm.Designer.cs">
+      <DependentUpon>InventoryLegerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\ItemWiseProfitLossForm.cs">
       <SubType>Form</SubType>
@@ -278,11 +292,17 @@
     <EmbeddedResource Include="Addition\FinancialYear.resx">
       <DependentUpon>FinancialYear.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Addition\ImportOpeningBalances.resx">
+      <DependentUpon>ImportOpeningBalances.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Addition\InventoryOpeningBalances.resx">
       <DependentUpon>InventoryOpeningBalances.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\AccountsLegerForm.resx">
       <DependentUpon>AccountsLegerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InventoryLegerForm.resx">
+      <DependentUpon>InventoryLegerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ItemWiseProfitLossForm.resx">
       <DependentUpon>ItemWiseProfitLossForm.cs</DependentUpon>

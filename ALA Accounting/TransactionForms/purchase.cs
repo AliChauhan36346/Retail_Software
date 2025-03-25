@@ -26,12 +26,20 @@ namespace ALA_Accounting.TransactionForms
         PurchaseInvoice purchaseInvoice = new PurchaseInvoice();
 
         int financialYearId;
+        int purchaseInoiceId=-1;
 
 
         public purchase(int financialYearId)
         {
             InitializeComponent();
             this.financialYearId = financialYearId;
+        }
+
+        public purchase(int financialYearId, int purchaseInvoiceId)
+        {
+            InitializeComponent();
+            this.financialYearId = financialYearId;
+            this.purchaseInoiceId = purchaseInvoiceId;
         }
 
         private void purchase_Load(object sender, EventArgs e)
@@ -50,6 +58,11 @@ namespace ALA_Accounting.TransactionForms
             txt_expenseAccountID.Text = "6";
 
             txt_expenseAccountName.Text = "purchases";
+
+            if(purchaseInoiceId != -1)
+            {
+                RetrievePurchaseInvoiceById(purchaseInoiceId, financialYearId);
+            }
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -547,7 +560,7 @@ namespace ALA_Accounting.TransactionForms
             }
         }
 
-        private void RetrievePurchaseInvoiceById(int purchaseInvoiceId)
+        private void RetrievePurchaseInvoiceById(int purchaseInvoiceId, int financialId)
         {
             Connection dbConnection = new Connection();
 
@@ -559,11 +572,12 @@ namespace ALA_Accounting.TransactionForms
                 // Retrieve purchaseInvoice details
                 string query = @"
                 SELECT * FROM PurchaseInvoice
-                WHERE PurchaseInvoiceID = @PurchaseInvoiceID";
+                WHERE PurchaseInvoiceID = @PurchaseInvoiceID AND financialYearId = @financialYearId";
 
                 using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
                 {
                     command.Parameters.AddWithValue("@PurchaseInvoiceID", purchaseInvoiceId);
+                    command.Parameters.AddWithValue("@financialYearId", financialId);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -637,7 +651,7 @@ namespace ALA_Accounting.TransactionForms
             }
         }
 
-        private void GoToNextPurchaseInvoice(int currentInvoiceId)
+        private void GoToNextPurchaseInvoice(int currentInvoiceId, int financialId)
         {
             Connection dbConnection = new Connection();
 
@@ -663,7 +677,7 @@ namespace ALA_Accounting.TransactionForms
                     if (result != null)
                     {
                         int nextInvoiceId = Convert.ToInt32(result);
-                        RetrievePurchaseInvoiceById(nextInvoiceId);  // Call the function to retrieve and populate the next invoice
+                        RetrievePurchaseInvoiceById(nextInvoiceId, financialId);  // Call the function to retrieve and populate the next invoice
                         RecalculateTotals();
                     }
                     else
@@ -683,7 +697,7 @@ namespace ALA_Accounting.TransactionForms
             }
         }
 
-        private void GoToPreviousPurchaseInvoice(int currentInvoiceId)
+        private void GoToPreviousPurchaseInvoice(int currentInvoiceId, int financialId)
         {
             Connection dbConnection = new Connection();
 
@@ -708,7 +722,7 @@ namespace ALA_Accounting.TransactionForms
                     if (result != null)
                     {
                         int previousInvoiceId = Convert.ToInt32(result);
-                        RetrievePurchaseInvoiceById(previousInvoiceId);  // Call the function to retrieve and populate the previous invoice
+                        RetrievePurchaseInvoiceById(previousInvoiceId, financialId);  // Call the function to retrieve and populate the previous invoice
                         RecalculateTotals();
                     }
                     else
@@ -731,13 +745,13 @@ namespace ALA_Accounting.TransactionForms
         private void btn_forward_Click(object sender, EventArgs e)
         {
             int currentInvoiceId = Convert.ToInt32(txt_purchaseId.Text);  // Get the current purchaseInvoiceID from the form
-            GoToNextPurchaseInvoice(currentInvoiceId);
+            GoToNextPurchaseInvoice(currentInvoiceId, financialYearId);
         }
 
         private void btn_back_Click(object sender, EventArgs e)
         {
             int currentInvoiceId = Convert.ToInt32(txt_purchaseId.Text);  // Get the current purchaseInvoiceID from the form
-            GoToPreviousPurchaseInvoice(currentInvoiceId);
+            GoToPreviousPurchaseInvoice(currentInvoiceId, financialYearId);
         }
 
         private void btn_addNew_Click(object sender, EventArgs e)

@@ -20,12 +20,20 @@ namespace ALA_Accounting.Addition
         CommonFunctions commonFunctions=new CommonFunctions();
 
         int financialYearId;
+        int accountOpeningId=-1;
 
 
         public AccountsOpeningBalances(int financialYearId)
         {
             InitializeComponent();
             this.financialYearId = financialYearId;
+        }
+
+        public AccountsOpeningBalances(int financialYearId, int accountOpeningId)
+        {
+            InitializeComponent();
+            this.financialYearId = financialYearId;
+            this.accountOpeningId = accountOpeningId;
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -183,6 +191,35 @@ namespace ALA_Accounting.Addition
             btn_addNew_Click(sender , e);
 
             lst_Accounts.Visible = false;
+
+            if (accountOpeningId != -1)
+            {
+                // Call the function to get opening balance details
+                AccountsOpeningBalancessClass openingDetails = openingBalance.GetOpeningBalanceDetails(accountOpeningId);
+
+                if (openingDetails != null)
+                {
+                    // Populate the textboxes with retrieved data
+                    txt_accountId.Text = openingDetails.accountID;
+                    txt_AccountName.Text = openingDetails.accountName;
+
+                    if(openingDetails.debit != "0.00")
+                    {
+                        txt_debit.Text = openingDetails.debit;
+                    }
+                    else
+                    {
+                        txt_credit.Text = openingDetails.credit;
+                    }
+
+                    
+                }
+                else
+                {
+                    MessageBox.Show("No opening balance found for the given ID.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
         }
 
         private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -239,6 +276,10 @@ namespace ALA_Accounting.Addition
             }
         }
 
-
+        private void btn_importBalances_Click(object sender, EventArgs e)
+        {
+            ImportOpeningBalances importOpeningBalances = new ImportOpeningBalances(financialYearId);
+            importOpeningBalances.ShowDialog();
+        }
     }
 }

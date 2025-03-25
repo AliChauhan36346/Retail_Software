@@ -622,7 +622,7 @@
             this.dtm_saleDate.Name = "dtm_saleDate";
             this.dtm_saleDate.Size = new System.Drawing.Size(199, 36);
             this.dtm_saleDate.TabIndex = 92;
-            this.dtm_saleDate.Value = new System.DateTime(2024, 8, 26, 17, 20, 4, 398);
+            this.dtm_saleDate.Value = new System.DateTime(2025, 3, 26, 0, 0, 0, 0);
             // 
             // txt_bankAccountBalance
             // 

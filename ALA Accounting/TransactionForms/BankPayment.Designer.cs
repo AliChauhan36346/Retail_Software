@@ -29,11 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BankPayment));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label8 = new System.Windows.Forms.Label();
             this.btn_forward = new Guna.UI2.WinForms.Guna2Button();
-            this.dtm_paymentDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.txt_bankAccountBalance = new Guna.UI2.WinForms.Guna2TextBox();
             this.txt_bankAccountName = new Guna.UI2.WinForms.Guna2TextBox();
             this.txt_bankAccount = new Guna.UI2.WinForms.Guna2TextBox();
@@ -57,6 +56,7 @@
             this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.lstAccounts = new System.Windows.Forms.ListBox();
+            this.txt_amount = new Guna.UI2.WinForms.Guna2TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_description = new Guna.UI2.WinForms.Guna2TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -78,7 +78,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lstBankAccount = new System.Windows.Forms.ListBox();
-            this.txt_amount = new Guna.UI2.WinForms.Guna2TextBox();
+            this.dtm_paymentDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.guna2GroupBox1.SuspendLayout();
@@ -113,22 +113,6 @@
             this.btn_forward.Size = new System.Drawing.Size(46, 29);
             this.btn_forward.TabIndex = 77;
             this.btn_forward.Click += new System.EventHandler(this.btn_forward_Click);
-            // 
-            // dtm_paymentDate
-            // 
-            this.dtm_paymentDate.BorderRadius = 8;
-            this.dtm_paymentDate.Checked = true;
-            this.dtm_paymentDate.FillColor = System.Drawing.Color.RoyalBlue;
-            this.dtm_paymentDate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtm_paymentDate.ForeColor = System.Drawing.Color.White;
-            this.dtm_paymentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtm_paymentDate.Location = new System.Drawing.Point(117, 137);
-            this.dtm_paymentDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtm_paymentDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtm_paymentDate.Name = "dtm_paymentDate";
-            this.dtm_paymentDate.Size = new System.Drawing.Size(199, 36);
-            this.dtm_paymentDate.TabIndex = 74;
-            this.dtm_paymentDate.Value = new System.DateTime(2024, 8, 26, 17, 20, 4, 398);
             // 
             // txt_bankAccountBalance
             // 
@@ -378,17 +362,17 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.bankPaymentId,
@@ -507,6 +491,31 @@
             this.lstAccounts.Name = "lstAccounts";
             this.lstAccounts.Size = new System.Drawing.Size(345, 174);
             this.lstAccounts.TabIndex = 89;
+            // 
+            // txt_amount
+            // 
+            this.txt_amount.BackColor = System.Drawing.Color.Transparent;
+            this.txt_amount.BorderRadius = 6;
+            this.txt_amount.BorderThickness = 2;
+            this.txt_amount.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_amount.DefaultText = "";
+            this.txt_amount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txt_amount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txt_amount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_amount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txt_amount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_amount.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_amount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txt_amount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txt_amount.Location = new System.Drawing.Point(14, 123);
+            this.txt_amount.Name = "txt_amount";
+            this.txt_amount.PasswordChar = '\0';
+            this.txt_amount.PlaceholderText = "amount";
+            this.txt_amount.SelectedText = "";
+            this.txt_amount.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.txt_amount.Size = new System.Drawing.Size(345, 31);
+            this.txt_amount.TabIndex = 91;
+            this.txt_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label6
             // 
@@ -861,36 +870,22 @@
             this.lstBankAccount.Size = new System.Drawing.Size(355, 140);
             this.lstBankAccount.TabIndex = 90;
             // 
-            // txt_amount
+            // dtm_paymentDate
             // 
-            this.txt_amount.BackColor = System.Drawing.Color.Transparent;
-            this.txt_amount.BorderRadius = 6;
-            this.txt_amount.BorderThickness = 2;
-            this.txt_amount.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_amount.DefaultText = "";
-            this.txt_amount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txt_amount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txt_amount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_amount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txt_amount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_amount.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_amount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txt_amount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_amount.Location = new System.Drawing.Point(14, 123);
-            this.txt_amount.Name = "txt_amount";
-            this.txt_amount.PasswordChar = '\0';
-            this.txt_amount.PlaceholderText = "amount";
-            this.txt_amount.SelectedText = "";
-            this.txt_amount.ShadowDecoration.Color = System.Drawing.Color.Silver;
-            this.txt_amount.Size = new System.Drawing.Size(345, 31);
-            this.txt_amount.TabIndex = 91;
-            this.txt_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.dtm_paymentDate.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtm_paymentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtm_paymentDate.Location = new System.Drawing.Point(119, 141);
+            this.dtm_paymentDate.Name = "dtm_paymentDate";
+            this.dtm_paymentDate.Size = new System.Drawing.Size(172, 32);
+            this.dtm_paymentDate.TabIndex = 10;
+            this.dtm_paymentDate.Value = new System.DateTime(2025, 3, 26, 2, 24, 47, 0);
             // 
             // BankPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 624);
+            this.Controls.Add(this.dtm_paymentDate);
             this.Controls.Add(this.lstBankAccount);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -899,7 +894,6 @@
             this.Controls.Add(this.txt_chequeNo);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btn_forward);
-            this.Controls.Add(this.dtm_paymentDate);
             this.Controls.Add(this.txt_bankAccountBalance);
             this.Controls.Add(this.txt_bankAccountName);
             this.Controls.Add(this.txt_bankAccount);
@@ -931,7 +925,6 @@
 
         private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2Button btn_forward;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtm_paymentDate;
         private Guna.UI2.WinForms.Guna2TextBox txt_bankAccountBalance;
         private Guna.UI2.WinForms.Guna2TextBox txt_bankAccountName;
         private Guna.UI2.WinForms.Guna2TextBox txt_bankAccount;
@@ -977,5 +970,6 @@
         private System.Windows.Forms.ListBox lstAccounts;
         private System.Windows.Forms.ListBox lstBankAccount;
         private Guna.UI2.WinForms.Guna2TextBox txt_amount;
+        private System.Windows.Forms.DateTimePicker dtm_paymentDate;
     }
 }
