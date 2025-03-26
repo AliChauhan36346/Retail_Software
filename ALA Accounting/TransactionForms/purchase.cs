@@ -63,6 +63,8 @@ namespace ALA_Accounting.TransactionForms
             {
                 RetrievePurchaseInvoiceById(purchaseInoiceId, financialYearId);
             }
+
+            dtm_saleDate.Value = DateTime.Now;
         }
 
         private void btn_save_Click(object sender, EventArgs e)

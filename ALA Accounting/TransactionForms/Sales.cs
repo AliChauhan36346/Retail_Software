@@ -740,6 +740,8 @@ namespace ALA_Accounting.TransactionForms
             {
                 RetrieveSalesInvoiceById(salesInvoiceId, financialYearId);
             }
+
+            dtm_saleDate.Value = DateTime.Now;
         }
 
         private int editingRowIndex = -1;

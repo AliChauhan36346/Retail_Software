@@ -1,6 +1,7 @@
 ﻿using ALA_Accounting.Addition;
 using ALA_Accounting.Reports_Classes;
 using ALA_Accounting.transaction_classes;
+using ALA_Accounting.TransactionForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,6 +79,10 @@ namespace ALA_Accounting.Reports
         {
             lstAccounts.Visible = false;
 
+            // date time to today
+            dtmEnd.Value = DateTime.Now;
+            dtmStart.Value = DateTime.Now;
+
         }
 
         
@@ -107,6 +112,50 @@ namespace ALA_Accounting.Reports
         private void txt_ItemCode_KeyDown(object sender, KeyEventArgs e)
         {
             CommonFunctions.HandleAccountSuggestionKeyDown(txt_ItemCode, txt_ItemName, lstAccounts, e, btn_search);
+        }
+
+        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!dataGridView2.Rows[e.RowIndex].IsNewRow && e.RowIndex >= 0) // Ensure a row is selected
+            {
+                DataGridViewRow selectedRow = dataGridView2.Rows[e.RowIndex];
+                string transactionId = selectedRow.Cells["TransactionID"].Value?.ToString(); // Get Transaction ID
+
+                if (!string.IsNullOrEmpty(transactionId))
+                {
+                    // Extract the prefix to determine the transaction type (first 2-3 characters)
+                    string transactionPrefix = new string(transactionId.TakeWhile(char.IsLetter).ToArray());
+                    int sourceId = int.Parse(new string(transactionId.SkipWhile(char.IsLetter).ToArray()));
+
+                    Form childForm = null; // Declare form variable
+
+                    // Open the respective form as an MDI child
+                    if (transactionPrefix == "SV") // Sales
+                    {
+                        childForm = new Sales(FinancialYearID, sourceId);
+                    }
+                    else if (transactionPrefix == "PV") // Purchase
+                    {
+                        childForm = new purchase(FinancialYearID, sourceId);
+                    }
+                    else if (transactionPrefix == "OB") // Opening Balance
+                    {
+                        childForm = new InventoryOpeningBalances(FinancialYearID, sourceId);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unknown transaction type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // If a form was created, open it in the parent as an MDI child
+                    if (childForm != null)
+                    {
+                        childForm.MdiParent = this.MdiParent; // Set MDI parent
+                        //childForm.WindowState = FormWindowState.Maximized; // Optional: Open maximized
+                        childForm.Show();
+                    }
+                }
+            }
         }
     }
 }

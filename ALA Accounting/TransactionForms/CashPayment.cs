@@ -52,6 +52,8 @@ namespace ALA_Accounting.TransactionForms
             {
                 RetrieveCashPaymentById(cashPaymentId);
             }
+
+            dtm_paymentDate.Value = DateTime.Now;
         }
 
         private bool ValidateCashPaymentForm()

@@ -60,6 +60,8 @@ namespace ALA_Accounting.TransactionForms
             {
                 LoadBankPaymentById(bankPaymentID, financialYearId);
             }
+
+            dtm_paymentDate.Value = DateTime.Now;
         }
 
         private bool ValidateBankPaymentForm()

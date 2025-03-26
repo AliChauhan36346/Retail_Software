@@ -1,4 +1,6 @@
-﻿using ALA_Accounting.Reports_Classes;
+﻿using ALA_Accounting.Addition;
+using ALA_Accounting.Reports_Classes;
+using ALA_Accounting.TransactionForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,21 +17,12 @@ namespace ALA_Accounting.Reports
     {
         SalesReportClass salesReport = new SalesReportClass();
 
-        private static saleSummaryReportForm saleSummaryReportFormInstance;
 
         int FinancialYearId;
 
-        public static saleSummaryReportForm getInstance(int financialYearId)
-        {
-            if (saleSummaryReportFormInstance == null)
-            {
-                saleSummaryReportFormInstance = new saleSummaryReportForm(financialYearId);
-            }
+        
 
-            return saleSummaryReportFormInstance;
-        }
-
-        private saleSummaryReportForm(int financialYearId)
+        public saleSummaryReportForm(int financialYearId)
         {
             InitializeComponent();
             this.FinancialYearId = financialYearId;
@@ -51,6 +44,8 @@ namespace ALA_Accounting.Reports
 
             LoadSalesData(FinancialYearId);
             LoadCustomerTypes();
+
+            dtmStart.Value = dtmEnd.Value = DateTime.Now;
 
 
             
@@ -228,6 +223,34 @@ namespace ALA_Accounting.Reports
             
 
             //label2.Text=cmbo_customerType.SelectedValue.ToString();
+        }
+
+        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            // ensure a row is selected and is not a new row
+            if (!dataGridView2.Rows[e.RowIndex].IsNewRow && e.RowIndex>=0)
+            {
+
+                DataGridViewRow selectedRow = dataGridView2.Rows[e.RowIndex];
+                int purchaseInvoiceId = int.Parse(selectedRow.Cells["SalesInvoiceID"].Value.ToString()); // Get Transaction ID
+
+
+                Form childForm = null; // Declare form variable
+
+                // Open the respective form as an MDI child
+
+                childForm = new Sales(FinancialYearId, purchaseInvoiceId);
+
+                // If a form was created, open it in the parent as an MDI child
+                if (childForm != null)
+                {
+                    childForm.MdiParent = this.MdiParent; // Set MDI parent
+                    //childForm.WindowState = FormWindowState.Maximized; // Optional: Open maximized
+                    childForm.Show();
+                }
+
+            }
         }
     }
 }

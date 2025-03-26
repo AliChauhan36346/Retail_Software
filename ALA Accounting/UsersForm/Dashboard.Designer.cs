@@ -32,10 +32,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.guna2CircleButton2 = new Guna.UI2.WinForms.Guna2CircleButton();
             this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.dtm_dashboard = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.guna2Separator7 = new Guna.UI2.WinForms.Guna2Separator();
+            this.btn_inventoryLeger = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Separator6 = new Guna.UI2.WinForms.Guna2Separator();
             this.guna2Separator5 = new Guna.UI2.WinForms.Guna2Separator();
             this.guna2Separator4 = new Guna.UI2.WinForms.Guna2Separator();
@@ -53,27 +54,28 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.guna2GradientPanel3 = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lbl_receiptPercent = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lbl_receipt = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.guna2GradientPanel4 = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lbl_paymentPercent = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lbl_payment = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.guna2GradientPanel2 = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lbl_purchasePercent = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lbl_purchase = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbl_salesPercent = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_sales = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btn_inventoryLeger = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Separator7 = new Guna.UI2.WinForms.Guna2Separator();
+            this.dtm_endDate = new System.Windows.Forms.DateTimePicker();
+            this.dtm_startDate = new System.Windows.Forms.DateTimePicker();
+            this.label15 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -91,9 +93,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label15);
+            this.panel1.Controls.Add(this.dtm_startDate);
+            this.panel1.Controls.Add(this.dtm_endDate);
             this.panel1.Controls.Add(this.guna2CircleButton2);
             this.panel1.Controls.Add(this.guna2CircleButton1);
-            this.panel1.Controls.Add(this.dtm_dashboard);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -114,7 +118,7 @@
             this.guna2CircleButton2.ForeColor = System.Drawing.Color.White;
             this.guna2CircleButton2.Image = ((System.Drawing.Image)(resources.GetObject("guna2CircleButton2.Image")));
             this.guna2CircleButton2.ImageSize = new System.Drawing.Size(48, 48);
-            this.guna2CircleButton2.Location = new System.Drawing.Point(1242, 10);
+            this.guna2CircleButton2.Location = new System.Drawing.Point(1269, 10);
             this.guna2CircleButton2.Name = "guna2CircleButton2";
             this.guna2CircleButton2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.guna2CircleButton2.Size = new System.Drawing.Size(42, 42);
@@ -131,27 +135,11 @@
             this.guna2CircleButton1.ForeColor = System.Drawing.Color.White;
             this.guna2CircleButton1.Image = ((System.Drawing.Image)(resources.GetObject("guna2CircleButton1.Image")));
             this.guna2CircleButton1.ImageSize = new System.Drawing.Size(48, 48);
-            this.guna2CircleButton1.Location = new System.Drawing.Point(1052, 10);
+            this.guna2CircleButton1.Location = new System.Drawing.Point(936, 10);
             this.guna2CircleButton1.Name = "guna2CircleButton1";
             this.guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.guna2CircleButton1.Size = new System.Drawing.Size(42, 42);
             this.guna2CircleButton1.TabIndex = 5;
-            // 
-            // dtm_dashboard
-            // 
-            this.dtm_dashboard.BorderRadius = 8;
-            this.dtm_dashboard.Checked = true;
-            this.dtm_dashboard.FillColor = System.Drawing.Color.LightSkyBlue;
-            this.dtm_dashboard.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtm_dashboard.ForeColor = System.Drawing.Color.Black;
-            this.dtm_dashboard.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtm_dashboard.Location = new System.Drawing.Point(1100, 13);
-            this.dtm_dashboard.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtm_dashboard.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtm_dashboard.Name = "dtm_dashboard";
-            this.dtm_dashboard.Size = new System.Drawing.Size(136, 36);
-            this.dtm_dashboard.TabIndex = 4;
-            this.dtm_dashboard.Value = new System.DateTime(2024, 8, 26, 17, 20, 4, 398);
             // 
             // label1
             // 
@@ -200,6 +188,36 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(225, 638);
             this.panel2.TabIndex = 1;
+            // 
+            // guna2Separator7
+            // 
+            this.guna2Separator7.Location = new System.Drawing.Point(19, 469);
+            this.guna2Separator7.Name = "guna2Separator7";
+            this.guna2Separator7.Size = new System.Drawing.Size(187, 10);
+            this.guna2Separator7.TabIndex = 17;
+            // 
+            // btn_inventoryLeger
+            // 
+            this.btn_inventoryLeger.BorderRadius = 20;
+            this.btn_inventoryLeger.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_inventoryLeger.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_inventoryLeger.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_inventoryLeger.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_inventoryLeger.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.btn_inventoryLeger.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btn_inventoryLeger.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.btn_inventoryLeger.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(170)))), ((int)(((byte)(231)))));
+            this.btn_inventoryLeger.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(170)))), ((int)(((byte)(231)))));
+            this.btn_inventoryLeger.Image = ((System.Drawing.Image)(resources.GetObject("btn_inventoryLeger.Image")));
+            this.btn_inventoryLeger.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btn_inventoryLeger.ImageSize = new System.Drawing.Size(40, 40);
+            this.btn_inventoryLeger.Location = new System.Drawing.Point(1, 485);
+            this.btn_inventoryLeger.Name = "btn_inventoryLeger";
+            this.btn_inventoryLeger.Size = new System.Drawing.Size(219, 45);
+            this.btn_inventoryLeger.TabIndex = 16;
+            this.btn_inventoryLeger.Text = "انوینٹری کھاتہ";
+            this.btn_inventoryLeger.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btn_inventoryLeger.Click += new System.EventHandler(this.btn_inventoryLeger_Click);
             // 
             // guna2Separator6
             // 
@@ -455,9 +473,9 @@
             // guna2GradientPanel3
             // 
             this.guna2GradientPanel3.BorderRadius = 20;
-            this.guna2GradientPanel3.Controls.Add(this.label8);
+            this.guna2GradientPanel3.Controls.Add(this.lbl_receiptPercent);
             this.guna2GradientPanel3.Controls.Add(this.pictureBox4);
-            this.guna2GradientPanel3.Controls.Add(this.label9);
+            this.guna2GradientPanel3.Controls.Add(this.lbl_receipt);
             this.guna2GradientPanel3.Controls.Add(this.label10);
             this.guna2GradientPanel3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.guna2GradientPanel3.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -466,18 +484,18 @@
             this.guna2GradientPanel3.Size = new System.Drawing.Size(240, 140);
             this.guna2GradientPanel3.TabIndex = 3;
             // 
-            // label8
+            // lbl_receiptPercent
             // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label8.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(19, 102);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(159, 24);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "معمول سے 30% کم";
+            this.lbl_receiptPercent.AutoSize = true;
+            this.lbl_receiptPercent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lbl_receiptPercent.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_receiptPercent.ForeColor = System.Drawing.Color.White;
+            this.lbl_receiptPercent.Location = new System.Drawing.Point(19, 102);
+            this.lbl_receiptPercent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_receiptPercent.Name = "lbl_receiptPercent";
+            this.lbl_receiptPercent.Size = new System.Drawing.Size(159, 24);
+            this.lbl_receiptPercent.TabIndex = 7;
+            this.lbl_receiptPercent.Text = "معمول سے 30% کم";
             // 
             // pictureBox4
             // 
@@ -491,18 +509,18 @@
             this.pictureBox4.TabIndex = 6;
             this.pictureBox4.TabStop = false;
             // 
-            // label9
+            // lbl_receipt
             // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label9.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(15, 51);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(124, 44);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "30000";
+            this.lbl_receipt.AutoSize = true;
+            this.lbl_receipt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lbl_receipt.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_receipt.ForeColor = System.Drawing.Color.White;
+            this.lbl_receipt.Location = new System.Drawing.Point(15, 56);
+            this.lbl_receipt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_receipt.Name = "lbl_receipt";
+            this.lbl_receipt.Size = new System.Drawing.Size(107, 37);
+            this.lbl_receipt.TabIndex = 5;
+            this.lbl_receipt.Text = "30000";
             // 
             // label10
             // 
@@ -520,9 +538,9 @@
             // guna2GradientPanel4
             // 
             this.guna2GradientPanel4.BorderRadius = 20;
-            this.guna2GradientPanel4.Controls.Add(this.label11);
+            this.guna2GradientPanel4.Controls.Add(this.lbl_paymentPercent);
             this.guna2GradientPanel4.Controls.Add(this.pictureBox5);
-            this.guna2GradientPanel4.Controls.Add(this.label12);
+            this.guna2GradientPanel4.Controls.Add(this.lbl_payment);
             this.guna2GradientPanel4.Controls.Add(this.label13);
             this.guna2GradientPanel4.FillColor = System.Drawing.Color.Red;
             this.guna2GradientPanel4.FillColor2 = System.Drawing.Color.Red;
@@ -531,18 +549,18 @@
             this.guna2GradientPanel4.Size = new System.Drawing.Size(240, 140);
             this.guna2GradientPanel4.TabIndex = 2;
             // 
-            // label11
+            // lbl_paymentPercent
             // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Red;
-            this.label11.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(19, 102);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(159, 24);
-            this.label11.TabIndex = 7;
-            this.label11.Text = "معمول سے 30% کم";
+            this.lbl_paymentPercent.AutoSize = true;
+            this.lbl_paymentPercent.BackColor = System.Drawing.Color.Red;
+            this.lbl_paymentPercent.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_paymentPercent.ForeColor = System.Drawing.Color.White;
+            this.lbl_paymentPercent.Location = new System.Drawing.Point(19, 102);
+            this.lbl_paymentPercent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_paymentPercent.Name = "lbl_paymentPercent";
+            this.lbl_paymentPercent.Size = new System.Drawing.Size(159, 24);
+            this.lbl_paymentPercent.TabIndex = 7;
+            this.lbl_paymentPercent.Text = "معمول سے 30% کم";
             // 
             // pictureBox5
             // 
@@ -556,18 +574,18 @@
             this.pictureBox5.TabIndex = 6;
             this.pictureBox5.TabStop = false;
             // 
-            // label12
+            // lbl_payment
             // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Red;
-            this.label12.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(15, 51);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(124, 44);
-            this.label12.TabIndex = 5;
-            this.label12.Text = "30000";
+            this.lbl_payment.AutoSize = true;
+            this.lbl_payment.BackColor = System.Drawing.Color.Red;
+            this.lbl_payment.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_payment.ForeColor = System.Drawing.Color.White;
+            this.lbl_payment.Location = new System.Drawing.Point(15, 56);
+            this.lbl_payment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_payment.Name = "lbl_payment";
+            this.lbl_payment.Size = new System.Drawing.Size(107, 37);
+            this.lbl_payment.TabIndex = 5;
+            this.lbl_payment.Text = "30000";
             // 
             // label13
             // 
@@ -585,9 +603,9 @@
             // guna2GradientPanel2
             // 
             this.guna2GradientPanel2.BorderRadius = 20;
-            this.guna2GradientPanel2.Controls.Add(this.label5);
+            this.guna2GradientPanel2.Controls.Add(this.lbl_purchasePercent);
             this.guna2GradientPanel2.Controls.Add(this.pictureBox3);
-            this.guna2GradientPanel2.Controls.Add(this.label6);
+            this.guna2GradientPanel2.Controls.Add(this.lbl_purchase);
             this.guna2GradientPanel2.Controls.Add(this.label7);
             this.guna2GradientPanel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.guna2GradientPanel2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -596,18 +614,18 @@
             this.guna2GradientPanel2.Size = new System.Drawing.Size(240, 140);
             this.guna2GradientPanel2.TabIndex = 1;
             // 
-            // label5
+            // lbl_purchasePercent
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label5.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(19, 102);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(159, 24);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "معمول سے 20% کم";
+            this.lbl_purchasePercent.AutoSize = true;
+            this.lbl_purchasePercent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lbl_purchasePercent.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_purchasePercent.ForeColor = System.Drawing.Color.White;
+            this.lbl_purchasePercent.Location = new System.Drawing.Point(19, 102);
+            this.lbl_purchasePercent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_purchasePercent.Name = "lbl_purchasePercent";
+            this.lbl_purchasePercent.Size = new System.Drawing.Size(159, 24);
+            this.lbl_purchasePercent.TabIndex = 7;
+            this.lbl_purchasePercent.Text = "معمول سے 20% کم";
             // 
             // pictureBox3
             // 
@@ -621,18 +639,18 @@
             this.pictureBox3.TabIndex = 6;
             this.pictureBox3.TabStop = false;
             // 
-            // label6
+            // lbl_purchase
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label6.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(15, 51);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(124, 44);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "45000";
+            this.lbl_purchase.AutoSize = true;
+            this.lbl_purchase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lbl_purchase.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_purchase.ForeColor = System.Drawing.Color.White;
+            this.lbl_purchase.Location = new System.Drawing.Point(15, 56);
+            this.lbl_purchase.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_purchase.Name = "lbl_purchase";
+            this.lbl_purchase.Size = new System.Drawing.Size(107, 37);
+            this.lbl_purchase.TabIndex = 5;
+            this.lbl_purchase.Text = "45000";
             // 
             // label7
             // 
@@ -650,9 +668,9 @@
             // guna2GradientPanel1
             // 
             this.guna2GradientPanel1.BorderRadius = 20;
-            this.guna2GradientPanel1.Controls.Add(this.label4);
+            this.guna2GradientPanel1.Controls.Add(this.lbl_salesPercent);
             this.guna2GradientPanel1.Controls.Add(this.pictureBox2);
-            this.guna2GradientPanel1.Controls.Add(this.label3);
+            this.guna2GradientPanel1.Controls.Add(this.lbl_sales);
             this.guna2GradientPanel1.Controls.Add(this.label2);
             this.guna2GradientPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(170)))), ((int)(((byte)(231)))));
             this.guna2GradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(170)))), ((int)(((byte)(231)))));
@@ -661,18 +679,18 @@
             this.guna2GradientPanel1.Size = new System.Drawing.Size(240, 140);
             this.guna2GradientPanel1.TabIndex = 0;
             // 
-            // label4
+            // lbl_salesPercent
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(170)))), ((int)(((byte)(231)))));
-            this.label4.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(19, 102);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(159, 24);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "معمول سے 30% کم";
+            this.lbl_salesPercent.AutoSize = true;
+            this.lbl_salesPercent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(170)))), ((int)(((byte)(231)))));
+            this.lbl_salesPercent.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_salesPercent.ForeColor = System.Drawing.Color.White;
+            this.lbl_salesPercent.Location = new System.Drawing.Point(19, 102);
+            this.lbl_salesPercent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_salesPercent.Name = "lbl_salesPercent";
+            this.lbl_salesPercent.Size = new System.Drawing.Size(159, 24);
+            this.lbl_salesPercent.TabIndex = 7;
+            this.lbl_salesPercent.Text = "معمول سے 30% کم";
             // 
             // pictureBox2
             // 
@@ -686,18 +704,18 @@
             this.pictureBox2.TabIndex = 6;
             this.pictureBox2.TabStop = false;
             // 
-            // label3
+            // lbl_sales
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(170)))), ((int)(((byte)(231)))));
-            this.label3.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(15, 51);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(124, 44);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "30000";
+            this.lbl_sales.AutoSize = true;
+            this.lbl_sales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(170)))), ((int)(((byte)(231)))));
+            this.lbl_sales.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_sales.ForeColor = System.Drawing.Color.White;
+            this.lbl_sales.Location = new System.Drawing.Point(15, 56);
+            this.lbl_sales.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_sales.Name = "lbl_sales";
+            this.lbl_sales.Size = new System.Drawing.Size(107, 37);
+            this.lbl_sales.TabIndex = 5;
+            this.lbl_sales.Text = "30000";
             // 
             // label2
             // 
@@ -712,35 +730,33 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "سیلز";
             // 
-            // btn_inventoryLeger
+            // dtm_endDate
             // 
-            this.btn_inventoryLeger.BorderRadius = 20;
-            this.btn_inventoryLeger.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btn_inventoryLeger.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btn_inventoryLeger.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btn_inventoryLeger.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btn_inventoryLeger.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
-            this.btn_inventoryLeger.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btn_inventoryLeger.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.btn_inventoryLeger.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(170)))), ((int)(((byte)(231)))));
-            this.btn_inventoryLeger.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(170)))), ((int)(((byte)(231)))));
-            this.btn_inventoryLeger.Image = ((System.Drawing.Image)(resources.GetObject("btn_inventoryLeger.Image")));
-            this.btn_inventoryLeger.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btn_inventoryLeger.ImageSize = new System.Drawing.Size(40, 40);
-            this.btn_inventoryLeger.Location = new System.Drawing.Point(1, 485);
-            this.btn_inventoryLeger.Name = "btn_inventoryLeger";
-            this.btn_inventoryLeger.Size = new System.Drawing.Size(219, 45);
-            this.btn_inventoryLeger.TabIndex = 16;
-            this.btn_inventoryLeger.Text = "انوینٹری کھاتہ";
-            this.btn_inventoryLeger.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btn_inventoryLeger.Click += new System.EventHandler(this.btn_inventoryLeger_Click);
+            this.dtm_endDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtm_endDate.Location = new System.Drawing.Point(1152, 22);
+            this.dtm_endDate.Name = "dtm_endDate";
+            this.dtm_endDate.Size = new System.Drawing.Size(108, 23);
+            this.dtm_endDate.TabIndex = 7;
+            this.dtm_endDate.ValueChanged += new System.EventHandler(this.dtm_endDate_ValueChanged);
             // 
-            // guna2Separator7
+            // dtm_startDate
             // 
-            this.guna2Separator7.Location = new System.Drawing.Point(19, 469);
-            this.guna2Separator7.Name = "guna2Separator7";
-            this.guna2Separator7.Size = new System.Drawing.Size(187, 10);
-            this.guna2Separator7.TabIndex = 17;
+            this.dtm_startDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtm_startDate.Location = new System.Drawing.Point(987, 22);
+            this.dtm_startDate.Name = "dtm_startDate";
+            this.dtm_startDate.Size = new System.Drawing.Size(110, 23);
+            this.dtm_startDate.TabIndex = 8;
+            this.dtm_startDate.ValueChanged += new System.EventHandler(this.dtm_startDate_ValueChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(1113, 25);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(24, 17);
+            this.label15.TabIndex = 9;
+            this.label15.Text = "TO";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // Dashboard
             // 
@@ -759,6 +775,7 @@
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "ڈیش بورڈ";
+            this.Activated += new System.EventHandler(this.Dashboard_Activated);
             this.Load += new System.EventHandler(this.Dashboard_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -800,22 +817,22 @@
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbl_sales;
+        private System.Windows.Forms.Label lbl_salesPercent;
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel3;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbl_receiptPercent;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lbl_receipt;
         private System.Windows.Forms.Label label10;
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel4;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lbl_paymentPercent;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbl_payment;
         private System.Windows.Forms.Label label13;
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel2;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbl_purchasePercent;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbl_purchase;
         private System.Windows.Forms.Label label7;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private System.Windows.Forms.Label label14;
@@ -824,10 +841,12 @@
         private Guna.UI2.WinForms.Guna2Separator guna2Separator4;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator3;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtm_dashboard;
         private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton1;
         private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton2;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator7;
         private Guna.UI2.WinForms.Guna2Button btn_inventoryLeger;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DateTimePicker dtm_startDate;
+        private System.Windows.Forms.DateTimePicker dtm_endDate;
     }
 }

@@ -45,14 +45,6 @@
             this.txt_totalNet = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.chk_date = new System.Windows.Forms.CheckBox();
-            this.chk_employee = new System.Windows.Forms.CheckBox();
-            this.chk_customer = new System.Windows.Forms.CheckBox();
-            this.chk_customerType = new System.Windows.Forms.CheckBox();
-            this.cmbo_employee = new System.Windows.Forms.ComboBox();
-            this.cmbo_customerType = new System.Windows.Forms.ComboBox();
-            this.SaleSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SalesInvoiceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AccountName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,12 +53,20 @@
             this.AdditionalDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CarriageAndFreight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NetTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.chk_date = new System.Windows.Forms.CheckBox();
+            this.chk_employee = new System.Windows.Forms.CheckBox();
+            this.chk_customer = new System.Windows.Forms.CheckBox();
+            this.chk_customerType = new System.Windows.Forms.CheckBox();
+            this.cmbo_employee = new System.Windows.Forms.ComboBox();
+            this.cmbo_customerType = new System.Windows.Forms.ComboBox();
+            this.SaleSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.guna2ShadowPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SaleSummaryBindingSource)).BeginInit();
             this.guna2ShadowPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SaleSummaryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_search
@@ -306,6 +306,70 @@
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(1080, 413);
             this.dataGridView2.TabIndex = 107;
+            this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellDoubleClick);
+            // 
+            // SalesInvoiceID
+            // 
+            this.SalesInvoiceID.DataPropertyName = "SalesInvoiceID";
+            this.SalesInvoiceID.HeaderText = "انوائس نمبر";
+            this.SalesInvoiceID.Name = "SalesInvoiceID";
+            this.SalesInvoiceID.ReadOnly = true;
+            this.SalesInvoiceID.Width = 108;
+            // 
+            // InvoiceDate
+            // 
+            this.InvoiceDate.DataPropertyName = "InvoiceDate";
+            this.InvoiceDate.HeaderText = "تاریخ";
+            this.InvoiceDate.Name = "InvoiceDate";
+            this.InvoiceDate.ReadOnly = true;
+            this.InvoiceDate.Width = 90;
+            // 
+            // AccountName
+            // 
+            this.AccountName.DataPropertyName = "AccountName";
+            this.AccountName.HeaderText = "گاہک کا نام";
+            this.AccountName.Name = "AccountName";
+            this.AccountName.ReadOnly = true;
+            this.AccountName.Width = 261;
+            // 
+            // employeeReference
+            // 
+            this.employeeReference.DataPropertyName = "employeeReference";
+            this.employeeReference.HeaderText = "ملازم";
+            this.employeeReference.Name = "employeeReference";
+            this.employeeReference.ReadOnly = true;
+            this.employeeReference.Width = 135;
+            // 
+            // GrossTotal
+            // 
+            this.GrossTotal.DataPropertyName = "GrossTotal";
+            this.GrossTotal.HeaderText = "گروس ٹوٹل";
+            this.GrossTotal.Name = "GrossTotal";
+            this.GrossTotal.ReadOnly = true;
+            this.GrossTotal.Width = 110;
+            // 
+            // AdditionalDiscount
+            // 
+            this.AdditionalDiscount.DataPropertyName = "AdditionalDiscount";
+            this.AdditionalDiscount.HeaderText = "رعایت";
+            this.AdditionalDiscount.Name = "AdditionalDiscount";
+            this.AdditionalDiscount.ReadOnly = true;
+            // 
+            // CarriageAndFreight
+            // 
+            this.CarriageAndFreight.DataPropertyName = "CarriageAndFreight";
+            this.CarriageAndFreight.HeaderText = "کرایہ";
+            this.CarriageAndFreight.Name = "CarriageAndFreight";
+            this.CarriageAndFreight.ReadOnly = true;
+            this.CarriageAndFreight.Width = 105;
+            // 
+            // NetTotal
+            // 
+            this.NetTotal.DataPropertyName = "NetTotal";
+            this.NetTotal.HeaderText = "نیٹ ٹوٹل";
+            this.NetTotal.Name = "NetTotal";
+            this.NetTotal.ReadOnly = true;
+            this.NetTotal.Width = 110;
             // 
             // guna2ShadowPanel1
             // 
@@ -330,6 +394,20 @@
             this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel1.Size = new System.Drawing.Size(1080, 155);
             this.guna2ShadowPanel1.TabIndex = 106;
+            // 
+            // guna2ShadowPanel2
+            // 
+            this.guna2ShadowPanel2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ShadowPanel2.Controls.Add(this.label1);
+            this.guna2ShadowPanel2.FillColor = System.Drawing.Color.White;
+            this.guna2ShadowPanel2.Location = new System.Drawing.Point(12, 12);
+            this.guna2ShadowPanel2.Name = "guna2ShadowPanel2";
+            this.guna2ShadowPanel2.Radius = 2;
+            this.guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Navy;
+            this.guna2ShadowPanel2.ShadowDepth = 95;
+            this.guna2ShadowPanel2.ShadowShift = 8;
+            this.guna2ShadowPanel2.Size = new System.Drawing.Size(161, 55);
+            this.guna2ShadowPanel2.TabIndex = 60;
             // 
             // chk_date
             // 
@@ -400,83 +478,6 @@
             this.cmbo_customerType.TabIndex = 53;
             this.cmbo_customerType.SelectedIndexChanged += new System.EventHandler(this.cmbo_customerType_SelectedIndexChanged);
             // 
-            // SalesInvoiceID
-            // 
-            this.SalesInvoiceID.DataPropertyName = "SalesInvoiceID";
-            this.SalesInvoiceID.HeaderText = "انوائس نمبر";
-            this.SalesInvoiceID.Name = "SalesInvoiceID";
-            this.SalesInvoiceID.ReadOnly = true;
-            this.SalesInvoiceID.Width = 108;
-            // 
-            // InvoiceDate
-            // 
-            this.InvoiceDate.DataPropertyName = "InvoiceDate";
-            this.InvoiceDate.HeaderText = "تاریخ";
-            this.InvoiceDate.Name = "InvoiceDate";
-            this.InvoiceDate.ReadOnly = true;
-            this.InvoiceDate.Width = 90;
-            // 
-            // AccountName
-            // 
-            this.AccountName.DataPropertyName = "AccountName";
-            this.AccountName.HeaderText = "گاہک کا نام";
-            this.AccountName.Name = "AccountName";
-            this.AccountName.ReadOnly = true;
-            this.AccountName.Width = 261;
-            // 
-            // employeeReference
-            // 
-            this.employeeReference.DataPropertyName = "employeeReference";
-            this.employeeReference.HeaderText = "ملازم";
-            this.employeeReference.Name = "employeeReference";
-            this.employeeReference.ReadOnly = true;
-            this.employeeReference.Width = 135;
-            // 
-            // GrossTotal
-            // 
-            this.GrossTotal.DataPropertyName = "GrossTotal";
-            this.GrossTotal.HeaderText = "گروس ٹوٹل";
-            this.GrossTotal.Name = "GrossTotal";
-            this.GrossTotal.ReadOnly = true;
-            this.GrossTotal.Width = 110;
-            // 
-            // AdditionalDiscount
-            // 
-            this.AdditionalDiscount.DataPropertyName = "AdditionalDiscount";
-            this.AdditionalDiscount.HeaderText = "رعایت";
-            this.AdditionalDiscount.Name = "AdditionalDiscount";
-            this.AdditionalDiscount.ReadOnly = true;
-            // 
-            // CarriageAndFreight
-            // 
-            this.CarriageAndFreight.DataPropertyName = "CarriageAndFreight";
-            this.CarriageAndFreight.HeaderText = "کرایہ";
-            this.CarriageAndFreight.Name = "CarriageAndFreight";
-            this.CarriageAndFreight.ReadOnly = true;
-            this.CarriageAndFreight.Width = 105;
-            // 
-            // NetTotal
-            // 
-            this.NetTotal.DataPropertyName = "NetTotal";
-            this.NetTotal.HeaderText = "نیٹ ٹوٹل";
-            this.NetTotal.Name = "NetTotal";
-            this.NetTotal.ReadOnly = true;
-            this.NetTotal.Width = 110;
-            // 
-            // guna2ShadowPanel2
-            // 
-            this.guna2ShadowPanel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ShadowPanel2.Controls.Add(this.label1);
-            this.guna2ShadowPanel2.FillColor = System.Drawing.Color.White;
-            this.guna2ShadowPanel2.Location = new System.Drawing.Point(12, 12);
-            this.guna2ShadowPanel2.Name = "guna2ShadowPanel2";
-            this.guna2ShadowPanel2.Radius = 2;
-            this.guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Navy;
-            this.guna2ShadowPanel2.ShadowDepth = 95;
-            this.guna2ShadowPanel2.ShadowShift = 8;
-            this.guna2ShadowPanel2.Size = new System.Drawing.Size(161, 55);
-            this.guna2ShadowPanel2.TabIndex = 60;
-            // 
             // saleSummaryReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -493,9 +494,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.guna2ShadowPanel1.ResumeLayout(false);
             this.guna2ShadowPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SaleSummaryBindingSource)).EndInit();
             this.guna2ShadowPanel2.ResumeLayout(false);
             this.guna2ShadowPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SaleSummaryBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

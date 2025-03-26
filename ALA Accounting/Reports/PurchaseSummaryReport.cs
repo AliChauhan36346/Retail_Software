@@ -1,4 +1,6 @@
-﻿using ALA_Accounting.Reports_Classes;
+﻿using ALA_Accounting.Addition;
+using ALA_Accounting.Reports_Classes;
+using ALA_Accounting.TransactionForms;
 using ALA_Accounting.UsersForm;
 using System;
 using System.Collections.Generic;
@@ -35,6 +37,8 @@ namespace ALA_Accounting.Reports
 
             LoadVendorTypes();
             LoadPurchaseData(FinancialYearID);
+
+            dtmStart.Value = dtmEnd.Value = DateTime.Now;
             
         }
 
@@ -185,6 +189,34 @@ namespace ALA_Accounting.Reports
             {
                 dtmStart.Enabled = false;
                 dtmEnd.Enabled = false;
+            }
+        }
+
+        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {   // ensure the row is not a new row
+
+
+            if (!dataGridView2.Rows[e.RowIndex].IsNewRow && e.RowIndex>=0)
+            {
+
+                DataGridViewRow selectedRow = dataGridView2.Rows[e.RowIndex];
+                int purchaseInvoiceId = int.Parse(selectedRow.Cells["PurchaseInvoiceID"].Value.ToString()); // Get Transaction ID
+
+                
+                Form childForm = null; // Declare form variable
+
+                // Open the respective form as an MDI child
+
+                childForm = new purchase(FinancialYearID, purchaseInvoiceId);
+
+                // If a form was created, open it in the parent as an MDI child
+                if (childForm != null)
+                {
+                    childForm.MdiParent = this.MdiParent; // Set MDI parent
+                    //childForm.WindowState = FormWindowState.Maximized; // Optional: Open maximized
+                    childForm.Show();
+                }
+                
             }
         }
     }

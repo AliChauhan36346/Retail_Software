@@ -48,6 +48,8 @@ namespace ALA_Accounting.TransactionForms
             {
                 RetrieveCashReceiptById(cashReceiptId);
             }
+
+            dtm_receiptDate.Value = DateTime.Now;
         }
 
         private void btn_save_Click(object sender, EventArgs e)

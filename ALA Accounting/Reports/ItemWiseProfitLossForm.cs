@@ -33,6 +33,8 @@ namespace ALA_Accounting.Reports
             DisableControlsOnLoad();
 
             rdo_allInventory.Checked = true;
+
+            dtmStart.Value = dtmEnd.Value = DateTime.Now;
         }
 
         private void DisableControlsOnLoad()

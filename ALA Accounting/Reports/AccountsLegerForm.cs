@@ -146,11 +146,14 @@ namespace ALA_Accounting.Reports
         private void AccountsLegerForm_Load(object sender, EventArgs e)
         {
             lstAccounts.Visible = false;
+
+            // set date today
+            dtmStart.Value = dtmEnd.Value = DateTime.Now;
         }
 
         private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Ensure a row is selected
+            if (!dataGridView2.Rows[e.RowIndex].IsNewRow && e.RowIndex >= 0) // Ensure a row is selected
             {
                 DataGridViewRow selectedRow = dataGridView2.Rows[e.RowIndex];
                 string transactionId = selectedRow.Cells["TransactionID"].Value?.ToString(); // Get Transaction ID

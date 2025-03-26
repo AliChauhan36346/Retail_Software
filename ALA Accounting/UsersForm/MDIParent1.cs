@@ -147,20 +147,55 @@ namespace ALA_Accounting.UsersForm
 
         private void saleReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            saleSummaryReportForm saleSummaryReportForm = saleSummaryReportForm.getInstance(financialYearId);
+            // Check if the form is already open
+            foreach (Form openForm in this.MdiChildren)
+            {
+                if (openForm is saleSummaryReportForm)
+                {
+                    // Restore if minimized
+                    if (openForm.WindowState == FormWindowState.Minimized)
+                    {
+                        openForm.WindowState = FormWindowState.Normal;
+                    }
 
+                    // Bring to front
+                    openForm.BringToFront();
+                    return; // Exit, no need to create a new instance
+                }
+            }
 
+            // If form is not open, create a new instance
+            saleSummaryReportForm saleSummaryReportForm = new saleSummaryReportForm(financialYearId);
             saleSummaryReportForm.MdiParent = this;
             saleSummaryReportForm.Show();
-            saleSummaryReportForm.BringToFront();
         }
+
 
         private void purchaseSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Check if the form is already open
+            foreach (Form openForm in this.MdiChildren)
+            {
+                if (openForm is PurchaseSummaryReport)
+                {
+                    // Restore if minimized
+                    if (openForm.WindowState == FormWindowState.Minimized)
+                    {
+                        openForm.WindowState = FormWindowState.Normal;
+                    }
+
+                    // Bring to front
+                    openForm.BringToFront();
+                    return; // Exit, no need to create a new instance
+                }
+            }
+
+            // If form is not open, create a new instance
             PurchaseSummaryReport purchaseSummaryReport = new PurchaseSummaryReport(financialYearId);
             purchaseSummaryReport.MdiParent = this;
             purchaseSummaryReport.Show();
         }
+
 
         private void purchaseReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -169,9 +204,28 @@ namespace ALA_Accounting.UsersForm
 
         private void itemWiseProfitLossToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Check if the form is already open
+            foreach (Form openForm in this.MdiChildren)
+            {
+                if (openForm is ItemWiseProfitLossForm)
+                {
+                    // Restore if minimized
+                    if (openForm.WindowState == FormWindowState.Minimized)
+                    {
+                        openForm.WindowState = FormWindowState.Normal;
+                    }
+
+                    // Bring to front
+                    openForm.BringToFront();
+                    return; // Exit, no need to create a new instance
+                }
+            }
+
+            // If form is not open, create a new instance
             ItemWiseProfitLossForm itemWiseProfitLossForm = new ItemWiseProfitLossForm(financialYearId);
             itemWiseProfitLossForm.MdiParent = this;
             itemWiseProfitLossForm.Show();
         }
+
     }
 }

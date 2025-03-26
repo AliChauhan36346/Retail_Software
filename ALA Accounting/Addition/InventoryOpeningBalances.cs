@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,7 @@ namespace ALA_Accounting.Addition
         CommonFunctions functions = new CommonFunctions();
 
         int financialYearId;
+        int inventoryOpeningId=-1;
 
         public InventoryOpeningBalances(int financialYearId)
         {
@@ -29,6 +32,64 @@ namespace ALA_Accounting.Addition
             this.financialYearId = financialYearId;
         }
 
+        public InventoryOpeningBalances(int financialYearId, int inventoryOpeningId)
+        {
+            InitializeComponent();
+            this.financialYearId = financialYearId;
+            this.inventoryOpeningId = inventoryOpeningId;
+        }
+
+        public void LoadInventoryOpeningBalanceById(int openingBalanceId, int financialYearId)
+        {
+            // Open a connection to the database
+            Connection dbConnection = new Connection();
+
+            try
+            {
+                dbConnection.openConnection();
+
+                string query = @"
+        SELECT iob.OpeningBalanceID, iob.ItemID, ii.ItemName, iob.FinancialYearID, 
+               iob.Quantity, iob.Unit, iob.Rate, iob.Amount
+        FROM InventoryOpeningBalance iob
+        INNER JOIN InventoryItem ii ON iob.ItemID = ii.ItemID
+        WHERE iob.OpeningBalanceID = @OpeningBalanceID 
+        AND iob.FinancialYearID = @FinancialYearID";
+
+                using (SqlCommand command = new SqlCommand(query, dbConnection.connection))
+                {
+                    command.Parameters.AddWithValue("@OpeningBalanceID", openingBalanceId);
+                    command.Parameters.AddWithValue("@FinancialYearID", financialYearId);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Populate textboxes on the form
+                            txt_openingId.Text = reader["OpeningBalanceID"].ToString();
+                            txt_itemId.Text = reader["ItemID"].ToString();
+                            txt_itemName.Text = reader["ItemName"].ToString(); // Fetching Item Name
+                            txt_quantity.Text = reader["Quantity"].ToString();
+                            txt_unit.Text = reader["Unit"].ToString();
+                            txt_rate.Text = reader["Rate"].ToString();
+                            txt_amount.Text = reader["Amount"].ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No record found for the given Opening Balance ID.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading inventory opening balance: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dbConnection.closeConnection();
+            }
+        }
 
 
         private void InventoryOpeningBalances_Load(object sender, EventArgs e)
@@ -40,6 +101,11 @@ namespace ALA_Accounting.Addition
             label9.Text = financialYearId.ToString();
 
             lstInventory.Visible = false;
+
+            if (inventoryOpeningId != -1)
+            {
+               LoadInventoryOpeningBalanceById(inventoryOpeningId, financialYearId);
+            }
         }
 
         private void btn_addNew_Click(object sender, EventArgs e)
