@@ -158,6 +158,12 @@
     <Compile Include="Addition\FinancialYear.Designer.cs">
       <DependentUpon>FinancialYear.cs</DependentUpon>
     </Compile>
+    <Compile Include="Addition\ImportInventoryOpeningBalances.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Addition\ImportInventoryOpeningBalances.Designer.cs">
+      <DependentUpon>ImportInventoryOpeningBalances.cs</DependentUpon>
+    </Compile>
     <Compile Include="Addition\ImportOpeningBalances.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Addition\FinancialYear.resx">
       <DependentUpon>FinancialYear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Addition\ImportInventoryOpeningBalances.resx">
+      <DependentUpon>ImportInventoryOpeningBalances.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Addition\ImportOpeningBalances.resx">
       <DependentUpon>ImportOpeningBalances.cs</DependentUpon>

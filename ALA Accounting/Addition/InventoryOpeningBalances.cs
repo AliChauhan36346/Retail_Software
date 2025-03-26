@@ -340,6 +340,12 @@ namespace ALA_Accounting.Addition
                 e.SuppressKeyPress = true;
             }
         }
+
+        private void btn_importBalances_Click(object sender, EventArgs e)
+        {
+            ImportInventoryOpeningBalances importInventoryOpening = new ImportInventoryOpeningBalances(financialYearId);
+            importInventoryOpening.ShowDialog();
+        }
     }
 
 

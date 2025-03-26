@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryOpeningBalances));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryOpeningBalances));
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.btn_delete = new Guna.UI2.WinForms.Guna2Button();
             this.btn_cancel = new Guna.UI2.WinForms.Guna2Button();
@@ -69,6 +69,7 @@
             this.lstInventory = new System.Windows.Forms.ListBox();
             this.txt_openingamount = new Guna.UI2.WinForms.Guna2TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.btn_importBalances = new Guna.UI2.WinForms.Guna2Button();
             this.guna2ShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.guna2GroupBox1.SuspendLayout();
@@ -78,6 +79,7 @@
             // guna2ShadowPanel1
             // 
             this.guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ShadowPanel1.Controls.Add(this.btn_importBalances);
             this.guna2ShadowPanel1.Controls.Add(this.btn_delete);
             this.guna2ShadowPanel1.Controls.Add(this.btn_cancel);
             this.guna2ShadowPanel1.Controls.Add(this.btn_addNew);
@@ -678,6 +680,29 @@
             this.label10.TabIndex = 102;
             this.label10.Text = "افتتاحی انوینٹری کی رقم";
             // 
+            // btn_importBalances
+            // 
+            this.btn_importBalances.BorderRadius = 4;
+            this.btn_importBalances.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_importBalances.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_importBalances.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_importBalances.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_importBalances.FillColor = System.Drawing.Color.DodgerBlue;
+            this.btn_importBalances.Font = new System.Drawing.Font("Arial", 14.25F);
+            this.btn_importBalances.ForeColor = System.Drawing.Color.White;
+            this.btn_importBalances.Image = ((System.Drawing.Image)(resources.GetObject("btn_importBalances.Image")));
+            this.btn_importBalances.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btn_importBalances.ImageOffset = new System.Drawing.Point(-3, 0);
+            this.btn_importBalances.ImageSize = new System.Drawing.Size(35, 35);
+            this.btn_importBalances.Location = new System.Drawing.Point(526, 10);
+            this.btn_importBalances.Name = "btn_importBalances";
+            this.btn_importBalances.Size = new System.Drawing.Size(137, 52);
+            this.btn_importBalances.TabIndex = 5;
+            this.btn_importBalances.Text = "اکاؤنٹ بیلنس درآمد کریں۔";
+            this.btn_importBalances.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btn_importBalances.TextOffset = new System.Drawing.Point(4, 0);
+            this.btn_importBalances.Click += new System.EventHandler(this.btn_importBalances_Click);
+            // 
             // InventoryOpeningBalances
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -744,5 +769,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txt_quantity;
         private Guna.UI2.WinForms.Guna2TextBox txt_openingamount;
         private System.Windows.Forms.Label label10;
+        private Guna.UI2.WinForms.Guna2Button btn_importBalances;
     }
 }

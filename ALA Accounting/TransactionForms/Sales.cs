@@ -896,6 +896,11 @@ namespace ALA_Accounting.TransactionForms
 
         private void UpdateTotals()
         {
+            int accountId = 0;
+            int.TryParse(txt_accountId.Text, out accountId);
+
+            
+
             // Parse the net amount
             decimal netAmount = 0;
             decimal.TryParse(txt_netAmount.Text, out netAmount);
@@ -908,15 +913,26 @@ namespace ALA_Accounting.TransactionForms
             decimal carriageFreight = 0;
             decimal.TryParse(txt_carraigeFreight.Text, out carriageFreight);
 
-            // Parse the amount received
-            decimal amountReceived = 0;
-            decimal.TryParse(txt_amountReceived.Text, out amountReceived);
 
             // Calculate gross total (netAmount without additional discount)
             decimal grossTotal = netAmount-additionalDiscount;
 
             // Calculate net total (gross total - additional discount + carriage/freight)
             decimal netTotal = grossTotal + carriageFreight;
+
+            // Parse the amount received
+            if (accountId == 2)
+            {
+                txt_amountReceived.Text = netTotal.ToString("0.00");
+                txt_amountReceived.Enabled = false;
+            }
+            else
+            {
+                txt_amountReceived.Enabled= true;
+            }
+
+            decimal amountReceived = 0;
+            decimal.TryParse(txt_amountReceived.Text, out amountReceived);
 
             // Calculate balance (net total - amount received)
             decimal balance = netTotal - amountReceived;

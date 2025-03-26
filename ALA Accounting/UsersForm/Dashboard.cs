@@ -98,19 +98,19 @@ namespace ALA_Accounting.UsersForm
             int financialYearID = Convert.ToInt32(financialYearId);
 
             var (totalSales, salesChange) = dashboardClass.GetTotalSales(startDate, endDate, financialYearID);
-            lbl_sales.Text = $"{totalSales:C2}";
+            lbl_sales.Text = $"{totalSales:C0}";
             lbl_salesPercent.Text = $"({salesChange:+0.##;-0.##;0}%)";
 
             var (totalPurchases, purchasesChange) = dashboardClass.GetTotalPurchases(startDate, endDate, financialYearID);
-            lbl_purchase.Text = $"{totalPurchases:C2}";
+            lbl_purchase.Text = $"{totalPurchases:C0}";
             lbl_purchasePercent.Text = $"({purchasesChange:+0.##;-0.##;0}%)";
 
             var (totalPayments, paymentsChange) = dashboardClass.GetTotalPayments(startDate, endDate, financialYearID);
-            lbl_payment.Text = $"{totalPayments:C2}";
+            lbl_payment.Text = $"{totalPayments:C0}";
             lbl_paymentPercent.Text = $"({paymentsChange:+0.##;-0.##;0}%)";
 
             var (totalReceipts, receiptsChange) = dashboardClass.GetTotalReceipts(startDate, endDate, financialYearID);
-            lbl_receipt.Text = $"{totalReceipts:C2}";
+            lbl_receipt.Text = $"{totalReceipts:C0}";
             lbl_receiptPercent.Text = $"({receiptsChange:+0.##;-0.##;0}%)";
 
         }

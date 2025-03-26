@@ -227,5 +227,14 @@ namespace ALA_Accounting.UsersForm
             itemWiseProfitLossForm.Show();
         }
 
+        private void MDIParent1_Load(object sender, EventArgs e)
+        {
+            toolStripStatusLabel.Text = "A software developed by Ali Abbas. Contact us at alichauhan34636@gmail.com";
+        }
+
+        private void toolStripStatusLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
