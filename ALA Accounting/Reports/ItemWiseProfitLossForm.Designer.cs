@@ -65,6 +65,7 @@
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.txt_totalSalesValue = new Guna.UI2.WinForms.Guna2TextBox();
             this.txt_totalCost = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.guna2ShadowPanel2.SuspendLayout();
             this.guna2ShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -112,6 +113,7 @@
             // guna2ShadowPanel1
             // 
             this.guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ShadowPanel1.Controls.Add(this.label2);
             this.guna2ShadowPanel1.Controls.Add(this.rdo_allInventory);
             this.guna2ShadowPanel1.Controls.Add(this.rdo_catagory);
             this.guna2ShadowPanel1.Controls.Add(this.cmbo_catagory);
@@ -132,6 +134,7 @@
             this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel1.Size = new System.Drawing.Size(1080, 172);
             this.guna2ShadowPanel1.TabIndex = 109;
+            this.guna2ShadowPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2ShadowPanel1_Paint);
             // 
             // rdo_allInventory
             // 
@@ -506,6 +509,15 @@
             this.txt_totalCost.TabIndex = 10;
             this.txt_totalCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(72, 116);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 66;
+            this.label2.Text = "label2";
+            // 
             // ItemWiseProfitLossForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -557,5 +569,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SalesValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProfitLoss;
         private Guna.UI2.WinForms.Guna2TextBox txt_totalSalesValue;
+        private System.Windows.Forms.Label label2;
     }
 }

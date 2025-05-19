@@ -739,9 +739,8 @@ namespace ALA_Accounting.TransactionForms
             if (salesInvoiceId != -1)
             {
                 RetrieveSalesInvoiceById(salesInvoiceId, financialYearId);
+                RecalculateTotals();
             }
-
-            dtm_saleDate.Value = DateTime.Now;
         }
 
         private int editingRowIndex = -1;
@@ -997,6 +996,7 @@ namespace ALA_Accounting.TransactionForms
                             cmbo_employeeRefference.Text = reader["EmployeeReference"].ToString();
                             txt_address.Text = reader["Address"].ToString();
                             txt_salesRemarks.Text = reader["Remarks"].ToString();
+                            //dtm_saleDate.Value= Convert.ToDateTime(reader["InvoiceDate"]);
                         }
                         else
                         {
@@ -1051,6 +1051,8 @@ namespace ALA_Accounting.TransactionForms
                         }
                     }
                 }
+
+                CalculateProfitOrLoss();
 
                 //MessageBox.Show("Sales invoice details retrieved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -1162,7 +1164,7 @@ namespace ALA_Accounting.TransactionForms
             int currentInvoiceId = Convert.ToInt32(txt_salesId.Text);  // Get the current SalesInvoiceID from the form
             GoToNextSalesInvoice(currentInvoiceId, financialYearId);
 
-            CalculateProfitOrLoss();
+            //CalculateProfitOrLoss();
         }
 
         private void btn_back_Click(object sender, EventArgs e)
@@ -1170,7 +1172,7 @@ namespace ALA_Accounting.TransactionForms
             int currentInvoiceId = Convert.ToInt32(txt_salesId.Text);  // Get the current SalesInvoiceID from the form
             GoToPreviousSalesInvoice(currentInvoiceId, financialYearId);
 
-            CalculateProfitOrLoss();
+            //CalculateProfitOrLoss();
         }
 
         private void btn_addNew_Click(object sender, EventArgs e)
@@ -1195,6 +1197,7 @@ namespace ALA_Accounting.TransactionForms
             {
                 decimal totalProfitLoss = 0;
                 int itemsTotal = 0;
+                decimal additionalDiscount = 0;
 
                 // Loop through each row in the DataGridView
                 foreach (DataGridViewRow row in dataGridView2.Rows)
@@ -1205,16 +1208,18 @@ namespace ALA_Accounting.TransactionForms
                         decimal quantity = Convert.ToDecimal(row.Cells["Quantity"].Value);
                         decimal sellingPrice = Convert.ToDecimal(row.Cells["Rate"].Value);
                         decimal discount = row.Cells["Discount"].Value != null ? Convert.ToDecimal(row.Cells["Discount"].Value) : 0;
-                        decimal additionalDiscount = txt_additionDiscount.Text != "" ? Convert.ToDecimal(txt_additionDiscount.Text) : 0;
+                        additionalDiscount = txt_additionDiscount.Text != "" ? Convert.ToDecimal(txt_additionDiscount.Text) : 0;
 
                         // Get the cost price of the item from the database
                         decimal costPrice = salesInvoice.GetAverageCost(itemId,financialYearId);
 
                         // Calculate profit/loss for this item
-                        decimal itemProfitLoss = (sellingPrice - costPrice) * quantity - (discount+additionalDiscount);
+                        decimal itemProfitLoss = (sellingPrice - costPrice) * quantity - (discount);
 
                         // Add it to the total profit/loss
                         totalProfitLoss += itemProfitLoss;
+
+
 
                         if (quantity < 1)
                         {
@@ -1224,10 +1229,11 @@ namespace ALA_Accounting.TransactionForms
                         {
                             itemsTotal += (int)quantity;
                         }
-
-                        
                     }
                 }
+
+                // Calculate the total profit/loss
+                totalProfitLoss = totalProfitLoss - additionalDiscount;
 
                 // Display the total profit/loss in the TextBox or Label
                 txt_profitLoss.Text = totalProfitLoss.ToString("0.00");

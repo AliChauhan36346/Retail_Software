@@ -62,9 +62,8 @@ namespace ALA_Accounting.TransactionForms
             if(purchaseInoiceId != -1)
             {
                 RetrievePurchaseInvoiceById(purchaseInoiceId, financialYearId);
+                RecalculateTotals();
             }
-
-            dtm_saleDate.Value = DateTime.Now;
         }
 
         private void btn_save_Click(object sender, EventArgs e)

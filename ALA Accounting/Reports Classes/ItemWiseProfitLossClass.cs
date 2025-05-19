@@ -19,7 +19,8 @@ namespace ALA_Accounting.Reports_Classes
             dbConnection = new Connection();
         }
 
-        public DataTable LoadData(int financialYearID, int? categoryID = null, int? subCategoryID = null, string brand = null, DateTime? startDate = null, DateTime? endDate = null)
+        public DataTable LoadData(int financialYearID, int? categoryID = null, int? subCategoryID = null,
+    string brand = null, DateTime? startDate = null, DateTime? endDate = null)
         {
             DataTable dataTable = new DataTable();
             try
@@ -27,77 +28,81 @@ namespace ALA_Accounting.Reports_Classes
                 dbConnection.openConnection();
 
                 string query = @"
-        WITH SalesData AS (
-            SELECT 
-                s.ItemID, 
-                s.TransactionDate,
-                SUM(s.Quantity) AS TotalSold, 
-                SUM(s.Quantity * s.Rate) AS SalesValue
-            FROM InventoryTransaction s
-            JOIN SalesInvoice si ON s.SourceId = si.SalesInvoiceID
-            WHERE s.TransactionType = 'Sale'
-            AND si.FinancialYearID = @FinancialYearID
-            GROUP BY s.ItemID, s.TransactionDate
-        ),
-        PurchaseData AS (
-            SELECT 
-                p.ItemID, 
-                SUM(p.Quantity) AS TotalPurchased, 
-                SUM(p.Quantity * p.Rate) AS TotalPurchaseCost
-            FROM InventoryTransaction p
-            WHERE p.TransactionType = 'Purchase'
-            GROUP BY p.ItemID
-        ),
-        OpeningBalanceData AS (
-            SELECT 
-                ob.ItemID, 
-                SUM(ob.Quantity) AS OpeningQuantity, 
-                SUM(ob.Quantity * ob.Rate) AS OpeningCost
-            FROM InventoryOpeningBalance ob
-            GROUP BY ob.ItemID
-        )
-        SELECT 
-            sd.TransactionDate, 
-            i.ItemID AS [Item Code], 
-            i.ItemName AS [Item Name],
-            sic.InventoryCategoryID,  
-            i.SubCategoryID,  
-            i.BrandName AS Brand,  
-            ISNULL(sd.TotalSold, 0) AS Quantity, 
-            i.MeasurementUnit AS Unit,
-            CASE 
-                WHEN (ISNULL(pd.TotalPurchased, 0) + ISNULL(obd.OpeningQuantity, 0)) > 0 
-                THEN (ISNULL(pd.TotalPurchaseCost, 0) + ISNULL(obd.OpeningCost, 0)) / 
-                     (ISNULL(pd.TotalPurchased, 0) + ISNULL(obd.OpeningQuantity, 0))
-                ELSE 0 
-            END AS UnitCost,
-            (CASE 
-                WHEN (ISNULL(pd.TotalPurchased, 0) + ISNULL(obd.OpeningQuantity, 0)) > 0 
-                THEN (ISNULL(pd.TotalPurchaseCost, 0) + ISNULL(obd.OpeningCost, 0)) / 
-                     (ISNULL(pd.TotalPurchased, 0) + ISNULL(obd.OpeningQuantity, 0)) * ISNULL(sd.TotalSold, 0)
-                ELSE 0 
-            END) AS [Total Cost],
-            ISNULL(sd.SalesValue, 0) AS [Sales Value],
-            (ISNULL(sd.SalesValue, 0) - 
-            (CASE 
-                WHEN (ISNULL(pd.TotalPurchased, 0) + ISNULL(obd.OpeningQuantity, 0)) > 0 
-                THEN (ISNULL(pd.TotalPurchaseCost, 0) + ISNULL(obd.OpeningCost, 0)) / 
-                     (ISNULL(pd.TotalPurchased, 0) + ISNULL(obd.OpeningQuantity, 0)) * ISNULL(sd.TotalSold, 0)
-                ELSE 0 
-            END)) AS [Profit / (Loss)]
-        FROM InventoryItem i
-        JOIN SalesData sd ON i.ItemID = sd.ItemID -- ✅ Only include sold items
-        LEFT JOIN SubInventoryCategory sic ON i.SubCategoryID = sic.SubCategoryID
-        LEFT JOIN PurchaseData pd ON i.ItemID = pd.ItemID
-        LEFT JOIN OpeningBalanceData obd ON i.ItemID = obd.ItemID
-        WHERE 1=1";  // ✅ Ensures dynamic filters can be added easily
+WITH SalesData AS (
+    SELECT 
+        s.ItemID,
+        SUM(s.Quantity) AS TotalSold, 
+        SUM(s.Quantity * s.Rate) AS SalesValue
+    FROM InventoryTransaction s
+    JOIN SalesInvoice si ON s.SourceId = si.SalesInvoiceID
+    WHERE s.TransactionType = 'Sale'
+    AND si.FinancialYearID = @FinancialYearID
+    AND ((si.InvoiceDate >= @StartDate AND si.InvoiceDate <= @EndDate) OR (@StartDate IS NULL AND @EndDate IS NULL))
+    GROUP BY s.ItemID
+),
+PurchaseData AS (
+    SELECT 
+        p.ItemID, 
+        SUM(p.Quantity) AS TotalPurchased, 
+        SUM(p.Quantity * p.Rate) AS TotalPurchaseCost
+    FROM InventoryTransaction p
+    JOIN PurchaseInvoice pi ON p.SourceId = pi.PurchaseInvoiceId
+    WHERE p.TransactionType = 'Purchase'
+    AND pi.FinancialYearID = @FinancialYearID
+    GROUP BY p.ItemID
+),
+OpeningBalanceData AS (
+    SELECT 
+        ob.ItemID, 
+        SUM(ob.Quantity) AS OpeningQuantity, 
+        SUM(ob.Quantity * ob.Rate) AS OpeningCost
+    FROM InventoryOpeningBalance ob
+    WHERE FinancialYearID = @FinancialYearID
+    GROUP BY ob.ItemID
+)
+SELECT
+    i.ItemID AS [Item Code], 
+    i.ItemName AS [Item Name],
+    sic.InventoryCategoryID,  
+    i.SubCategoryID,  
+    i.BrandName AS Brand,  
+    ISNULL(sd.TotalSold, 0) AS Quantity, 
+    i.MeasurementUnit AS Unit,
+    CASE 
+        WHEN (ISNULL(pd.TotalPurchased, 0) + ISNULL(obd.OpeningQuantity, 0)) > 0  -- Fixed parenthesis
+        THEN (ISNULL(pd.TotalPurchaseCost, 0) + ISNULL(obd.OpeningCost, 0)) / 
+             (ISNULL(pd.TotalPurchased, 0) + ISNULL(obd.OpeningQuantity, 0))
+        ELSE 0 
+    END AS UnitCost,
+    (CASE 
+        WHEN (ISNULL(pd.TotalPurchased, 0) + ISNULL(obd.OpeningQuantity, 0)) > 0  -- Fixed parenthesis
+        THEN (ISNULL(pd.TotalPurchaseCost, 0) + ISNULL(obd.OpeningCost, 0)) / 
+             (ISNULL(pd.TotalPurchased, 0) + ISNULL(obd.OpeningQuantity, 0)) * ISNULL(sd.TotalSold, 0)
+        ELSE 0 
+    END) AS [Total Cost],
+    ISNULL(sd.SalesValue, 0) AS [Sales Value],
+    (ISNULL(sd.SalesValue, 0) - 
+    (CASE 
+        WHEN (ISNULL(pd.TotalPurchased, 0) + ISNULL(obd.OpeningQuantity, 0)) > 0 
+        THEN (ISNULL(pd.TotalPurchaseCost, 0) + ISNULL(obd.OpeningCost, 0)) / 
+             (ISNULL(pd.TotalPurchased, 0) + ISNULL(obd.OpeningQuantity, 0)) * ISNULL(sd.TotalSold, 0)
+        ELSE 0 
+    END)) AS [Profit / (Loss)]
+FROM InventoryItem i
+JOIN SalesData sd ON i.ItemID = sd.ItemID
+LEFT JOIN SubInventoryCategory sic ON i.SubCategoryID = sic.SubCategoryID
+LEFT JOIN PurchaseData pd ON i.ItemID = pd.ItemID
+LEFT JOIN OpeningBalanceData obd ON i.ItemID = obd.ItemID
+WHERE 1=1";
 
-                // Dynamic filtering
                 List<SqlParameter> parameters = new List<SqlParameter>
         {
-            new SqlParameter("@FinancialYearID", financialYearID)
+            new SqlParameter("@FinancialYearID", financialYearID),
+            new SqlParameter("@StartDate", startDate ?? (object)DBNull.Value),
+            new SqlParameter("@EndDate", endDate ?? (object)DBNull.Value)
         };
 
+                // Dynamic filtering
                 if (categoryID.HasValue)
                 {
                     query += " AND sic.InventoryCategoryID = @CategoryID";
@@ -113,28 +118,19 @@ namespace ALA_Accounting.Reports_Classes
                     query += " AND i.BrandName = @Brand";
                     parameters.Add(new SqlParameter("@Brand", brand));
                 }
-                if (startDate.HasValue && endDate.HasValue)
-                {
-                    query += " AND sd.TransactionDate BETWEEN @StartDate AND @EndDate";
-                    parameters.Add(new SqlParameter("@StartDate", startDate.Value));
-                    parameters.Add(new SqlParameter("@EndDate", endDate.Value));
-                }
 
-               
                 using (SqlCommand cmd = new SqlCommand(query, dbConnection.connection))
                 {
                     cmd.Parameters.AddRange(parameters.ToArray());
-
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
                         adapter.Fill(dataTable);
                     }
                 }
-                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading profit/loss report: " + ex.Message);
+                MessageBox.Show("Error loading report: " + ex.Message);
             }
             finally
             {
@@ -142,8 +138,6 @@ namespace ALA_Accounting.Reports_Classes
             }
             return dataTable;
         }
-
-
 
         public List<KeyValuePair<int, string>> GetCategories()
         {

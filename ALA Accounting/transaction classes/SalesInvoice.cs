@@ -501,12 +501,31 @@ namespace ALA_Accounting.transaction_classes
             decimal totalQuantity = 0;
 
             string query = @"
-        SELECT SUM(Quantity * Rate) AS TotalCost, SUM(Quantity) AS TotalQuantity 
-        FROM (
-            SELECT Quantity, Rate FROM PurchaseInvoiceItems WHERE ItemID = @ItemID
-            UNION ALL
-            SELECT Quantity, Rate FROM InventoryOpeningBalance WHERE ItemID = @ItemID AND FinancialYearID = @FinancialYearID
-        ) AS CombinedData";
+WITH ItemTransactions AS (
+    -- Opening balance
+    SELECT 
+        Quantity,
+        Quantity * Rate AS Cost
+    FROM InventoryOpeningBalance
+    WHERE ItemID = @ItemID
+    AND FinancialYearID = @FinancialYearID
+    
+    UNION ALL
+    
+    -- Purchases
+    SELECT 
+        p.Quantity,
+        p.Quantity * p.Rate AS Cost
+    FROM InventoryTransaction p
+    JOIN PurchaseInvoice pi ON p.SourceID = pi.PurchaseInvoiceID
+    WHERE p.ItemID = @ItemID
+    AND p.TransactionType = 'Purchase'
+    AND pi.FinancialYearID = @FinancialYearID
+)
+SELECT 
+    SUM(Cost) AS TotalCost,
+    SUM(Quantity) AS TotalQuantity
+FROM ItemTransactions;";
 
             dbConnection.openConnection();
 

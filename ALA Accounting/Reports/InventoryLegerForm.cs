@@ -30,8 +30,8 @@ namespace ALA_Accounting.Reports
         private void btn_search_Click(object sender, EventArgs e)
         {
             string itemCode = txt_ItemCode.Text.Trim();
-            DateTime? startDate = chk_date.Checked ? dtmStart.Value : (DateTime?)null;
-            DateTime? endDate = chk_date.Checked ? dtmEnd.Value : (DateTime?)null;
+            DateTime? startDate = chk_date.Checked ? dtmStart.Value.Date : (DateTime?)null;
+            DateTime? endDate = chk_date.Checked ? dtmEnd.Value.Date : (DateTime?)null;
 
             DataTable ledgerData = inventoryLegerClass.LoadData(FinancialYearID, itemCode, startDate, endDate);
             dataGridView2.AutoGenerateColumns = false;

@@ -229,7 +229,7 @@ namespace ALA_Accounting.UsersForm
 
         private void MDIParent1_Load(object sender, EventArgs e)
         {
-            toolStripStatusLabel.Text = "A software developed by Ali Abbas. Contact us at alichauhan34636@gmail.com";
+            toolStripStatusLabel.Text = "A Retail Accounting Software Developed by Ali Abbas. Contact us at alichauhan36346@gmail.com";
         }
 
         private void toolStripStatusLabel_Click(object sender, EventArgs e)

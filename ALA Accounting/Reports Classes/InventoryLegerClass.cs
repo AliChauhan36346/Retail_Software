@@ -24,137 +24,111 @@ namespace ALA_Accounting.Reports_Classes
             DataTable dataTable = new DataTable();
             try
             {
-                string query = @"WITH SalesData AS (
+                string query = @"
+WITH TransactionData AS (
+    -- Sales Transactions
     SELECT 
-        'SV' + CAST(s.SourceId AS NVARCHAR) AS TransactionID,
+        'SV' + CAST(si.SalesInvoiceID AS NVARCHAR) AS TransactionID,
         si.AccountName AS PartyName,
-        s.ItemID,
-        s.TransactionDate AS Date,
-        s.Quantity AS QuantityOut,
-        NULL AS QuantityIn,
-        s.Rate,
-        (s.Quantity * s.Rate) AS GrossAmount,
+        si.InvoiceDate AS Date,
+        -sii.Quantity AS QuantityChange,  -- Negative for sales (outgoing)
+        sii.Rate,
+        (sii.Quantity * sii.Rate) AS GrossAmount,
         sii.Discount,
-        ((s.Quantity * s.Rate) - sii.Discount) AS NetAmount
-    FROM InventoryTransaction s
-    INNER JOIN SalesInvoice si ON s.SourceID = si.SalesInvoiceID
-    INNER JOIN SalesInvoiceItems sii ON s.SourceID = sii.SalesInvoiceID AND s.ItemID = sii.ItemID
-    WHERE s.TransactionType = 'Sale' 
-        AND si.FinancialYearID = @FinancialYearID
-),
-PurchaseData AS (
+        ((sii.Quantity * sii.Rate) - sii.Discount) AS NetAmount
+    FROM SalesInvoice si
+    INNER JOIN SalesInvoiceItems sii ON si.SalesInvoiceID = sii.SalesInvoiceID
+    WHERE si.FinancialYearID = @FinancialYearID
+    AND sii.ItemID = @ItemCode
+    
+    UNION ALL
+    
+    -- Purchase Transactions
     SELECT 
-        'PV' + CAST(p.SourceId AS NVARCHAR) AS TransactionID,
-        pi.AccountName AS PartyName, 
-        p.ItemID,
-        p.TransactionDate AS Date,
-        NULL AS QuantityOut,
-        p.Quantity AS QuantityIn,
-        p.Rate,
-        (p.Quantity * p.Rate) AS GrossAmount,
+        'PV' + CAST(pi.PurchaseInvoiceID AS NVARCHAR) AS TransactionID,
+        pi.AccountName AS PartyName,
+        pi.InvoiceDate AS Date,
+        pii.Quantity AS QuantityChange,  -- Positive for purchases (incoming)
+        pii.Rate,
+        (pii.Quantity * pii.Rate) AS GrossAmount,
         pii.Discount,
-        ((p.Quantity * p.Rate) - pii.Discount) AS NetAmount
-    FROM InventoryTransaction p
-    INNER JOIN PurchaseInvoice pi ON p.SourceID = pi.PurchaseInvoiceID
-    INNER JOIN PurchaseInvoiceItems pii ON p.SourceID = pii.PurchaseInvoiceID AND p.ItemID = pii.ItemID
-    WHERE p.TransactionType = 'Purchase'
-        AND pi.FinancialYearID = @FinancialYearID
-),
-OpeningBalanceData AS (
+        ((pii.Quantity * pii.Rate) - pii.Discount) AS NetAmount
+    FROM PurchaseInvoice pi
+    INNER JOIN PurchaseInvoiceItems pii ON pi.PurchaseInvoiceID = pii.PurchaseInvoiceID
+    WHERE pi.FinancialYearID = @FinancialYearID
+    AND pii.ItemID = @ItemCode
+    
+    UNION ALL
+    
+    -- Opening Balance
     SELECT 
         'OB' + CAST(ob.OpeningBalanceID AS NVARCHAR) AS TransactionID,
-        'Opening balance' AS PartyName,
-        ob.ItemID,
-        DATEADD(DAY, -1, @StartDate) AS Date,  -- Assign one day before the user-selected start date
-        NULL AS QuantityOut,
-        ob.Quantity AS QuantityIn,
+        'Opening Balance' AS PartyName,
+        ob.Date AS Date,
+        ob.Quantity AS QuantityChange,
         ob.Rate,
         (ob.Quantity * ob.Rate) AS GrossAmount,
         0 AS Discount,
         (ob.Quantity * ob.Rate) AS NetAmount
     FROM InventoryOpeningBalance ob
     WHERE ob.FinancialYearID = @FinancialYearID
-),
-CombinedData AS (
-    SELECT * FROM SalesData
-    UNION ALL
-    SELECT * FROM PurchaseData
-    UNION ALL
-    SELECT * FROM OpeningBalanceData
-),
-PreviousBalance AS (
-    SELECT 
-        t.ItemID,
-        SUM(COALESCE(t.QuantityIn, 0) - COALESCE(t.QuantityOut, 0)) AS BalanceQty
-    FROM CombinedData t
-    WHERE t.ItemID = @ItemCode AND t.Date < @StartDate
-    GROUP BY t.ItemID
+    AND ob.ItemID = @ItemCode
 ),
 FilteredData AS (
     SELECT 
-        t.ItemID,
-        t.Date,
-        t.TransactionID,
-        t.PartyName,
-        t.QuantityIn,
-        t.QuantityOut,
+        td.TransactionID,
+        td.PartyName,
+        td.Date,
+        CASE WHEN td.QuantityChange > 0 THEN td.QuantityChange ELSE NULL END AS QuantityIn,
+        CASE WHEN td.QuantityChange < 0 THEN ABS(td.QuantityChange) ELSE NULL END AS QuantityOut,
         i.MeasurementUnit AS Unit,
-        t.Rate,
-        t.GrossAmount,
-        t.Discount,
-        t.NetAmount
-    FROM CombinedData t
-    LEFT JOIN InventoryItem i ON t.ItemID = i.ItemID
-    WHERE t.ItemID = @ItemCode 
-        AND (@StartDate IS NULL OR t.Date >= @StartDate)
-        AND (@EndDate IS NULL OR t.Date <= @EndDate)
+        td.Rate,
+        td.GrossAmount,
+        td.Discount,
+        td.NetAmount,
+        td.QuantityChange
+    FROM TransactionData td
+    LEFT JOIN InventoryItem i ON i.ItemID = @ItemCode
+    WHERE td.Date BETWEEN ISNULL(@StartDate, '1900-01-01') AND ISNULL(@EndDate, '9999-12-31')
 )
 SELECT 
-    t.ItemID,
-    t.Date,
-    t.TransactionID,
-    t.PartyName,
-    t.QuantityIn,
-    t.QuantityOut,
-    t.Unit,
-    t.Rate,
-    t.GrossAmount,
-    t.Discount,
-    t.NetAmount,
-    SUM(COALESCE(t.QuantityIn, 0) - COALESCE(t.QuantityOut, 0)) 
-        OVER (PARTITION BY t.ItemID ORDER BY t.Date, t.TransactionID 
-        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) + COALESCE(pb.BalanceQty, 0) AS BalanceQty  
-FROM FilteredData t
-LEFT JOIN PreviousBalance pb ON t.ItemID = pb.ItemID
-ORDER BY t.Date, t.TransactionID;
-
-
-";
-
+    fd.TransactionID,
+    fd.PartyName,
+    fd.Date,
+    fd.QuantityIn,
+    fd.QuantityOut,
+    fd.Unit,
+    fd.Rate,
+    fd.GrossAmount,
+    fd.Discount,
+    fd.NetAmount,
+    SUM(fd.QuantityChange) OVER (
+        ORDER BY 
+            CASE WHEN fd.TransactionID LIKE 'OB%' THEN 0 ELSE 1 END,  -- Opening balance first
+            fd.Date, 
+            fd.TransactionID
+        ROWS UNBOUNDED PRECEDING
+    ) AS BalanceQty
+FROM FilteredData fd
+ORDER BY 
+    CASE WHEN fd.TransactionID LIKE 'OB%' THEN 0 ELSE 1 END,
+    fd.Date,
+    fd.TransactionID;";
 
                 dbConnection.openConnection();
-                
+
                 using (SqlCommand cmd = new SqlCommand(query, dbConnection.connection))
                 {
                     cmd.Parameters.AddWithValue("@FinancialYearID", financialYear);
                     cmd.Parameters.AddWithValue("@ItemCode", itemCode);
-
-                    if (startDate.HasValue)
-                        cmd.Parameters.AddWithValue("@StartDate", startDate.Value);
-                    else
-                        cmd.Parameters.AddWithValue("@StartDate", DBNull.Value);
-
-                    if (endDate.HasValue)
-                        cmd.Parameters.AddWithValue("@EndDate", endDate.Value);
-                    else
-                        cmd.Parameters.AddWithValue("@EndDate", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@StartDate", startDate ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@EndDate", endDate ?? (object)DBNull.Value);
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
                         adapter.Fill(dataTable);
                     }
                 }
-                
             }
             catch (Exception ex)
             {

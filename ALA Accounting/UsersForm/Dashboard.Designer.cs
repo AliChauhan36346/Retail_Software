@@ -30,8 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.guna2CircleButton2 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.label15 = new System.Windows.Forms.Label();
+            this.dtm_startDate = new System.Windows.Forms.DateTimePicker();
+            this.dtm_endDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -73,9 +74,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lbl_sales = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dtm_endDate = new System.Windows.Forms.DateTimePicker();
-            this.dtm_startDate = new System.Windows.Forms.DateTimePicker();
-            this.label15 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -96,8 +94,6 @@
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.dtm_startDate);
             this.panel1.Controls.Add(this.dtm_endDate);
-            this.panel1.Controls.Add(this.guna2CircleButton2);
-            this.panel1.Controls.Add(this.guna2CircleButton1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -107,39 +103,33 @@
             this.panel1.Size = new System.Drawing.Size(1344, 64);
             this.panel1.TabIndex = 0;
             // 
-            // guna2CircleButton2
+            // label15
             // 
-            this.guna2CircleButton2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2CircleButton2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2CircleButton2.FillColor = System.Drawing.Color.DodgerBlue;
-            this.guna2CircleButton2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2CircleButton2.ForeColor = System.Drawing.Color.White;
-            this.guna2CircleButton2.Image = ((System.Drawing.Image)(resources.GetObject("guna2CircleButton2.Image")));
-            this.guna2CircleButton2.ImageSize = new System.Drawing.Size(48, 48);
-            this.guna2CircleButton2.Location = new System.Drawing.Point(1269, 10);
-            this.guna2CircleButton2.Name = "guna2CircleButton2";
-            this.guna2CircleButton2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton2.Size = new System.Drawing.Size(42, 42);
-            this.guna2CircleButton2.TabIndex = 6;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(1166, 25);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(24, 17);
+            this.label15.TabIndex = 9;
+            this.label15.Text = "TO";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
-            // guna2CircleButton1
+            // dtm_startDate
             // 
-            this.guna2CircleButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2CircleButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2CircleButton1.FillColor = System.Drawing.Color.DodgerBlue;
-            this.guna2CircleButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2CircleButton1.ForeColor = System.Drawing.Color.White;
-            this.guna2CircleButton1.Image = ((System.Drawing.Image)(resources.GetObject("guna2CircleButton1.Image")));
-            this.guna2CircleButton1.ImageSize = new System.Drawing.Size(48, 48);
-            this.guna2CircleButton1.Location = new System.Drawing.Point(936, 10);
-            this.guna2CircleButton1.Name = "guna2CircleButton1";
-            this.guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton1.Size = new System.Drawing.Size(42, 42);
-            this.guna2CircleButton1.TabIndex = 5;
+            this.dtm_startDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtm_startDate.Location = new System.Drawing.Point(1040, 22);
+            this.dtm_startDate.Name = "dtm_startDate";
+            this.dtm_startDate.Size = new System.Drawing.Size(110, 23);
+            this.dtm_startDate.TabIndex = 8;
+            this.dtm_startDate.ValueChanged += new System.EventHandler(this.dtm_startDate_ValueChanged);
+            // 
+            // dtm_endDate
+            // 
+            this.dtm_endDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtm_endDate.Location = new System.Drawing.Point(1205, 22);
+            this.dtm_endDate.Name = "dtm_endDate";
+            this.dtm_endDate.Size = new System.Drawing.Size(108, 23);
+            this.dtm_endDate.TabIndex = 7;
+            this.dtm_endDate.ValueChanged += new System.EventHandler(this.dtm_endDate_ValueChanged);
             // 
             // label1
             // 
@@ -730,34 +720,6 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "سیلز";
             // 
-            // dtm_endDate
-            // 
-            this.dtm_endDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtm_endDate.Location = new System.Drawing.Point(1152, 22);
-            this.dtm_endDate.Name = "dtm_endDate";
-            this.dtm_endDate.Size = new System.Drawing.Size(108, 23);
-            this.dtm_endDate.TabIndex = 7;
-            this.dtm_endDate.ValueChanged += new System.EventHandler(this.dtm_endDate_ValueChanged);
-            // 
-            // dtm_startDate
-            // 
-            this.dtm_startDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtm_startDate.Location = new System.Drawing.Point(987, 22);
-            this.dtm_startDate.Name = "dtm_startDate";
-            this.dtm_startDate.Size = new System.Drawing.Size(110, 23);
-            this.dtm_startDate.TabIndex = 8;
-            this.dtm_startDate.ValueChanged += new System.EventHandler(this.dtm_startDate_ValueChanged);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(1113, 25);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(24, 17);
-            this.label15.TabIndex = 9;
-            this.label15.Text = "TO";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -841,8 +803,6 @@
         private Guna.UI2.WinForms.Guna2Separator guna2Separator4;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator3;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
-        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton1;
-        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton2;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator7;
         private Guna.UI2.WinForms.Guna2Button btn_inventoryLeger;
         private System.Windows.Forms.Label label15;

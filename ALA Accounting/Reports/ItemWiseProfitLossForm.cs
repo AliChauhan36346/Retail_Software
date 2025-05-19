@@ -72,10 +72,8 @@ namespace ALA_Accounting.Reports
 
         private void btn_search_Click(object sender, EventArgs e)
         {
-            // Get selected financial year ID (you may need to change this based on your implementation)
-            
-
             // Get selected category ID (if applicable)
+
             int? categoryID = rdo_catagory.Checked && cmbo_catagory.SelectedValue != null
                 ? (int?)Convert.ToInt32(cmbo_catagory.SelectedValue)
                 : null;
@@ -91,8 +89,8 @@ namespace ALA_Accounting.Reports
                 : null;
 
             // Get date range (if applicable)
-            DateTime? startDate = chk_date.Checked ? (DateTime?)dtmStart.Value : null;
-            DateTime? endDate = chk_date.Checked ? (DateTime?)dtmEnd.Value : null;
+            DateTime? startDate = chk_date.Checked ? (DateTime?)dtmStart.Value.Date : null;
+            DateTime? endDate = chk_date.Checked ? (DateTime?)dtmEnd.Value.Date : null;
 
             // Load filtered data
             DataTable filteredData = profitLossClass.LoadData(financialYearId, categoryID, subCategoryID, brand, startDate, endDate);
@@ -205,6 +203,11 @@ namespace ALA_Accounting.Reports
                 }
                
             }
+        }
+
+        private void guna2ShadowPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

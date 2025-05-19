@@ -485,7 +485,7 @@ namespace ALA_Accounting.Addition
                     // Update existing account
                     account.accountId = txt_accId.Text;
                     account.accountName = txt_accName.Text;
-                    account.subAccountTypeId = txt_subAccId.ToString();
+                    account.subAccountTypeId = txt_subAccId.Text.ToString();
                     
 
                     account.UpdateAccount(account);
