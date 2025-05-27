@@ -97,8 +97,8 @@ namespace ALA_Accounting.Reports
             }
 
             // Assign totals to textboxes
-            txt_totalGross.Text = totalGross.ToString("N2");
-            txt_totalNet.Text = totalNet.ToString("N2");
+            txt_totalGross.Text = totalGross.ToString("N0");
+            txt_totalNet.Text = totalNet.ToString("N0");
         }
 
 

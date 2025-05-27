@@ -1348,5 +1348,31 @@ namespace ALA_Accounting.TransactionForms
         {
 
         }
+
+        private void txt_quantity_Leave(object sender, EventArgs e)
+        {
+            if (txt_itemId.Text.Trim() != "")
+            {
+                decimal saleQuantity = decimal.Parse(txt_quantity.Text.Trim() == "" ? "0" : txt_quantity.Text.Trim());
+                decimal availableQuantity = salesInvoice.GetItemQuantity(financialYearId, txt_itemId.Text.Trim());
+
+                if (saleQuantity > availableQuantity)
+                {
+                    DialogResult result = MessageBox.Show(
+                        $"آپ کے پاس صرف {availableQuantity} مقدار دستیاب ہے۔\nکیا آپ پھر بھی {saleQuantity} مقدار کے ساتھ جاری رکھنا چاہتے ہیں؟",
+                        "مقدار دستیاب نہیں",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (result == DialogResult.No)
+                    {
+                        txt_quantity.Text = "";
+                        txt_quantity.Focus();
+                    }
+                }
+            }
+        }
+
+
     }
 }

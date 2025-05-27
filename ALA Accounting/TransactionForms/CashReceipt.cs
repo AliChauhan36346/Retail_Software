@@ -234,7 +234,7 @@ namespace ALA_Accounting.TransactionForms
             {
                 AccountID = Convert.ToInt32(txt_accountId.Text), // Account of the recipient
                 TransactionDate = dtm_receiptDate.Value,
-                TransactionType = "debit", // Debit to the recipient account
+                TransactionType = "credit", // Debit to the recipient account
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_discription.Text.Trim(),
                 IsCancelled = false,
@@ -248,7 +248,7 @@ namespace ALA_Accounting.TransactionForms
             {
                 AccountID = Convert.ToInt32(txt_cashAccount.Text), // Cash or bank account from which Receipt is made
                 TransactionDate = dtm_receiptDate.Value,
-                TransactionType = "credit", // Credit to the source account
+                TransactionType = "debit", // Credit to the source account
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_discription.Text.Trim(),
                 IsCancelled = false,

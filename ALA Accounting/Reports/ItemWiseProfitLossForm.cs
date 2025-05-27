@@ -122,7 +122,7 @@ namespace ALA_Accounting.Reports
             }
 
 
-            txt_totalProfitLoss.Text = totalProfitLoss.ToString("N2");
+            txt_totalProfitLoss.Text = totalProfitLoss.ToString("N0");
             if(totalProfitLoss<0)
             {
                 txt_totalProfitLoss.ForeColor = Color.Red;
@@ -131,8 +131,8 @@ namespace ALA_Accounting.Reports
             {
                 txt_totalProfitLoss.ForeColor = Color.Green;
             }
-            txt_totalSalesValue.Text = totalSalesValue.ToString("N2");
-            txt_totalCost.Text = totalCost.ToString("N2");
+            txt_totalSalesValue.Text = totalSalesValue.ToString("N0");
+            txt_totalCost.Text = totalCost.ToString("N0");
         }
 
 

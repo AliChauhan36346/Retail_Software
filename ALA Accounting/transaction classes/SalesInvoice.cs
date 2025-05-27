@@ -549,6 +549,60 @@ FROM ItemTransactions;";
             return totalQuantity > 0 ? totalCost / totalQuantity : 0; // Avoid division by zero
         }
 
+        public decimal GetItemQuantity(int financialYear, string itemCode)
+        {
+            decimal totalQuantity = 0;
+            try
+            {
+                string query = @"
+            SELECT SUM(QuantityChange) AS TotalQuantity
+            FROM (
+                -- Sales: Outgoing (negative)
+                SELECT -sii.Quantity AS QuantityChange
+                FROM SalesInvoice si
+                INNER JOIN SalesInvoiceItems sii ON si.SalesInvoiceID = sii.SalesInvoiceID
+                WHERE si.FinancialYearID = @FinancialYearID AND sii.ItemID = @ItemCode
+
+                UNION ALL
+
+                -- Purchase: Incoming (positive)
+                SELECT pii.Quantity
+                FROM PurchaseInvoice pi
+                INNER JOIN PurchaseInvoiceItems pii ON pi.PurchaseInvoiceID = pii.PurchaseInvoiceID
+                WHERE pi.FinancialYearID = @FinancialYearID AND pii.ItemID = @ItemCode
+
+                UNION ALL
+
+                -- Opening Balance
+                SELECT ob.Quantity
+                FROM InventoryOpeningBalance ob
+                WHERE ob.FinancialYearID = @FinancialYearID AND ob.ItemID = @ItemCode
+            ) AS Combined";
+
+                dbConnection.openConnection();
+                using (SqlCommand cmd = new SqlCommand(query, dbConnection.connection))
+                {
+                    cmd.Parameters.AddWithValue("@FinancialYearID", financialYear);
+                    cmd.Parameters.AddWithValue("@ItemCode", itemCode);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value && result != null)
+                        totalQuantity = Convert.ToDecimal(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error calculating item quantity: " + ex.Message);
+            }
+            finally
+            {
+                dbConnection.closeConnection();
+            }
+
+            return totalQuantity;
+        }
+
+
 
 
     }

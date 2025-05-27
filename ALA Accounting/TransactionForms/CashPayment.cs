@@ -143,7 +143,7 @@ namespace ALA_Accounting.TransactionForms
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_discription.Text.Trim(),
                 IsCancelled = false,
-                FinancialYearID = financialYearId // Assuming dIParent1 is your parent class containing financial year
+                FinancialYearID = financialYearId 
             };
 
             // Prepare Transaction list
@@ -154,7 +154,7 @@ namespace ALA_Accounting.TransactionForms
             {
                 AccountID = Convert.ToInt32(txt_accountId.Text),
                 TransactionDate = dtm_paymentDate.Value,
-                TransactionType = "credit",
+                TransactionType = "debit",
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_discription.Text.Trim(),
                 IsCancelled = false,
@@ -163,12 +163,12 @@ namespace ALA_Accounting.TransactionForms
 
             transactions.Add(accountTransaction);
 
-            // Transaction for the cash account (debit)
+            // Transaction for the cash account
             Transaction cashTransaction = new Transaction
             {
                 AccountID = Convert.ToInt32(txt_cashAccount.Text),
                 TransactionDate = dtm_paymentDate.Value,
-                TransactionType = "debit",
+                TransactionType = "credit",
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_discription.Text.Trim(),
                 IsCancelled = false,
@@ -240,7 +240,7 @@ namespace ALA_Accounting.TransactionForms
             {
                 AccountID = Convert.ToInt32(txt_cashAccount.Text), // Cash or bank account from which payment is made
                 TransactionDate = dtm_paymentDate.Value,
-                TransactionType = "credit", // Credit to the source account
+                TransactionType = "credit", 
                 Amount = Convert.ToDecimal(txt_amount.Text),
                 Description = txt_discription.Text.Trim(),
                 IsCancelled = false,

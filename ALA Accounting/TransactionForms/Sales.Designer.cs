@@ -1361,6 +1361,7 @@
             this.txt_quantity.TextChanged += new System.EventHandler(this.txt_quantity_TextChanged);
             this.txt_quantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_quantity_KeyDown);
             this.txt_quantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_quantity_KeyPress);
+            this.txt_quantity.Leave += new System.EventHandler(this.txt_quantity_Leave);
             // 
             // txt_unit
             // 

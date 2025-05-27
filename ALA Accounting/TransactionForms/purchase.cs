@@ -100,7 +100,7 @@ namespace ALA_Accounting.TransactionForms
             txt_discountTotal.Text = "0.00";
             txt_netAmount.Text = "0.00";
 
-            txt_expenseAccountID.Text = "4";
+            txt_expenseAccountID.Text = "6";
 
             txt_expenseAccountName.Text = "purchase";
 
@@ -877,7 +877,7 @@ namespace ALA_Accounting.TransactionForms
                 {
                     AccountID = 3,
                     TransactionDate = dtm_saleDate.Value,
-                    TransactionType = "debit",
+                    TransactionType = "credit",
                     Amount = Convert.ToDecimal(txt_amountPaid.Text),
                     Description = description,
                     IsCancelled = false,
@@ -1028,9 +1028,9 @@ namespace ALA_Accounting.TransactionForms
 
                 Transaction cashAccount = new Transaction
                 {
-                    AccountID = Convert.ToInt32(txt_accountId.Text),
+                    AccountID = 3,
                     TransactionDate = dtm_saleDate.Value,
-                    TransactionType = "debit",
+                    TransactionType = "credit",
                     Amount = Convert.ToDecimal(txt_amountPaid.Text),
                     Description = description,
                     IsCancelled = false,
@@ -1044,7 +1044,7 @@ namespace ALA_Accounting.TransactionForms
 
             Transaction costTransaction = new Transaction
             {
-                AccountID = Convert.ToInt32(txt_expenseAccountID.Text),  // Income Account ID
+                AccountID = Convert.ToInt32(txt_expenseAccountID.Text),
                 TransactionDate = dtm_saleDate.Value,
                 TransactionType = "debit",
                 Amount = Convert.ToDecimal(txt_netTotal.Text),
