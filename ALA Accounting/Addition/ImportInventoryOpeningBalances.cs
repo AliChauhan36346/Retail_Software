@@ -92,16 +92,20 @@ namespace ALA_Accounting.Addition
                 SUM(CASE 
                     WHEN it.TransactionType = 'Purchase' THEN it.Quantity 
                     ELSE -it.Quantity 
-                END) + COALESCE(iob.Quantity, 0) AS ClosingBalance,
-                (SUM(it.Quantity * it.Rate) + COALESCE(iob.Quantity * iob.Rate, 0)) 
-                    / NULLIF((SUM(it.Quantity) + COALESCE(iob.Quantity, 0)), 0) AS AverageRate
+                END) + COALESCE(MAX(iob.Quantity), 0) AS ClosingBalance,
+                CASE 
+                    WHEN (SUM(it.Quantity) + COALESCE(MAX(iob.Quantity), 0)) > 0
+                    THEN (SUM(it.Quantity * it.Rate) + COALESCE(MAX(iob.Quantity * iob.Rate), 0)) 
+                        / (SUM(it.Quantity) + COALESCE(MAX(iob.Quantity), 0))
+                    ELSE 0
+                END AS AverageRate
             FROM InventoryTransaction it
             LEFT JOIN PurchaseInvoice pi ON it.SourceTable = 'PurchaseInvoice' AND it.SourceId = pi.PurchaseInvoiceID
             LEFT JOIN SalesInvoice si ON it.SourceTable = 'SalesInvoice' AND it.SourceId = si.SalesInvoiceID
             LEFT JOIN InventoryOpeningBalance iob ON it.ItemID = iob.ItemID 
                 AND iob.FinancialYearID = @PreviousYearID
             WHERE (pi.FinancialYearID = @PreviousYearID OR si.FinancialYearID = @PreviousYearID)
-            GROUP BY it.ItemID, iob.Quantity, iob.Rate
+            GROUP BY it.ItemID
         )
         INSERT INTO InventoryOpeningBalance (ItemID, FinancialYearID, Quantity, Unit, Rate, Date)
         SELECT 

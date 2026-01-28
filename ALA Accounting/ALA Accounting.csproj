@@ -110,6 +110,7 @@
     <Compile Include="Addition Classes\Accounts.cs" />
     <Compile Include="Addition Classes\AccountsOpeningBalancesClass.cs" />
     <Compile Include="Addition Classes\AddInventoryOpeningBalances.cs" />
+    <Compile Include="Addition Classes\BalanceSheetClass.cs" />
     <Compile Include="Addition Classes\Brand.cs" />
     <Compile Include="Addition Classes\InventoryItems.cs" />
     <Compile Include="Addition Classes\MainAccounts.cs" />
@@ -152,6 +153,12 @@
     <Compile Include="Addition\AddInventory.Designer.cs">
       <DependentUpon>AddInventory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Addition\BalanceSheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Addition\BalanceSheet.Designer.cs">
+      <DependentUpon>BalanceSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Addition\FinancialYear.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,7 +184,9 @@
       <DependentUpon>InventoryOpeningBalances.cs</DependentUpon>
     </Compile>
     <Compile Include="Addition\ListBoxItem.cs" />
+    <Compile Include="INTEGRATION_EXAMPLES.cs" />
     <Compile Include="Reports Classes\AccountsLegerClass.cs" />
+    <Compile Include="Reports Classes\InventoryBalanceClass.cs" />
     <Compile Include="Reports Classes\InventoryLegerClass.cs" />
     <Compile Include="Reports Classes\ItemWiseProfitLossClass.cs" />
     <Compile Include="Reports Classes\PurchaseReportClass.cs" />
@@ -187,6 +196,12 @@
     </Compile>
     <Compile Include="Reports\AccountsLegerForm.Designer.cs">
       <DependentUpon>AccountsLegerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\InventoryBalanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\InventoryBalanceForm.Designer.cs">
+      <DependentUpon>InventoryBalanceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\InventoryLegerForm.cs">
       <SubType>Form</SubType>
@@ -359,6 +374,7 @@
     <EmbeddedResource Include="UsersForm\MDIParent1.resx">
       <DependentUpon>MDIParent1.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="BALANCE_SHEET_README.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -374,6 +390,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BALANCE_SHEET_QUICK_START.txt" />
+    <Content Include="CERTIFICATE_OF_COMPLETION.txt" />
+    <Content Include="FINAL_SUMMARY.txt" />
+    <Content Include="IMPLEMENTATION_COMPLETE.txt" />
+    <Content Include="INDEX.txt" />
+    <Content Include="PROJECT_SUMMARY.txt" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -387,6 +409,7 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="START_HERE.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

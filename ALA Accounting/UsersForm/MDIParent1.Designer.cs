@@ -57,6 +57,8 @@
             this.custoemerRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.balanceSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventoryBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -256,6 +258,8 @@
             // reportsToolStripMenuItem
             // 
             this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.balanceSheetToolStripMenuItem,
+            this.inventoryBalanceToolStripMenuItem,
             this.saleReportToolStripMenuItem,
             this.purchaseReportToolStripMenuItem,
             this.itemWiseProfitLossToolStripMenuItem});
@@ -263,6 +267,20 @@
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
             this.reportsToolStripMenuItem.Click += new System.EventHandler(this.reportsToolStripMenuItem_Click);
+            // 
+            // balanceSheetToolStripMenuItem
+            // 
+            this.balanceSheetToolStripMenuItem.Name = "balanceSheetToolStripMenuItem";
+            this.balanceSheetToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.balanceSheetToolStripMenuItem.Text = "Balance Sheet";
+            this.balanceSheetToolStripMenuItem.Click += new System.EventHandler(this.balanceSheetToolStripMenuItem_Click);
+            // 
+            // inventoryBalanceToolStripMenuItem
+            // 
+            this.inventoryBalanceToolStripMenuItem.Name = "inventoryBalanceToolStripMenuItem";
+            this.inventoryBalanceToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.inventoryBalanceToolStripMenuItem.Text = "Inventory Balance";
+            this.inventoryBalanceToolStripMenuItem.Click += new System.EventHandler(this.inventoryBalanceToolStripMenuItem_Click);
             // 
             // saleReportToolStripMenuItem
             // 
@@ -345,6 +363,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem financialYearsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem balanceSheetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inventoryBalanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saleReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseSummaryToolStripMenuItem;

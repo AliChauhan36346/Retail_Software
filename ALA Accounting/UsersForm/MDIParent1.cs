@@ -227,6 +227,56 @@ namespace ALA_Accounting.UsersForm
             itemWiseProfitLossForm.Show();
         }
 
+        private void balanceSheetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Check if the form is already open
+            foreach (Form openForm in this.MdiChildren)
+            {
+                if (openForm is BalanceSheet)
+                {
+                    // Restore if minimized
+                    if (openForm.WindowState == FormWindowState.Minimized)
+                    {
+                        openForm.WindowState = FormWindowState.Normal;
+                    }
+
+                    // Bring to front
+                    openForm.BringToFront();
+                    return; // Exit, no need to create a new instance
+                }
+            }
+
+            // If form is not open, create a new instance
+            BalanceSheet balanceSheet = new BalanceSheet(financialYearId);
+            balanceSheet.MdiParent = this;
+            balanceSheet.Show();
+        }
+
+        private void inventoryBalanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Check if the form is already open
+            foreach (Form openForm in this.MdiChildren)
+            {
+                if (openForm is InventoryBalanceForm)
+                {
+                    // Restore if minimized
+                    if (openForm.WindowState == FormWindowState.Minimized)
+                    {
+                        openForm.WindowState = FormWindowState.Normal;
+                    }
+
+                    // Bring to front
+                    openForm.BringToFront();
+                    return; // Exit, no need to create a new instance
+                }
+            }
+
+            // If form is not open, create a new instance
+            InventoryBalanceForm inventoryBalanceForm = new InventoryBalanceForm(financialYearId);
+            inventoryBalanceForm.MdiParent = this;
+            inventoryBalanceForm.Show();
+        }
+
         private void MDIParent1_Load(object sender, EventArgs e)
         {
             toolStripStatusLabel.Text = "A Retail Accounting Software Developed by Ali Abbas. Contact us at alichauhan36346@gmail.com";

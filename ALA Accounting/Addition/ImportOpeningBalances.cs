@@ -88,14 +88,14 @@ namespace ALA_Accounting.Addition
             SELECT 
                 t.AccountID,
                 SUM(CASE WHEN t.TransactionType = 'Debit' THEN t.Amount ELSE 0 END) 
-                    + COALESCE(ob.Debit, 0) AS TotalDebit,
+                    + COALESCE(MAX(ob.Debit), 0) AS TotalDebit,
                 SUM(CASE WHEN t.TransactionType = 'Credit' THEN t.Amount ELSE 0 END) 
-                    + COALESCE(ob.Credit, 0) AS TotalCredit
+                    + COALESCE(MAX(ob.Credit), 0) AS TotalCredit
             FROM Transactions t
             LEFT JOIN AccountsOpeningBalance ob ON t.AccountID = ob.AccountId 
                 AND ob.financialYearID = @PreviousYearID
             WHERE t.FinancialYearID = @PreviousYearID
-            GROUP BY t.AccountID, ob.Debit, ob.Credit
+            GROUP BY t.AccountID
         )
         INSERT INTO AccountsOpeningBalance (AccountId, AccountName, Debit, Credit, financialYearID)
         SELECT 
