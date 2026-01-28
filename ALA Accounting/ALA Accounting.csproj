@@ -191,6 +191,7 @@
     <Compile Include="Reports Classes\ItemWiseProfitLossClass.cs" />
     <Compile Include="Reports Classes\PurchaseReportClass.cs" />
     <Compile Include="Reports Classes\SalesReportClass.cs" />
+    <Compile Include="Reports Classes\VendorBalanceClass.cs" />
     <Compile Include="Reports\AccountsLegerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,6 +227,12 @@
     </Compile>
     <Compile Include="Reports\saleSummaryReportForm.Designer.cs">
       <DependentUpon>saleSummaryReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\VendorBalanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\VendorBalanceForm.Designer.cs">
+      <DependentUpon>VendorBalanceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="transaction classes\BankPaymentClass.cs" />
@@ -326,6 +333,9 @@
     <EmbeddedResource Include="Reports\AccountsLegerForm.resx">
       <DependentUpon>AccountsLegerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InventoryBalanceForm.resx">
+      <DependentUpon>InventoryBalanceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\InventoryLegerForm.resx">
       <DependentUpon>InventoryLegerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -337,6 +347,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\saleSummaryReportForm.resx">
       <DependentUpon>saleSummaryReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VendorBalanceForm.resx">
+      <DependentUpon>VendorBalanceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TransactionForms\BankPayment.resx">
       <DependentUpon>BankPayment.cs</DependentUpon>

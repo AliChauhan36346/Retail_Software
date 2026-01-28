@@ -1,6 +1,6 @@
 namespace ALA_Accounting.Reports
 {
-    partial class InventoryBalanceForm
+    partial class VendorBalanceForm
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -16,12 +16,6 @@ namespace ALA_Accounting.Reports
         private void InitializeComponent()
         {
             this.pnlFilters = new System.Windows.Forms.Panel();
-            this.lblCategory = new System.Windows.Forms.Label();
-            this.cmbCategory = new System.Windows.Forms.ComboBox();
-            this.lblSubCategory = new System.Windows.Forms.Label();
-            this.cmbSubCategory = new System.Windows.Forms.ComboBox();
-            this.lblBrand = new System.Windows.Forms.Label();
-            this.cmbBrand = new System.Windows.Forms.ComboBox();
             this.lblStartDate = new System.Windows.Forms.Label();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.lblEndDate = new System.Windows.Forms.Label();
@@ -30,27 +24,21 @@ namespace ALA_Accounting.Reports
             this.btnClearFilters = new System.Windows.Forms.Button();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.dgvInventoryBalance = new System.Windows.Forms.DataGridView();
+            this.dgvVendorBalance = new System.Windows.Forms.DataGridView();
             this.pnlBottom = new System.Windows.Forms.Panel();
-            this.lblTotalClosingQty = new System.Windows.Forms.Label();
-            this.lblTotalClosingValue = new System.Windows.Forms.Label();
+            this.lblTotalVendors = new System.Windows.Forms.Label();
+            this.lblTotalClosingBalance = new System.Windows.Forms.Label();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.pnlFilters.SuspendLayout();
             this.pnlTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInventoryBalance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVendorBalance)).BeginInit();
             this.pnlBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlFilters
             // 
             this.pnlFilters.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pnlFilters.Controls.Add(this.lblCategory);
-            this.pnlFilters.Controls.Add(this.cmbCategory);
-            this.pnlFilters.Controls.Add(this.lblSubCategory);
-            this.pnlFilters.Controls.Add(this.cmbSubCategory);
-            this.pnlFilters.Controls.Add(this.lblBrand);
-            this.pnlFilters.Controls.Add(this.cmbBrand);
             this.pnlFilters.Controls.Add(this.lblStartDate);
             this.pnlFilters.Controls.Add(this.dtpStartDate);
             this.pnlFilters.Controls.Add(this.lblEndDate);
@@ -61,104 +49,46 @@ namespace ALA_Accounting.Reports
             this.pnlFilters.Location = new System.Drawing.Point(0, 77);
             this.pnlFilters.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlFilters.Name = "pnlFilters";
-            this.pnlFilters.Size = new System.Drawing.Size(1800, 185);
+            this.pnlFilters.Size = new System.Drawing.Size(1800, 123);
             this.pnlFilters.TabIndex = 1;
-            // 
-            // lblCategory
-            // 
-            this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(30, 23);
-            this.lblCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(77, 20);
-            this.lblCategory.TabIndex = 0;
-            this.lblCategory.Text = "Category:";
-            // 
-            // cmbCategory
-            // 
-            this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(120, 18);
-            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(223, 28);
-            this.cmbCategory.TabIndex = 1;
-            this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
-            // 
-            // lblSubCategory
-            // 
-            this.lblSubCategory.AutoSize = true;
-            this.lblSubCategory.Location = new System.Drawing.Point(420, 23);
-            this.lblSubCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSubCategory.Name = "lblSubCategory";
-            this.lblSubCategory.Size = new System.Drawing.Size(110, 20);
-            this.lblSubCategory.TabIndex = 2;
-            this.lblSubCategory.Text = "Sub Category:";
-            // 
-            // cmbSubCategory
-            // 
-            this.cmbSubCategory.FormattingEnabled = true;
-            this.cmbSubCategory.Location = new System.Drawing.Point(540, 18);
-            this.cmbSubCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbSubCategory.Name = "cmbSubCategory";
-            this.cmbSubCategory.Size = new System.Drawing.Size(223, 28);
-            this.cmbSubCategory.TabIndex = 3;
-            // 
-            // lblBrand
-            // 
-            this.lblBrand.AutoSize = true;
-            this.lblBrand.Location = new System.Drawing.Point(810, 23);
-            this.lblBrand.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBrand.Name = "lblBrand";
-            this.lblBrand.Size = new System.Drawing.Size(56, 20);
-            this.lblBrand.TabIndex = 4;
-            this.lblBrand.Text = "Brand:";
-            // 
-            // cmbBrand
-            // 
-            this.cmbBrand.FormattingEnabled = true;
-            this.cmbBrand.Location = new System.Drawing.Point(870, 18);
-            this.cmbBrand.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbBrand.Name = "cmbBrand";
-            this.cmbBrand.Size = new System.Drawing.Size(223, 28);
-            this.cmbBrand.TabIndex = 5;
             // 
             // lblStartDate
             // 
             this.lblStartDate.AutoSize = true;
-            this.lblStartDate.Location = new System.Drawing.Point(30, 69);
+            this.lblStartDate.Location = new System.Drawing.Point(30, 23);
             this.lblStartDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStartDate.Name = "lblStartDate";
             this.lblStartDate.Size = new System.Drawing.Size(87, 20);
-            this.lblStartDate.TabIndex = 6;
+            this.lblStartDate.TabIndex = 0;
             this.lblStartDate.Text = "Start Date:";
             // 
             // dtpStartDate
             // 
             this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpStartDate.Location = new System.Drawing.Point(120, 65);
+            this.dtpStartDate.Location = new System.Drawing.Point(120, 18);
             this.dtpStartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(223, 26);
-            this.dtpStartDate.TabIndex = 7;
+            this.dtpStartDate.TabIndex = 1;
             // 
             // lblEndDate
             // 
             this.lblEndDate.AutoSize = true;
-            this.lblEndDate.Location = new System.Drawing.Point(420, 69);
+            this.lblEndDate.Location = new System.Drawing.Point(420, 23);
             this.lblEndDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEndDate.Name = "lblEndDate";
             this.lblEndDate.Size = new System.Drawing.Size(81, 20);
-            this.lblEndDate.TabIndex = 8;
+            this.lblEndDate.TabIndex = 2;
             this.lblEndDate.Text = "End Date:";
             // 
             // dtpEndDate
             // 
             this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEndDate.Location = new System.Drawing.Point(540, 65);
+            this.dtpEndDate.Location = new System.Drawing.Point(540, 18);
             this.dtpEndDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(223, 26);
-            this.dtpEndDate.TabIndex = 9;
+            this.dtpEndDate.TabIndex = 3;
             // 
             // btnApplyFilters
             // 
@@ -170,7 +100,7 @@ namespace ALA_Accounting.Reports
             this.btnApplyFilters.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnApplyFilters.Name = "btnApplyFilters";
             this.btnApplyFilters.Size = new System.Drawing.Size(120, 38);
-            this.btnApplyFilters.TabIndex = 10;
+            this.btnApplyFilters.TabIndex = 4;
             this.btnApplyFilters.Text = "Apply";
             this.btnApplyFilters.UseVisualStyleBackColor = false;
             this.btnApplyFilters.Click += new System.EventHandler(this.btnApplyFilters_Click);
@@ -185,7 +115,7 @@ namespace ALA_Accounting.Reports
             this.btnClearFilters.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClearFilters.Name = "btnClearFilters";
             this.btnClearFilters.Size = new System.Drawing.Size(120, 38);
-            this.btnClearFilters.TabIndex = 11;
+            this.btnClearFilters.TabIndex = 5;
             this.btnClearFilters.Text = "Clear";
             this.btnClearFilters.UseVisualStyleBackColor = false;
             this.btnClearFilters.Click += new System.EventHandler(this.btnClearFilters_Click);
@@ -209,31 +139,31 @@ namespace ALA_Accounting.Reports
             this.lblTitle.Location = new System.Drawing.Point(30, 18);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(355, 33);
+            this.lblTitle.Size = new System.Drawing.Size(324, 33);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Inventory Balance Report";
+            this.lblTitle.Text = "Vendor Balance Report";
             // 
-            // dgvInventoryBalance
+            // dgvVendorBalance
             // 
-            this.dgvInventoryBalance.AllowUserToAddRows = false;
-            this.dgvInventoryBalance.AllowUserToDeleteRows = false;
-            this.dgvInventoryBalance.BackgroundColor = System.Drawing.Color.White;
-            this.dgvInventoryBalance.ColumnHeadersHeight = 34;
-            this.dgvInventoryBalance.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvInventoryBalance.Location = new System.Drawing.Point(0, 262);
-            this.dgvInventoryBalance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvInventoryBalance.Name = "dgvInventoryBalance";
-            this.dgvInventoryBalance.ReadOnly = true;
-            this.dgvInventoryBalance.RowHeadersVisible = false;
-            this.dgvInventoryBalance.RowHeadersWidth = 62;
-            this.dgvInventoryBalance.Size = new System.Drawing.Size(1800, 507);
-            this.dgvInventoryBalance.TabIndex = 2;
+            this.dgvVendorBalance.AllowUserToAddRows = false;
+            this.dgvVendorBalance.AllowUserToDeleteRows = false;
+            this.dgvVendorBalance.BackgroundColor = System.Drawing.Color.White;
+            this.dgvVendorBalance.ColumnHeadersHeight = 34;
+            this.dgvVendorBalance.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvVendorBalance.Location = new System.Drawing.Point(0, 200);
+            this.dgvVendorBalance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvVendorBalance.Name = "dgvVendorBalance";
+            this.dgvVendorBalance.ReadOnly = true;
+            this.dgvVendorBalance.RowHeadersVisible = false;
+            this.dgvVendorBalance.RowHeadersWidth = 62;
+            this.dgvVendorBalance.Size = new System.Drawing.Size(1800, 569);
+            this.dgvVendorBalance.TabIndex = 2;
             // 
             // pnlBottom
             // 
             this.pnlBottom.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pnlBottom.Controls.Add(this.lblTotalClosingQty);
-            this.pnlBottom.Controls.Add(this.lblTotalClosingValue);
+            this.pnlBottom.Controls.Add(this.lblTotalVendors);
+            this.pnlBottom.Controls.Add(this.lblTotalClosingBalance);
             this.pnlBottom.Controls.Add(this.btnExportExcel);
             this.pnlBottom.Controls.Add(this.btnPrint);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -243,27 +173,27 @@ namespace ALA_Accounting.Reports
             this.pnlBottom.Size = new System.Drawing.Size(1800, 77);
             this.pnlBottom.TabIndex = 3;
             // 
-            // lblTotalClosingQty
+            // lblTotalVendors
             // 
-            this.lblTotalClosingQty.AutoSize = true;
-            this.lblTotalClosingQty.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.lblTotalClosingQty.Location = new System.Drawing.Point(30, 23);
-            this.lblTotalClosingQty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTotalClosingQty.Name = "lblTotalClosingQty";
-            this.lblTotalClosingQty.Size = new System.Drawing.Size(198, 24);
-            this.lblTotalClosingQty.TabIndex = 0;
-            this.lblTotalClosingQty.Text = "Total Closing Qty: 0";
+            this.lblTotalVendors.AutoSize = true;
+            this.lblTotalVendors.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblTotalVendors.Location = new System.Drawing.Point(30, 23);
+            this.lblTotalVendors.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalVendors.Name = "lblTotalVendors";
+            this.lblTotalVendors.Size = new System.Drawing.Size(165, 24);
+            this.lblTotalVendors.TabIndex = 0;
+            this.lblTotalVendors.Text = "Total Vendors: 0";
             // 
-            // lblTotalClosingValue
+            // lblTotalClosingBalance
             // 
-            this.lblTotalClosingValue.AutoSize = true;
-            this.lblTotalClosingValue.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.lblTotalClosingValue.Location = new System.Drawing.Point(375, 23);
-            this.lblTotalClosingValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTotalClosingValue.Name = "lblTotalClosingValue";
-            this.lblTotalClosingValue.Size = new System.Drawing.Size(215, 24);
-            this.lblTotalClosingValue.TabIndex = 1;
-            this.lblTotalClosingValue.Text = "Total Closing Value: 0";
+            this.lblTotalClosingBalance.AutoSize = true;
+            this.lblTotalClosingBalance.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblTotalClosingBalance.Location = new System.Drawing.Point(375, 23);
+            this.lblTotalClosingBalance.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalClosingBalance.Name = "lblTotalClosingBalance";
+            this.lblTotalClosingBalance.Size = new System.Drawing.Size(267, 24);
+            this.lblTotalClosingBalance.TabIndex = 1;
+            this.lblTotalClosingBalance.Text = "Total Closing Balance: 0.00";
             // 
             // btnExportExcel
             // 
@@ -295,25 +225,25 @@ namespace ALA_Accounting.Reports
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // InventoryBalanceForm
+            // VendorBalanceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1800, 846);
-            this.Controls.Add(this.dgvInventoryBalance);
+            this.Controls.Add(this.dgvVendorBalance);
             this.Controls.Add(this.pnlBottom);
             this.Controls.Add(this.pnlFilters);
             this.Controls.Add(this.pnlTop);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "InventoryBalanceForm";
+            this.Name = "VendorBalanceForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Inventory Balance Report";
-            this.Load += new System.EventHandler(this.InventoryBalanceForm_Load);
+            this.Text = "Vendor Balance Report";
+            this.Load += new System.EventHandler(this.VendorBalanceForm_Load);
             this.pnlFilters.ResumeLayout(false);
             this.pnlFilters.PerformLayout();
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInventoryBalance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVendorBalance)).EndInit();
             this.pnlBottom.ResumeLayout(false);
             this.pnlBottom.PerformLayout();
             this.ResumeLayout(false);
@@ -323,22 +253,16 @@ namespace ALA_Accounting.Reports
         private System.Windows.Forms.Panel pnlTop;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlFilters;
-        private System.Windows.Forms.DataGridView dgvInventoryBalance;
+        private System.Windows.Forms.DataGridView dgvVendorBalance;
         private System.Windows.Forms.Panel pnlBottom;
         private System.Windows.Forms.Button btnExportExcel;
         private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Label lblTotalClosingQty;
-        private System.Windows.Forms.Label lblTotalClosingValue;
+        private System.Windows.Forms.Label lblTotalVendors;
+        private System.Windows.Forms.Label lblTotalClosingBalance;
         private System.Windows.Forms.Button btnApplyFilters;
         private System.Windows.Forms.Button btnClearFilters;
-        private System.Windows.Forms.ComboBox cmbCategory;
-        private System.Windows.Forms.ComboBox cmbSubCategory;
-        private System.Windows.Forms.ComboBox cmbBrand;
         private System.Windows.Forms.DateTimePicker dtpStartDate;
         private System.Windows.Forms.DateTimePicker dtpEndDate;
-        private System.Windows.Forms.Label lblCategory;
-        private System.Windows.Forms.Label lblSubCategory;
-        private System.Windows.Forms.Label lblBrand;
         private System.Windows.Forms.Label lblStartDate;
         private System.Windows.Forms.Label lblEndDate;
     }

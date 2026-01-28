@@ -267,7 +267,7 @@ namespace ALA_Accounting.UsersForm
 
                     // Bring to front
                     openForm.BringToFront();
-                    return; // Exit, no need to create a new instance
+                    return;
                 }
             }
 
@@ -275,6 +275,31 @@ namespace ALA_Accounting.UsersForm
             InventoryBalanceForm inventoryBalanceForm = new InventoryBalanceForm(financialYearId);
             inventoryBalanceForm.MdiParent = this;
             inventoryBalanceForm.Show();
+        }
+
+        private void vendorBalanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Check if the form is already open
+            foreach (Form openForm in this.MdiChildren)
+            {
+                if (openForm is VendorBalanceForm)
+                {
+                    // Restore if minimized
+                    if (openForm.WindowState == FormWindowState.Minimized)
+                    {
+                        openForm.WindowState = FormWindowState.Normal;
+                    }
+
+                    // Bring to front
+                    openForm.BringToFront();
+                    return;
+                }
+            }
+
+            // If form is not open, create a new instance
+            VendorBalanceForm vendorBalanceForm = new VendorBalanceForm(financialYearId);
+            vendorBalanceForm.MdiParent = this;
+            vendorBalanceForm.Show();
         }
 
         private void MDIParent1_Load(object sender, EventArgs e)
